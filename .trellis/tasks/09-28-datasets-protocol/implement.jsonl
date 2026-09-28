@@ -1,0 +1,4 @@
+{"file": "FerroTS_Rust_Implementation_Plan.md", "reason": "计划书第 6、10.2、14.1 节：数据协议、评价、防泄漏"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/public-datasets.md", "reason": "9 个公共文件的来源快照、字节数、SHA256、格式差异"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/dataset-profile.md", "reason": "水泥孪生样本统计量，数据卡与协议参数的依据"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/upstream-verification.md", "reason": "TSLib ETT 切分边界与 iTransformer 时间特征 token 证据"}
