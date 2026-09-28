@@ -1,0 +1,184 @@
+COMMAND: cargo build --workspace --features cuda
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-cli` (bin "ferrots") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.16s
+EXIT: 0
+COMMAND: cargo clippy --workspace --all-targets --features cuda -- -D warnings
+    Blocking waiting for file lock on package cache
+    Checking ferrots-train v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-train)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.87s
+EXIT: 0
+COMMAND: cargo test --workspace --features cuda
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\cuda_smoke-c8691eda2fffc5c0.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\cuda_smoke-c8691eda2fffc5c0.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\train_ops-65f7bc125d5817c9.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\train_ops-65f7bc125d5817c9.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\dropout-8a38474b30d9c245.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\dropout-8a38474b30d9c245.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\fused_path_cuts_grad-09924cd1e31854c1.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\fused_path_cuts_grad-09924cd1e31854c1.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\cuda_consistency-faca5fea355f5acb.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\cuda_consistency-faca5fea355f5acb.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-nn` (test "cuda_smoke") generated 1 warning
+warning: `ferrots-nn` (test "train_ops") generated 1 warning
+warning: `ferrots-nn` (test "dropout") generated 1 warning
+warning: `ferrots-nn` (test "fused_path_cuts_grad") generated 1 warning
+warning: `ferrots-nn` (test "cuda_consistency") generated 1 warning
+   Compiling ferrots-train v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-train)
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-cli` (bin "ferrots") generated 1 warning
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\optim-847bc89bcb6a1f1d.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\optim-847bc89bcb6a1f1d.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-train` (test "optim") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.77s
+     Running unittests src\main.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots-16dbdbed533fed11.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\doctor.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\doctor-64307e98ca22f76d.exe)
+
+running 2 tests
+test cpu_training_smoke_reports_build_and_updates ... ok
+test explicit_unavailable_or_invalid_devices_fail ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.71s
+
+     Running unittests src\lib.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots_core-2993813ec980907b.exe)
+
+running 4 tests
+test device::tests::cuda_error_preserves_device_index_and_source ... ok
+test device::tests::parses_explicit_devices ... ok
+test device::tests::rejects_invalid_device_specs ... ok
+test dtype::tests::accepts_only_f32 ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots_data-694ba2df42e04b32.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots_nn-5f3c067b80cc0572.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\cuda_consistency.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\cuda_consistency-faca5fea355f5acb.exe)
+
+running 3 tests
+test cuda_dropout_mask_and_gradients_match_cpu ... ok
+test cuda_attention_qkv_gradients_match_cpu ... ok
+test cuda_train_ops_reductions_and_layer_norm_match_cpu ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.64s
+
+     Running tests\cuda_smoke.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\cuda_smoke-c8691eda2fffc5c0.exe)
+
+running 1 test
+test cuda_smoke_matmul_backward_update ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+
+     Running tests\dropout.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\dropout-8a38474b30d9c245.exe)
+
+running 3 tests
+test dropout_mode_probability_and_gradient ... ok
+test dropout_reconstructs_stream_and_changes_each_component ... ok
+test dropout_attention_preserves_gradient ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\fused_path_cuts_grad.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\fused_path_cuts_grad-09924cd1e31854c1.exe)
+
+running 2 tests
+test inference_requires_frozen_inputs_and_matches_training_forward ... ok
+test fused_path_cuts_grad_but_training_ops_preserve_all_parameters ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\no_fused_in_train.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\no_fused_in_train-655a05d434b02d69.exe)
+
+running 1 test
+test no_fused_in_train ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\train_ops.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\train_ops-65f7bc125d5817c9.exe)
+
+running 5 tests
+test train_ops_masked_softmax_checks_rows_and_gradients ... ok
+test train_ops_softmax_arbitrary_axes_and_noncontiguous ... ok
+test train_ops_layer_norm_all_gradients ... ok
+test train_ops_population_variance_edges ... ok
+test train_ops_attention_qkv_gradients ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots_train-ba3440af9d60d65a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\optim.rs (target\windows-static\x86_64-pc-windows-msvc\debug\deps\optim-847bc89bcb6a1f1d.exe)
+
+running 9 tests
+test missing_or_invalid_gradients_do_not_mutate_state ... ok
+test constructors_reject_invalid_parameters_and_groups ... ok
+test adamw_matches_torch_ten_steps ... ok
+test adam_matches_torch_ten_steps ... ok
+test model_load_rejects_invalid_files_before_mutation ... ok
+test cpu_resume_is_bitwise_identical ... ok
+test checkpoint_validation_is_transactional ... ok
+test cuda_optimizers_match_cpu_and_torch ... ok
+test cuda_resume_matches_continuous_training ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+
+   Doc-tests ferrots_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests ferrots_data
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests ferrots_nn
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests ferrots_train
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+EXIT: 0

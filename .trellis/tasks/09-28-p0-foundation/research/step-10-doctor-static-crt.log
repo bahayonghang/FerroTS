@@ -1,0 +1,190 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling version_check v0.9.5
+   Compiling crossbeam-utils v0.8.23
+   Compiling cfg-if v1.0.5
+   Compiling crossbeam-epoch v0.9.21
+   Compiling crossbeam-deque v0.8.8
+   Compiling rayon-core v1.13.0
+   Compiling getrandom v0.3.4
+   Compiling zerocopy v0.8.59
+   Compiling libm v0.2.16
+   Compiling autocfg v1.5.1
+   Compiling once_cell v1.21.4
+   Compiling zmij v1.0.23
+   Compiling serde_core v1.0.229
+   Compiling bitflags v2.13.2
+   Compiling either v1.18.0
+   Compiling paste v1.0.15
+   Compiling windows-link v0.2.1
+   Compiling thiserror v2.0.21
+   Compiling memchr v2.8.3
+   Compiling typenum v1.20.1
+   Compiling reborrow v0.5.5
+   Compiling dyn-stack-macros v0.1.3
+   Compiling pulp-wasm-simd-flag v0.1.1
+   Compiling raw-cpuid v11.6.0
+   Compiling serde v1.0.229
+   Compiling windows-sys v0.61.2
+   Compiling generic-array v0.14.7
+   Compiling pulp v0.22.3
+   Compiling num-traits v0.2.19
+   Compiling ident_case v1.0.1
+   Compiling strsim v0.11.1
+   Compiling winapi v0.3.9
+   Compiling seq-macro v0.3.6
+   Compiling fnv v1.0.7
+   Compiling winapi-util v0.1.11
+   Compiling find-msvc-tools v0.1.14
+   Compiling serde_json v1.0.151
+   Compiling anyhow v1.0.104
+   Compiling shlex v2.0.1
+   Compiling cpufeatures v0.2.17
+   Compiling rand_core v0.9.5
+   Compiling same-file v1.0.6
+   Compiling pkg-config v0.3.34
+   Compiling env_home v0.1.0
+   Compiling cc v1.5.1
+   Compiling winsafe v0.0.19
+   Compiling rustversion v1.0.23
+   Compiling syn v3.0.6
+   Compiling syn v2.0.119
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling itoa v1.0.18
+   Compiling walkdir v2.5.0
+   Compiling equivalent v1.0.2
+   Compiling num_cpus v1.17.0
+   Compiling libc v0.2.189
+   Compiling digest v0.10.7
+   Compiling getrandom v0.4.3
+   Compiling glob v0.3.4
+   Compiling aho-corasick v1.1.5
+   Compiling ahash v0.8.12
+   Compiling regex-syntax v0.8.11
+   Compiling esaxx-rs v0.1.10
+   Compiling minimal-lexical v0.2.1
+   Compiling sha2 v0.10.9
+   Compiling fs2 v0.4.3
+   Compiling rayon v1.12.0
+   Compiling crc32fast v1.5.2
+   Compiling nom v7.1.3
+   Compiling itertools v0.14.0
+   Compiling macro_rules_attribute-proc_macro v0.2.3
+   Compiling foldhash v0.2.0
+   Compiling stable_deref_trait v1.2.1
+   Compiling smallvec v1.16.2
+   Compiling ryu v1.0.23
+   Compiling unicode-segmentation v1.13.3
+   Compiling fastrand v2.5.0
+   Compiling hashbrown v0.17.1
+   Compiling base64 v0.13.1
+   Compiling which v7.0.3
+   Compiling castaway v0.2.4
+   Compiling allocator-api2 v0.2.21
+   Compiling pastey v0.2.3
+   Compiling static_assertions v1.1.0
+   Compiling onig_sys v69.9.3
+   Compiling cudarc v0.19.8
+   Compiling tempfile v3.27.0
+   Compiling unicode-normalization-alignments v0.1.12
+   Compiling libloading v0.9.0
+   Compiling hashbrown v0.16.1
+   Compiling log v0.4.34
+   Compiling regex-automata v0.4.18
+   Compiling typed-path v0.12.3
+   Compiling darling_core v0.20.11
+   Compiling indexmap v2.14.2
+   Compiling unicode_categories v0.1.1
+   Compiling memmap2 v0.9.11
+   Compiling byteorder v1.5.0
+   Compiling once_cell_polyfill v1.70.2
+   Compiling synstructure v0.14.0
+   Compiling rayon-cond v0.4.0
+   Compiling macro_rules_attribute v0.2.3
+   Compiling utf8parse v0.2.2
+   Compiling anstyle v1.0.14
+   Compiling anstyle-query v1.1.5
+   Compiling colorchoice v1.0.5
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling heck v0.5.0
+   Compiling anstyle-parse v1.0.0
+   Compiling anstyle-wincon v3.0.11
+   Compiling zip v8.6.0
+   Compiling clap_lex v1.1.1
+   Compiling ferrots-cli v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-cli)
+   Compiling anstream v1.0.0
+   Compiling clap_builder v4.6.7
+   Compiling regex v1.13.1
+   Compiling bytemuck_derive v1.12.1
+   Compiling serde_derive v1.0.229
+   Compiling thiserror-impl v2.0.21
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.3
+   Compiling clap_derive v4.6.7
+   Compiling zerocopy-derive v0.8.59
+   Compiling monostate-impl v0.1.18
+   Compiling darling_macro v0.20.11
+   Compiling monostate v0.1.18
+   Compiling darling v0.20.11
+   Compiling derive_builder_core v0.20.2
+   Compiling bytemuck v1.25.2
+   Compiling zerofrom v0.1.8
+   Compiling yoke v0.8.3
+   Compiling num-complex v0.4.6
+   Compiling dyn-stack v0.13.2
+   Compiling ferrots-core v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-core)
+   Compiling derive_builder_macro v0.20.2
+   Compiling clap v4.6.7
+   Compiling derive_builder v0.20.2
+   Compiling cudaforge v0.1.6
+   Compiling compact_str v0.9.1
+   Compiling spm_precompiled v0.1.4
+   Compiling dary_heap v0.3.9
+   Compiling safetensors v0.8.0
+   Compiling candle-kernels v0.11.0
+   Compiling ppv-lite86 v0.2.21
+   Compiling onig v6.5.3
+   Compiling rand_chacha v0.9.0
+   Compiling rand v0.9.5
+   Compiling rand_distr v0.5.1
+   Compiling tokenizers v0.22.2
+   Compiling half v2.7.1
+   Compiling gemm-common v0.19.0
+   Compiling float8 v0.7.0
+   Compiling gemm-f32 v0.19.0
+   Compiling gemm-c64 v0.19.0
+   Compiling gemm-c32 v0.19.0
+   Compiling gemm-f64 v0.19.0
+   Compiling gemm-f16 v0.19.0
+   Compiling gemm v0.19.0
+   Compiling candle-core v0.11.0
+   Compiling candle-nn v0.11.0
+   Compiling ferrots-nn v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-nn)
+   Compiling ferrots-train v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-train)
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-cli` (bin "ferrots") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 22s
+     Running `target\windows-static\x86_64-pc-windows-msvc\debug\ferrots.exe doctor --device cuda:0 --training-smoke-test`
+rustc: rustc 1.98.0 (88d9e12ae 2026-08-18)
+target: x86_64-pc-windows-msvc
+build_features: cuda
+candle: 0.11.0 (31f35b147389700ed2a178ee66a91c3cc25cc80d)
+requested_device: cuda:0
+cuda_driver_api: 13.4 (13040)
+cuda_runtime: 13.4 (13040)
+gpu_name: NVIDIA GeForce RTX 5090 Laptop GPU
+gpu_compute_capability: 12.0
+gpu_memory_bytes: 25622413312
+driver_version: 617.14
+forward_ms: 176.462
+loss: 0.04878764
+backward_ms: 4.456
+update_ms: 1.295
+parameters_with_gradients: 6
+parameters_updated: 6
+training_smoke_test: passed

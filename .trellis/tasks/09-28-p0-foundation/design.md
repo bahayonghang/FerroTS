@@ -9,7 +9,7 @@ crates/
   ferrots-core/          # Device、DTypePolicy、错误类型；不依赖 Candle
   ferrots-data/          # P0 只建空 crate（lib.rs），P1 实现
   ferrots-nn/            # train_ops、infer_ops、源码守卫测试
-  ferrots-train/         # StatefulAdam、StatefulAdamW、RNG 流、参数集合保存/加载
+  ferrots-train/         # StatefulAdam、StatefulAdamW、参数集合保存/加载；重导出 RngStream
   ferrots-cli/           # 二进制 `ferrots`；P0 只有 `doctor` 子命令
 tools/reference/         # uv 管理的 Python 夹具工具，仅开发期使用
 tests/fixtures/optim/    # 合成数据生成的 Adam/AdamW 夹具（可提交，体积 < 1 MB）
@@ -43,11 +43,11 @@ docs/environment.md      # 实测环境矩阵与平台选择记录
 | `dropout(x, p, mode, stream)`       | train：`x * mask / (1-p)`；eval：`x`                          | mask 见第 5 节                                              |
 | `attention(q, k, v, mask, dropout)` | `softmax(q kᵀ / sqrt(d)) v`                                   | 形状 `[B, H, Lq, D]` × `[B, H, Lk, D]`                      |
 
-`infer_ops` 提供 `softmax_fused`、`layer_norm_fused`（调用 Candle 融合算子）。两个函数要求参数 `_: InferenceOnly`；`InferenceOnly` 只能由评估/推理路径的构造函数创建，训练路径拿不到该值，从类型层面阻止误用。
+`infer_ops` 提供 `softmax_fused`、`layer_norm_fused`（调用 Candle 融合算子）。两个函数要求 `&InferenceOnly`，调用方通过 `InferenceOnly::evaluation()` 显式声明推理。Rust 无法根据调用方模块限制公开构造函数，因此入口还检查全部输入与 affine 参数的 `track_op()`，拒绝变量及保留计算图的派生张量。调用方必须先冻结输入；token 与运行期校验共同防止误用。
 
 ## 5. 随机流
 
-- 计数器式随机流：`RngStream { seed, run_step, layer_id }` → `ChaCha8Rng::seed_from_u64(hash(seed, run_step, layer_id))`。
+- 可重建随机流：`RngStream { seed, run_step, layer_id }` → `ChaCha8Rng::from_seed(key)`。32 字节 key 为三个 u64 的小端编码加 `b"FerroTS0"`，避免未指定 hash 算法导致跨版本变化。RngStream 定义于 `ferrots-nn` 并由 `ferrots-train` 重导出，避免 train → nn → train 循环依赖。
 - Dropout mask 在主机上用该流生成，再传到目标设备。CPU 与 CUDA 因此得到相同 mask，一致性测试可直接比较；代价是每步一次主机→设备传输。P4 剖析后再决定是否改为设备端生成。
 - 随机流状态只由 `(seed, run_step)` 决定，恢复训练时不需要保存生成器内部状态。
 
@@ -77,7 +77,7 @@ StatefulAdamW {
 ## 8. `doctor`
 
 - 编译期：`build.rs` 写入 rustc 版本、目标三元组、启用的 features。
-- 运行期（`cuda` feature）：驱动版本、CUDA 运行时版本、设备名、算力、总显存（cudarc 查询）。
+- 运行期（`cuda` feature）：复用 Candle 的 context，查询驱动 CUDA API 版本、CUDA 运行时版本、设备名、算力、总显存。CLI 对同一个 cudarc 依赖额外启用 `runtime` feature 以调用版本接口。可用时用 `nvidia-smi` 补充显示驱动发布版本；缺失时标记 unavailable，CUDA API 版本仍为必填诊断项。
 - `--training-smoke-test`：在目标设备上构建 `Linear → layer_norm → softmax → Linear` 小网络，前向 → 掩码 MSE → backward → 断言全部参数有非零梯度 → AdamW 一步 → 断言参数变化；输出每步耗时。
 - 退出码：全部通过为 0；任一步失败为非 0，并打印失败步骤与错误。
 

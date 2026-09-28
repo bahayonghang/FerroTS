@@ -1,0 +1,14 @@
+Command: C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\bin\cargo.exe build --workspace --features cuda
+Environment: installed MSVC 14.51 via vcvars64.bat; CUDA 13.3
+CL: /Zc:preprocessor /utf-8
+VSLANG: 1033
+Started: 2026-09-28T05:31:39.3983346-05:00
+   Compiling candle-kernels v0.11.0
+   Compiling candle-core v0.11.0
+   Compiling candle-nn v0.11.0
+   Compiling ferrots-nn v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-nn)
+   Compiling ferrots-train v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-train)
+   Compiling ferrots-cli v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 04s
+Exit code: 0
+Elapsed seconds: 65.889201

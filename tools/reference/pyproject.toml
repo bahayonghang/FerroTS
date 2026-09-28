@@ -20,6 +20,7 @@ dependencies = [
     "einops==0.8.1",
     "local-attention==1.11.2",
     "reformer-pytorch==1.4.4",
+    "safetensors==0.7.0",
 ]
 
 [tool.uv]

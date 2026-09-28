@@ -1,0 +1,22 @@
+[package]
+name = "ferrots-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "ferrots"
+path = "src/main.rs"
+
+[features]
+default = []
+cuda = ["ferrots-train/cuda", "dep:cudarc"]
+
+[dependencies]
+cudarc = { workspace = true, optional = true, features = ["runtime"] }
+candle-core.workspace = true
+ferrots-core.workspace = true
+ferrots-nn.workspace = true
+clap.workspace = true
+ferrots-train.workspace = true

@@ -1,3 +1,4 @@
 {"file": "FerroTS_Rust_Implementation_Plan.md", "reason": "计划书第 3-5、13、15 节：技术栈、训练安全算子、优化器与平台要求"}
 {"file": ".trellis/tasks/09-28-ferrots-implementation/research/upstream-verification.md", "reason": "Candle 0.11.0 无反向路径与 AdamW 状态的源码证据，本机 GPU/CUDA 环境"}
 {"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "避免重复实现 Candle 已有的可微基础运算"}
+{"file": ".trellis/spec/backend/training-foundation.md", "reason": "P0 已实施的设备、训练算子、优化器状态与本机验证契约"}

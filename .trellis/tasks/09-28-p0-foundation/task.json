@@ -3,7 +3,7 @@
   "name": "p0-foundation",
   "title": "P0 工具链固定与训练安全算子",
   "description": "固定 Candle 0.11.0，验证 Windows/WSL2 CUDA 13.3 sm_120 构建，doctor，可微 Softmax/LayerNorm/总体方差，StatefulAdam/AdamW",
-  "status": "planning",
+  "status": "in_progress",
   "dev_type": null,
   "scope": null,
   "package": null,
@@ -12,8 +12,8 @@
   "assignee": "lyh",
   "createdAt": "2026-09-28",
   "completedAt": null,
-  "branch": null,
-  "base_branch": "main",
+  "branch": "feat/p0-foundation",
+  "base_branch": "feat/datasets-protocol",
   "worktree_path": null,
   "commit": null,
   "pr_url": null,
@@ -21,6 +21,6 @@
   "children": [],
   "parent": "09-28-ferrots-implementation",
   "relatedFiles": [],
-  "notes": "",
+  "notes": "2026-09-28: steps 1-13 and inline trellis-check passed. CPU 24 tests; CUDA 30 tests; both Clippy -D warnings passed. Review A approved. Quality gate passed; archive and journal pending finish-work. Local commit only; no push. See research/review-b.md for environment caveats.",
   "meta": {}
 }

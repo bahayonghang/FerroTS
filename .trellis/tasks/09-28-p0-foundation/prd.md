@@ -39,21 +39,21 @@
 
 ## Acceptance Criteria
 
-- [ ] 未设置 CUDA 环境变量时，`cargo build --workspace` 成功。
-- [ ] 在 R4 选定的平台上 `cargo build --workspace --features cuda` 成功；`docs/environment.md` 记录 OS、驱动、CUDA、rustc、Candle 版本与 SHA、选择原因。
-- [ ] `ferrots doctor --device cuda:0 --training-smoke-test` 退出码为 0，并输出 R5 列出的全部字段；`ferrots doctor --device cuda:9` 退出码非 0。
-- [ ] CPU（f64）有限差分梯度测试通过：softmax、LayerNorm（输入、缩放、偏移）、总体方差（含常量列、L=1）、注意力（Q、K、V）。
-- [ ] 同一输入下 CPU 与 CUDA（f32）的前向与梯度差异在 atol=1e-5、rtol=1e-4 以内。
-- [ ] R8 负面测试通过；源码检查在故意引入 `softmax_last_dim` 调用时失败。
-- [ ] Adam 与 AdamW 单步更新结果与 torch 夹具差异在 atol=1e-6 以内（FP32，CPU）。
-- [ ] 恢复测试：连续 10 步与“5 步 → 保存 → 加载 → 5 步”的参数在 CPU 上逐位相同，在 CUDA 上差异在 atol=1e-6 以内。
-- [ ] `cargo fmt --check`、`cargo clippy --workspace --all-targets -- -D warnings`、`cargo test --workspace` 全部通过。
+- [x] 未设置 CUDA 环境变量时，`cargo build --workspace` 成功。
+- [x] 在 R4 选定的平台上 `cargo build --workspace --features cuda` 成功；`docs/environment.md` 记录 OS、驱动、CUDA、rustc、Candle 版本与 SHA、选择原因。
+- [x] `ferrots doctor --device cuda:0 --training-smoke-test` 退出码为 0，并输出 R5 列出的全部字段；`ferrots doctor --device cuda:9` 退出码非 0。
+- [x] CPU（f64）有限差分梯度测试通过：softmax、LayerNorm（输入、缩放、偏移）、总体方差（含常量列、L=1）、注意力（Q、K、V）。
+- [x] 同一输入下 CPU 与 CUDA（f32）的前向与梯度差异在 atol=1e-5、rtol=1e-4 以内。
+- [x] R8 负面测试通过；源码检查在故意引入 `softmax_last_dim` 调用时失败。
+- [x] Adam 与 AdamW 单步更新结果与 torch 夹具差异在 atol=1e-6 以内（FP32，CPU）。
+- [x] 恢复测试：连续 10 步与“5 步 → 保存 → 加载 → 5 步”的参数在 CPU 上逐位相同，在 CUDA 上差异在 atol=1e-6 以内。
+- [x] `cargo fmt --check`、`cargo clippy --workspace --all-targets -- -D warnings`、`cargo test --workspace` 全部通过。
 
 ## Out of Scope
 
 - 自定义 CUDA kernel、FlashAttention、BF16/FP16（P5）。
 - 数据管线与模型（P1 起）。
-- GitHub Actions 等远程 CI（仓库当前无远程）。
+- GitHub Actions 等远程 CI（已配置 origin；本任务不设置远程 CI）。
 
 ## Notes
 

@@ -1,0 +1,31 @@
+Microsoft (R) COFF/PE Dumper Version 14.51.36260.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file target\debug\build\candle-kernels-6451beece381df00\out\moe_gguf-c156b6651de223de.o
+
+File Type: COFF OBJECT
+
+   Linker Directives
+   -----------------
+   /FAILIFMISMATCH:_MSC_VER=1900
+   /FAILIFMISMATCH:_ITERATOR_DEBUG_LEVEL=0
+   /FAILIFMISMATCH:RuntimeLibrary=MT_StaticRelease
+   /DEFAULTLIB:libcpmt
+   /FAILIFMISMATCH:_CRT_STDIO_ISO_WIDE_SPECIFIERS=0
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+  Summary
+
+           8 .CRT$XCT
+          B3 .bss
+         6E8 .chks64
+          C8 .debug$S
+          F4 .drectve
+          18 .nvFatBinSegment
+       1B2D0 .nv_fatbin
+         1BC .pdata
+         47B .rdata
+        339F .text$mn
+         264 .xdata

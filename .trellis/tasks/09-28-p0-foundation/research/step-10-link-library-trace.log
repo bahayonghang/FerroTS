@@ -1,0 +1,1114 @@
+   Compiling ferrots-cli v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-cli)
+warning: linker stdout: 正在搜索库␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64\ucrt.lib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64\ucrt.lib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         ␍
+         已完成库搜索␍
+         正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\ferrots.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\ferrots.exp␍
+         ␍
+         正在搜索库␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64\ucrt.lib:␍
+         ␍
+         已完成库搜索␍
+         LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library␍
+         ␍
+         正在搜索库␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64\ucrt.lib:␍
+         ␍
+         已完成库搜索␍
+         ␍
+         正在搜索库␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64\ucrt.lib:␍
+         ␍
+         已完成库搜索␍
+         ␍
+         正在搜索库␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64\ucrt.lib:␍
+         ␍
+         已完成库搜索␍
+         ␍
+         正在搜索库␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libclap-e3312df6e7c64cc5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_builder-eb1e0a7e80292a08.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstrsim-33f8f15d5d7b3df0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstream-4f56d257ac8c176f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_query-4d6c127b9185455e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libis_terminal_polyfill-c8192ffd7a7a483e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_wincon-a323cbbddcd7d86c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell_polyfill-db0adf1461cb512d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcolorchoice-f66795b2620c297b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle_parse-7ad5aa46261601f8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libutf8parse-0005c111fe857345.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libclap_lex-a17bef6c194802a8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libanstyle-88f4c2cbc9362dba.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_train-d9fbe5dd46a27350.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_nn-33764cfc7dd188a9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_nn-da6fc8066890f363.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libferrots_core-ed5fdbfc10a2d805.rlib:␍
+         正在搜索 C:\Users\lyh\AppData\Local\mbx\targets\v1\f1cc53dfd3a9bd92c569438e830e409d20e1c4be1f4f4a6853cba052b33bc32f\cuda-md\debug\deps\libcandle_core-775b2b5118f11841.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_cpus-fb67dc0b6d00e3a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemmap2-2f5f869f9cb0032a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzip-9843ba40d82cbe74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libindexmap-a975687d931e9196.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libequivalent-cab6a6905e1f143c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhashbrown-bafe3ecaae148a06.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtyped_path-95eeeed60ceafdde.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrc32fast-e021b1c1ac47dc49.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibm-011198908a8f0d69.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libyoke-c72e899e530afc02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerofrom-facd10a7b0a5a24b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstable_deref_trait-d05bf9caf231fa24.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsafetensors-fb741637ecf0a5a0.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtempfile-5b170d9efcb22162.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-a59a8259a1750175.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfastrand-fc165a4a50a0fe77.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_sys-8eef8a1867131681.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libtokenizers-659801e98ff91a74.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libesaxx_rs-d1f13e62d7901b02.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libthiserror-5af3aaa786b58596.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex-66c9061e02fbe129.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_automata-8bbb8e1a31329492.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libaho_corasick-8ca72e22082d3efa.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libregex_syntax-f075f26c407ce2d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_normalization_alignments-57a8203ebe9d8832.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libsmallvec-3891c61c688a1f1e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libspm_precompiled-a7625ae3ba5cd686.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbase64-0f2157f66dd29f9b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_segmentation-29919d42b7d25030.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnom-8fcbe8f3557ffc2c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libunicode_categories-e1f2e5ce1dc791d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdary_heap-2de79a088714c715.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcompact_str-92a0f38483a2e650.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libryu-a957e79795396f89.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libstatic_assertions-b639bafc8a4910e9.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcastaway-33db1446054c5b78.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_json-48ef3e4890e639db.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmemchr-6920036467c17085.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitoa-c1be6628aeb92ce7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzmij-7cf98b1e85fa8bb1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmonostate-eb6fc2acb3f6b0cc.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libmacro_rules_attribute-b88aa9f162c99020.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_cond-12bcab11a37319e3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libitertools-9562439b9a4da869.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig-16e57d4755c96464.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonig_sys-c0efe6d92f68eb4e.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libahash-02aa92c0f11d504f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde-3bcea58a811bc569.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libserde_core-cc9f6dc0cafcd9df.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libderive_builder-42176792b82f613d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblog-eb3fa3db55c2c2ca.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcudarc-b43b4247555b86a1.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\liblibloading-112efcc40e12fd79.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libwindows_link-914241c5e399509b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcandle_kernels-fd38e65261ba06c3.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm-926d500205305152.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c32-964af4f573cd265d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_c64-594d262ffbf03921.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f64-02ee48adb5a7d21c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f16-622d5783776dcf48.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_f32-c1889f0f2bd2df19.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgemm_common-082b137d06bcf8d8.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libonce_cell-5ad9373d5ad96390.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libpulp-d05fccbec4aa6a6b.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_complex-7c220bcd4c3a6dc2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libdyn_stack-2f2ac77147019ad2.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libraw_cpuid-e1c03f94611c416d.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbitflags-d9a0e24e091a9432.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon-1c5cd34fd8494358.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librayon_core-7a1df5d9d07dc968.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_deque-0e17ce4417e2547c.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_epoch-25cc76a6c35876d4.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcrossbeam_utils-da83da9e9f206228.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libeither-9a5b4c2767b1589f.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libfloat8-c3ff122767e74aec.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbyteorder-1523c71068ed75b7.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libhalf-a0494671c802dbf6.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_distr-428223c3d6d0ef17.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand-c34f2333c730acae.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_chacha-28f888d05aa28081.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libppv_lite86-eb3ea5cecc12b99a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\librand_core-380abc7b14af63da.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libgetrandom-c7305df4bc0fa5fe.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libcfg_if-dfda34af91a39ce5.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libnum_traits-dae6395b00871dcd.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libzerocopy-09ac8ba23f191d2a.rlib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\libbytemuck-1995852b068b63c4.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd-f01d16aa207effe6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libpanic_unwind-4e29c9729e9022b7.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcfg_if-b361853be842c2aa.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libwindows_link-7612e99acea490f9.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_demangle-fc86cb3bec44135c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libstd_detect-084adb8ce8b5a49d.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libhashbrown-a77cf7d83a74a1c6.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_alloc-fc44986b5a583688.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libunwind-9ea493fff4245861.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\librustc_std_workspace_core-ef58978e835d389c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\liballoc-4156d10c4dacbf83.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcore-61726fe5a702fa3c.rlib:␍
+         正在搜索 C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib\libcompiler_builtins-28ff6f15a1c71ece.rlib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\nvrtc.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\curand.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublas.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cublasLt.lib:␍
+         正在搜索 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cudart.lib:␍
+         正在搜索 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\build\candle-kernels-048d7adcc36dffa8\out\libmoe.a:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\kernel32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ntdll.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\userenv.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\ws2_32.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\dbghelp.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcrt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\OLDNAMES.lib:␍
+         正在搜索 C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64\uuid.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\LIBCMT.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\msvcprt.lib:␍
+         正在搜索 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64\vcruntime.lib:␍
+         ␍
+         已完成库搜索
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-cli` (bin "ferrots") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.26s

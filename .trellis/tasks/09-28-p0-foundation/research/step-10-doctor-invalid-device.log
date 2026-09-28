@@ -1,0 +1,14 @@
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\windows-static\x86_64-pc-windows-msvc\debug\deps\ferrots.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-cli` (bin "ferrots") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.64s
+     Running `target\windows-static\x86_64-pc-windows-msvc\debug\ferrots.exe doctor --device cuda:9`
+rustc: rustc 1.98.0 (88d9e12ae 2026-08-18)
+target: x86_64-pc-windows-msvc
+build_features: cuda
+candle: 0.11.0 (31f35b147389700ed2a178ee66a91c3cc25cc80d)
+requested_device: cuda:9
+doctor failed: device initialization: cuda:9 is unavailable: DriverError(CUDA_ERROR_INVALID_DEVICE, "invalid device ordinal")
+error: process didn't exit successfully: `target\windows-static\x86_64-pc-windows-msvc\debug\ferrots.exe doctor --device cuda:9` (exit code: 1)

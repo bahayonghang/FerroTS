@@ -1,0 +1,46 @@
+    Checking windows-sys v0.61.2
+    Checking bytemuck v1.25.2
+    Checking serde v1.0.229
+    Checking thiserror v2.0.21
+    Checking utf8parse v0.2.2
+    Checking anstyle v1.0.14
+    Checking zerofrom v0.1.8
+    Checking once_cell_polyfill v1.70.2
+    Checking colorchoice v1.0.5
+    Checking is_terminal_polyfill v1.70.2
+    Checking clap_lex v1.1.1
+    Checking strsim v0.11.1
+   Compiling ferrots-cli v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-cli)
+    Checking anstyle-parse v1.0.0
+    Checking ferrots-core v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-core)
+    Checking yoke v0.8.3
+    Checking num-complex v0.4.6
+    Checking half v2.7.1
+    Checking dyn-stack v0.13.2
+    Checking ferrots-data v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-data)
+    Checking compact_str v0.9.1
+    Checking ahash v0.8.12
+    Checking dary_heap v0.3.9
+    Checking spm_precompiled v0.1.4
+    Checking pulp v0.22.3
+    Checking tempfile v3.27.0
+    Checking anstyle-query v1.1.5
+    Checking anstyle-wincon v3.0.11
+    Checking float8 v0.7.0
+    Checking anstream v1.0.0
+    Checking safetensors v0.8.0
+    Checking tokenizers v0.22.2
+    Checking clap_builder v4.6.7
+    Checking clap v4.6.7
+    Checking gemm-common v0.19.0
+    Checking gemm-f32 v0.19.0
+    Checking gemm-c64 v0.19.0
+    Checking gemm-f64 v0.19.0
+    Checking gemm-c32 v0.19.0
+    Checking gemm-f16 v0.19.0
+    Checking gemm v0.19.0
+    Checking candle-core v0.11.0
+    Checking candle-nn v0.11.0
+    Checking ferrots-nn v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-nn)
+    Checking ferrots-train v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-train)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 12.41s

@@ -1,0 +1,74 @@
+Microsoft (R) COFF/PE Dumper Version 14.51.36260.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\lib\x64\cuda.lib
+
+File Type: LIBRARY
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+   Linker Directives
+   -----------------
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:uuid.lib
+   /DEFAULTLIB:LIBCMT
+   /DEFAULTLIB:OLDNAMES
+
+  Summary
+
+          18 .bss
+        60A0 .chks64
+         6F0 .debug$S
+         2E8 .drectve
+        23F4 .pdata
+        43B6 .rdata
+       1BF18 .text$mn
+        2D80 .xdata

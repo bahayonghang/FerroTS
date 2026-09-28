@@ -1,0 +1,34 @@
+   Compiling macro_rules_attribute v0.2.3
+   Compiling ferrots-cli v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-cli)
+   Compiling candle-kernels v0.11.0
+   Compiling tokenizers v0.22.2
+   Compiling candle-core v0.11.0
+   Compiling candle-nn v0.11.0
+   Compiling ferrots-nn v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-nn)
+   Compiling ferrots-train v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-train)
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\ferrots.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\cuda-md\debug\deps\ferrots.exp␍
+         LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-cli` (bin "ferrots") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 12.53s
+     Running `target\cuda-md\debug\ferrots.exe doctor --device cuda:0 --training-smoke-test`
+rustc: rustc 1.98.0 (88d9e12ae 2026-08-18)
+target: x86_64-pc-windows-msvc
+build_features: cuda
+candle: 0.11.0 (31f35b147389700ed2a178ee66a91c3cc25cc80d)
+requested_device: cuda:0
+cuda_driver_api: 13.4 (13040)
+cuda_runtime: 13.4 (13040)
+gpu_name: NVIDIA GeForce RTX 5090 Laptop GPU
+gpu_compute_capability: 12.0
+gpu_memory_bytes: 25622413312
+driver_version: 617.14
+forward_ms: 186.648
+loss: 0.04878764
+backward_ms: 4.129
+update_ms: 0.903
+parameters_with_gradients: 6
+parameters_updated: 6
+training_smoke_test: passed

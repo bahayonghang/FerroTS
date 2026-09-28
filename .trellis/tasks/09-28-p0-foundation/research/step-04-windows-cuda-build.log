@@ -1,0 +1,97 @@
+Command: cargo build --workspace --features cuda
+Started: 2026-09-28T05:25:52.1954693-05:00
+CUDA_PATH:
+CUDA_COMPUTE_CAP:
+No toolchain installation or upstream source changes.
+ Downloading crates ...
+  Downloaded cudaforge v0.1.6
+  Downloaded safetensors v0.4.5
+  Downloaded gemm-c32 v0.18.2
+  Downloaded libloading v0.9.0
+  Downloaded candle-ug v0.11.0
+  Downloaded gemm-f32 v0.18.2
+  Downloaded gemm-c64 v0.18.2
+  Downloaded gemm-f16 v0.18.2
+  Downloaded gemm-f64 v0.18.2
+  Downloaded yoke-derive v0.7.5
+  Downloaded gemm v0.18.2
+  Downloaded gemm-common v0.18.2
+  Downloaded ug-cuda v0.5.0
+  Downloaded which v7.0.3
+  Downloaded yoke v0.7.5
+  Downloaded ug v0.5.0
+  Downloaded candle-kernels v0.11.0
+  Downloaded pulp v0.21.5
+  Downloaded cudarc v0.19.8
+  Downloaded cudarc v0.17.8
+   Compiling typenum v1.20.1
+   Compiling generic-array v0.14.7
+   Compiling serde_core v1.0.229
+   Compiling windows-sys v0.61.2
+   Compiling winapi v0.3.9
+   Compiling anyhow v1.0.104
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.151
+   Compiling either v1.18.0
+   Compiling memchr v2.8.3
+   Compiling cpufeatures v0.2.17
+   Compiling env_home v0.1.0
+   Compiling winsafe v0.0.19
+   Compiling glob v0.3.4
+   Compiling cudarc v0.19.8
+   Compiling libloading v0.9.0
+   Compiling rayon v1.12.0
+   Compiling winapi-util v0.1.11
+   Compiling same-file v1.0.6
+   Compiling walkdir v2.5.0
+   Compiling which v7.0.3
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling fs2 v0.4.3
+   Compiling cudaforge v0.1.6
+   Compiling candle-kernels v0.11.0
+warning: candle-kernels@0.11.0: Compiling 11 of 11 PTX kernels
+error: failed to run custom build command for `candle-kernels v0.11.0`
+
+Caused by:
+  process didn't exit successfully: `D:\Documents\Code\Rust\Exp\ferrots\target\debug\build\candle-kernels-e7176bdceb5cd708\build-script-build` (exit code: 1)
+  --- stdout
+  cargo::rerun-if-changed=build.rs
+  cargo::rerun-if-changed=src/compatibility.cuh
+  cargo::rerun-if-changed=src/cuda_utils.cuh
+  cargo::rerun-if-changed=src/binary_op_macros.cuh
+  cargo:rustc-env=CUDA_INCLUDE_DIR=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\include
+  cargo:rerun-if-changed=src\affine.cu
+  cargo:rerun-if-changed=src\binary.cu
+  cargo:rerun-if-changed=src\cast.cu
+  cargo:rerun-if-changed=src\conv.cu
+  cargo:rerun-if-changed=src\fill.cu
+  cargo:rerun-if-changed=src\indexing.cu
+  cargo:rerun-if-changed=src\quantized.cu
+  cargo:rerun-if-changed=src\reduce.cu
+  cargo:rerun-if-changed=src\sort.cu
+  cargo:rerun-if-changed=src\ternary.cu
+  cargo:rerun-if-changed=src\unary.cu
+  cargo:rerun-if-env-changed=CUDA_COMPUTE_CAP
+  cargo:rerun-if-env-changed=NVCC_CCBIN
+  cargo:warning=Compiling 11 of 11 PTX kernels
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+  nvcc fatal   : Cannot find compiler 'cl.exe' in PATH
+
+  --- stderr
+  Error: CompilationFailed { path: "src\\affine.cu", message: "nvcc error:\n\n" }
+mbx[cache]: 0 hits, 0 misses, 36 not looked up; 0 B downloaded, 0 B uploaded, 94.8 MiB stored locally
+mbx[savings]: 843 compilations, and the box has forgotten none of them.
+Exit code: 101
+Elapsed seconds: 9.1715373

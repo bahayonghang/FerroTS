@@ -1,2 +1,3 @@
 {"file": ".trellis/tasks/09-28-ferrots-implementation/research/upstream-verification.md", "reason": "核对 train_ops 未调用无反向路径、版本固定到 31f35b14"}
 {"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "检查 core/nn/train/cli 依赖方向与 feature 链"}
+{"file": ".trellis/spec/backend/training-foundation.md", "reason": "P0 已实施的设备、训练算子、优化器状态与本机验证契约"}

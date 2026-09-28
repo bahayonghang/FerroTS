@@ -1,0 +1,41 @@
+p0-crt-probe.cu
+tmpxft_0000c6dc_00000000-7_p0-crt-probe.cudafe1.cpp
+Microsoft (R) COFF/PE Dumper Version 14.51.36260.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file target\p0-crt-probe.obj
+
+File Type: COFF OBJECT
+
+   Linker Directives
+   -----------------
+   /FAILIFMISMATCH:_MSC_VER=1900
+   /FAILIFMISMATCH:_ITERATOR_DEBUG_LEVEL=0
+   /FAILIFMISMATCH:RuntimeLibrary=MD_DynamicRelease
+   /DEFAULTLIB:msvcprt
+   /FAILIFMISMATCH:annotate_string=0
+   /FAILIFMISMATCH:annotate_vector=0
+   /FAILIFMISMATCH:annotate_optional=0
+   /FAILIFMISMATCH:_CRT_STDIO_ISO_WIDE_SPECIFIERS=0
+   /alternatename:_Avx2WmemEnabled=_Avx2WmemEnabledWeakValue
+   /DEFAULTLIB:MSVCRT
+   /DEFAULTLIB:OLDNAMES
+
+  Summary
+
+           8 .CRT$XCT
+          24 .bss
+         CA0 .chks64
+          77 .data$r
+          8C .debug$S
+         19D .drectve
+          18 .nvFatBinSegment
+         6A0 .nv_fatbin
+         588 .pdata
+         2EF .rdata
+         150 .rdata$r
+        164C .text$mn
+          18 .text$x
+         3E6 .xdata
+          A4 .xdata$x

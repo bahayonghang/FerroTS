@@ -1,0 +1,56 @@
+   Compiling ferrots-nn v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-nn)
+mbx[warning]: incremental state was not reused: absolute path has no stable cache mapping: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\atlmfc\lib\x64
+mbx[warning]: prediction was not restored: absolute path has no stable cache mapping: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\atlmfc\lib\x64
+mbx[warning]: result was not stored: rustc search path kind is not cacheable yet: native
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.52s
+     Running tests\no_fused_in_train.rs (target\debug\deps\no_fused_in_train-c668417c345f1c01.exe)
+
+running 1 test
+test no_fused_in_train ... FAILED
+
+failures:
+
+---- no_fused_in_train stdout ----
+
+thread 'no_fused_in_train' (71648) panicked at crates\ferrots-nn\tests\no_fused_in_train.rs:40:5:
+forbidden inference operations in training source: ["D:\\Documents\\Code\\Rust\\Exp\\ferrots\\crates\\ferrots-nn\\src\\train_ops.rs: softmax_last_dim"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    no_fused_in_train
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p ferrots-nn --test no_fused_in_train`
+mbx[cache]: 0 hits, 0 misses, 1 incremental; 0 B downloaded, 0 B uploaded, 0 B stored locally
+mbx[savings]: 843 compilations retrieved with a straight face.
+
+AFTER RESTORATION
+   Compiling ferrots-nn v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-nn)
+mbx[warning]: incremental state was not reused: absolute path has no stable cache mapping: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\atlmfc\lib\x64
+mbx[warning]: prediction was not restored: absolute path has no stable cache mapping: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\atlmfc\lib\x64
+mbx[warning]: result was not stored: rustc search path kind is not cacheable yet: native
+warning: linker stdout: 正在创建库 D:\Documents\Code\Rust\Exp\ferrots\target\debug\deps\fused_path_cuts_grad-873805e3d905608f.lib 和对象 D:\Documents\Code\Rust\Exp\ferrots\target\debug\deps\fused_path_cuts_grad-873805e3d905608f.exp
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `ferrots-nn` (test "fused_path_cuts_grad") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.32s
+     Running tests\fused_path_cuts_grad.rs (target\debug\deps\fused_path_cuts_grad-873805e3d905608f.exe)
+
+running 2 tests
+test inference_requires_frozen_inputs_and_matches_training_forward ... ok
+test fused_path_cuts_grad_but_training_ops_preserve_all_parameters ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\no_fused_in_train.rs (target\debug\deps\no_fused_in_train-c668417c345f1c01.exe)
+
+running 1 test
+test no_fused_in_train ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+mbx[cache]: 0 hits, 0 misses, 1 incremental; 0 B downloaded, 0 B uploaded, 0 B stored locally
+mbx[savings]: 843 compilations, each compiled once and served warm ever since

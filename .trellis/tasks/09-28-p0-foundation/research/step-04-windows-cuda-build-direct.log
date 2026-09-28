@@ -1,0 +1,107 @@
+Command: C:\Users\lyh\.rustup\toolchains\1.98.0-x86_64-pc-windows-msvc\bin\cargo.exe build --workspace --features cuda Environment: vcvars64.bat, installed MSVC 14.51, CUDA 13.3 Started: 2026-09-28T05:28:42.9134984-05:00 Direct Cargo execution to retain complete upstream diagnostics; no source changes.
+   Compiling onig_sys v69.9.3
+   Compiling ferrots-core v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-core)
+   Compiling candle-kernels v0.11.0
+   Compiling ferrots-data v0.1.0 (D:\Documents\Code\Rust\Exp\ferrots\crates\ferrots-data)
+   Compiling onig v6.5.3
+   Compiling tokenizers v0.22.2
+warning: candle-kernels@0.11.0: Compiling 11 of 11 PTX kernels
+error: failed to run custom build command for `candle-kernels v0.11.0`
+
+Caused by:
+  process didn't exit successfully: `D:\Documents\Code\Rust\Exp\ferrots\target\debug\build\candle-kernels-e7176bdceb5cd708\build-script-build` (exit code: 1)
+  --- stdout
+  cargo::rerun-if-changed=build.rs
+  cargo::rerun-if-changed=src/compatibility.cuh
+  cargo::rerun-if-changed=src/cuda_utils.cuh
+  cargo::rerun-if-changed=src/binary_op_macros.cuh
+  cargo:rustc-env=CUDA_INCLUDE_DIR=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.3\include
+  cargo:rerun-if-changed=src\affine.cu
+  cargo:rerun-if-changed=src\binary.cu
+  cargo:rerun-if-changed=src\cast.cu
+  cargo:rerun-if-changed=src\conv.cu
+  cargo:rerun-if-changed=src\fill.cu
+  cargo:rerun-if-changed=src\indexing.cu
+  cargo:rerun-if-changed=src\quantized.cu
+  cargo:rerun-if-changed=src\reduce.cu
+  cargo:rerun-if-changed=src\sort.cu
+  cargo:rerun-if-changed=src\ternary.cu
+  cargo:rerun-if-changed=src\unary.cu
+  cargo:rerun-if-env-changed=CUDA_COMPUTE_CAP
+  cargo:rerun-if-env-changed=NVCC_CCBIN
+  cargo:warning=Compiling 11 of 11 PTX kernels
+  reduce.cu
+  affine.cu
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4713): warning #177-D: variable "ncols_y" was declared but never referenced
+        constexpr int ncols_y = 1;
+                      ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=16, block_q_t=block_q2_K, vdr=1, vec_dot_q_cuda=vec_dot_q2_K_q8_1]" at line 4768
+
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4725): warning #177-D: variable "blocks_per_col_y" was declared but never referenced
+        const int blocks_per_col_y = k_padded / 32;
+                  ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=16, block_q_t=block_q2_K, vdr=1, vec_dot_q_cuda=vec_dot_q2_K_q8_1]" at line 4768
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4713): warning #177-D: variable "ncols_y" was declared but never referenced
+        constexpr int ncols_y = 1;
+                      ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=16, block_q_t=block_q3_K, vdr=1, vec_dot_q_cuda=vec_dot_q3_K_q8_1]" at line 4783
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4725): warning #177-D: variable "blocks_per_col_y" was declared but never referenced
+        const int blocks_per_col_y = k_padded / 32;
+                  ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=16, block_q_t=block_q3_K, vdr=1, vec_dot_q_cuda=vec_dot_q3_K_q8_1]" at line 4783
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4713): warning #177-D: variable "ncols_y" was declared but never referenced
+        constexpr int ncols_y = 1;
+                      ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=32, block_q_t=block_q4_K, vdr=2, vec_dot_q_cuda=vec_dot_q4_K_q8_1]" at line 4798
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4725): warning #177-D: variable "blocks_per_col_y" was declared but never referenced
+        const int blocks_per_col_y = k_padded / 32;
+                  ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=32, block_q_t=block_q4_K, vdr=2, vec_dot_q_cuda=vec_dot_q4_K_q8_1]" at line 4798
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4713): warning #177-D: variable "ncols_y" was declared but never referenced
+        constexpr int ncols_y = 1;
+                      ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=32, block_q_t=block_q5_K, vdr=2, vec_dot_q_cuda=vec_dot_q5_K_q8_1]" at line 4813
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4725): warning #177-D: variable "blocks_per_col_y" was declared but never referenced
+        const int blocks_per_col_y = k_padded / 32;
+                  ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=32, block_q_t=block_q5_K, vdr=2, vec_dot_q_cuda=vec_dot_q5_K_q8_1]" at line 4813
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4713): warning #177-D: variable "ncols_y" was declared but never referenced
+        constexpr int ncols_y = 1;
+                      ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=32, block_q_t=block_q6_K, vdr=1, vec_dot_q_cuda=vec_dot_q6_K_q8_1]" at line 4828
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4725): warning #177-D: variable "blocks_per_col_y" was declared but never referenced
+        const int blocks_per_col_y = k_padded / 32;
+                  ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=256, qi=32, block_q_t=block_q6_K, vdr=1, vec_dot_q_cuda=vec_dot_q6_K_q8_1]" at line 4828
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4713): warning #177-D: variable "ncols_y" was declared but never referenced
+        constexpr int ncols_y = 1;
+                      ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=32, qi=8, block_q_t=block_q8_0, vdr=2, vec_dot_q_cuda=vec_dot_q8_0_q8_1]" at line 4843
+
+  C:\Users\lyh\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\candle-kernels-0.11.0\src\quantized.cu(4725): warning #177-D: variable "blocks_per_col_y" was declared but never referenced
+        const int blocks_per_col_y = k_padded / 32;
+                  ^
+            detected during instantiation of "void indexed_moe_forward<qk,qi,block_q_t,vdr,vec_dot_q_cuda>(const void *, const void *, const unsigned int *, float *, int, int, int, int, int, int) [with qk=32, qi=8, block_q_t=block_q8_0, vdr=2, vec_dot_q_cuda=vec_dot_q8_0_q8_1]" at line 4843
+
+  fill.cu
+  sort.cu
+  cast.cu
+  ternary.cu
+  indexing.cu
+  conv.cu
+  unary.cu
+  binary.cu
+  quantized.cu
+Exit code: 101
+Elapsed seconds: 14.8915128

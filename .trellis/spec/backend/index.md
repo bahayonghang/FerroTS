@@ -14,6 +14,7 @@ This directory contains guidelines for backend development. Fill in each file wi
 
 | Guide | Description | Status |
 |-------|-------------|--------|
+| [Training Foundation](./training-foundation.md) | P0 device, tensor, optimizer, checkpoint and doctor contracts | Implemented |
 | [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
 | [Database Guidelines](./database-guidelines.md) | ORM patterns, queries, migrations | To fill |
 | [Error Handling](./error-handling.md) | Error types, handling strategies | To fill |
@@ -21,6 +22,14 @@ This directory contains guidelines for backend development. Fill in each file wi
 | [Logging Guidelines](./logging-guidelines.md) | Structured logging, log levels | To fill |
 
 ---
+
+## Pre-Development Checklist
+
+For Rust core, nn, train, or CLI work, read [Training Foundation](./training-foundation.md) and the task PRD/design/implementation plan. Other listed documents remain templates until their own scope is implemented.
+
+## Quality Check
+
+Run `cargo fmt --all --check`, CPU and CUDA `cargo clippy --workspace --all-targets -- -D warnings` (add `--features cuda` before `--` for CUDA), and both workspace test variants. Follow docs/environment.md for native Windows CUDA setup. Run the private-data guard before staging.
 
 ## How to Fill These Guidelines
 

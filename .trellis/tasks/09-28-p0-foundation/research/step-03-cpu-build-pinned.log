@@ -1,0 +1,10 @@
+Command: cargo build --workspace
+Started: 2026-09-28T05:25:07.1528932-05:00
+CUDA environment variables removed; CUDA Toolkit entries removed from process PATH.
+Candle =0.11.0 and cudarc =0.19.8; Cargo HTTP proxy: http://127.0.0.1:7897
+    Updating crates.io index
+     Locking 1 package to latest Rust 1.98 compatible version
+ Downgrading cudarc v0.19.10 -> v0.19.8 (available: v0.19.10)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.74s
+Exit code: 0
+Elapsed seconds: 3.2098549
