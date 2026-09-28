@@ -1,0 +1,34 @@
+[project]
+name = "ferrots-reference"
+version = "0.0.0"
+description = "Runs the official PyTorch reference code for FerroTS benchmarks. Development use only."
+requires-python = "==3.12.*"
+dependencies = [
+    # CUDA 13.0 build. It supports sm_120 (RTX 50 series).
+    "torch==2.14.0",
+    # Versions below are from Time-Series-Library requirements.txt at the SHA pinned in fetch_upstream.py.
+    "numpy==2.1.2",
+    "scipy==1.16.3",
+    "scikit-learn==1.7.2",
+    "pandas==2.3.3",
+    "matplotlib==3.10.8",
+    "sktime==0.40.1",
+    "datasets==4.5.0",
+    "huggingface_hub==0.36.0",
+    "tqdm==4.66.5",
+    "patool==4.0.3",
+    "einops==0.8.1",
+    "local-attention==1.11.2",
+    "reformer-pytorch==1.4.4",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
