@@ -310,10 +310,12 @@ if ($LASTEXITCODE -ne 0) { throw 'Diff check failed' }
 
 ### Step 19 — 本地提交与后续交接
 
-- [ ] Step18 全通过后读取 git-commit 技能；只 stage 本任务代码、公共/合成夹具、配置、统计报告、spec 与任务记录，保留无关改动。
-- [ ] 暂存后再次运行 bash tools/check_private_data.sh 与 git diff --cached --check；核查无 data/、runs/、target/、.venv/ 或上游缓存。
-- [ ] 使用 local git commit，不推送、不创建 PR、不配置 CI。核对提交中产品源码与被测快照一致；不一致则返回验证。
-- [ ] 报告 SHA、分支、工作区状态和正式验收结果，生成下述交接 Prompt。P1 finish-work 的实际待办状态如实保留，不提前归档。
+- [x] Step18 全通过后读取 git-commit 技能；只 stage 本任务代码、公共/合成夹具、配置、统计报告、spec 与任务记录，保留无关改动。
+- [x] 暂存后再次运行 bash tools/check_private_data.sh 与 git diff --cached --check；核查无 data/、runs/、target/、.venv/ 或上游缓存。
+- [x] 使用 local git commit，不推送、不创建 PR、不配置 CI。核对提交中产品源码与被测快照一致；不一致则返回验证。
+- [x] 报告 SHA、分支、工作区状态和正式验收结果，生成下述交接 Prompt。P1 finish-work 的实际待办状态如实保留，不提前归档。
+
+Step19 执行记录：本地实施提交 4361656b0129191ff5ee2f579718b9edc96b1b08 已生成；暂存后隐私检查与差异检查通过。全部 41 个产品源码文件的原始字节 SHA256 与正式套件一致，Git 换行规范化后的 blob 与提交逐项一致。最终工作区状态和收尾记录提交 SHA 在交接回复给出；P1 finish-work 尚未执行。
 
 ## 3. 验收工具与证据契约
 

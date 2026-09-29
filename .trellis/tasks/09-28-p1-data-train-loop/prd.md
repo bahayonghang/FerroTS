@@ -75,4 +75,4 @@
 - implement.md：19 个有顺序的执行步骤、逐步验证命令、正式验收映射与提交后交接模板。
 - implement.jsonl / check.jsonl：内联工作使用的上下文清单，不授权子代理。
 - research/planning-evidence.md：本轮已核实来源、设计选择与尚未验证的结果。
-- 当前状态为 in_progress；全部正式验收和内联 trellis-check 已通过，AC1–AC10 已勾选，待 Step19 本地提交与后续 finish-work。不存在需新增任务才能处理的范围，也不重复创建 P1。
+- 当前状态为 in_progress；全部正式验收和内联 trellis-check 已通过，AC1–AC10 已勾选，Step19 本地提交已完成，后续 finish-work 尚未执行。不存在需新增任务才能处理的范围，也不重复创建 P1。
