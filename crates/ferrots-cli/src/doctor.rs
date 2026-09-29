@@ -10,6 +10,8 @@ fn stage<T>(label: &str, operation: impl FnOnce() -> Result<T>) -> Result<T> {
     operation().map_err(|error| format!("{label}: {error}").into())
 }
 pub fn run(spec: DeviceSpec, smoke: bool) -> Result<()> {
+    println!("code_sha: {}", env!("FERROTS_CODE_SHA"));
+    println!("source_sha256: {}", env!("FERROTS_SOURCE_SHA256"));
     println!("rustc: {}", env!("FERROTS_RUSTC"));
     println!("target: {}", env!("FERROTS_TARGET"));
     println!("build_features: {}", env!("FERROTS_FEATURES"));

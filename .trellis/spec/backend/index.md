@@ -15,6 +15,8 @@ This directory contains guidelines for backend development. Fill in each file wi
 | Guide | Description | Status |
 |-------|-------------|--------|
 | [Training Foundation](./training-foundation.md) | P0 device, tensor, optimizer, checkpoint and doctor contracts | Implemented |
+| [Data Pipeline](./data-pipeline.md) | P1 CSV, preprocessing, scaler, cache, windows and input contracts | Implemented |
+| [Training Loop](./training-loop.md) | P1 baseline RNG, masked training, inference bundles and acceptance | Implemented |
 | [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
 | [Database Guidelines](./database-guidelines.md) | ORM patterns, queries, migrations | To fill |
 | [Error Handling](./error-handling.md) | Error types, handling strategies | To fill |
@@ -25,7 +27,7 @@ This directory contains guidelines for backend development. Fill in each file wi
 
 ## Pre-Development Checklist
 
-For Rust core, nn, train, or CLI work, read [Training Foundation](./training-foundation.md) and the task PRD/design/implementation plan. Other listed documents remain templates until their own scope is implemented.
+For Rust core, nn, train, or CLI work, read [Training Foundation](./training-foundation.md) and the task PRD/design/implementation plan. Data/configuration/input work also requires [Data Pipeline](./data-pipeline.md). Baseline/training/evaluation work also requires [Training Loop](./training-loop.md). Other listed documents remain templates until their own scope is implemented.
 
 ## Quality Check
 

@@ -200,3 +200,9 @@ ETT 4 个文件上的长期预测协议。P1–P3 的验收门槛（父任务 D4
 
 - P-iT Table 5 报告 iTransformer 在 ETTh2 上 5 个种子的标准差：MSE 0.001–0.004，MAE 0.001–0.002。
 - 论文数值与本机官方代码结果之间的差异原因未查明（论文未给出运行环境与种子）。父任务 D4 门槛不使用上表。
+
+## P1 已验证的训练时序
+
+固定官方实现的 type1 在 epoch 结束时调用。第 1、2 个 epoch 使用初始学习率 1e-4，第 3 个 epoch 使用 5e-5，随后逐轮减半。早停后不再推进下一轮。FerroTS 保留有效元素加权、固定顺序验证及训练中不访问 test 的契约。
+
+初始化和训练采样已按用户批准对齐固定 PyTorch CPU RNG，详见 docs/models/dlinear.md。完整本机比较及 32 项 D4 判定见 docs/results/p1-dlinear-ett.md；公开论文表格仅用于背景参考。

@@ -16,3 +16,6 @@ ferrots-core.workspace = true
 thiserror.workspace = true
 rand.workspace = true
 rand_chacha.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true

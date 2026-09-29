@@ -7,3 +7,10 @@ publish.workspace = true
 
 [dependencies]
 ferrots-core.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+csv.workspace = true
+chrono.workspace = true
+sha2.workspace = true
+safetensors.workspace = true

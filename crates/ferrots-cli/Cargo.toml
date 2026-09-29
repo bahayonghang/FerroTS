@@ -20,3 +20,15 @@ ferrots-core.workspace = true
 ferrots-nn.workspace = true
 clap.workspace = true
 ferrots-train.workspace = true
+ferrots-data.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[build-dependencies]
+sha2.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+toml.workspace = true
+csv.workspace = true
+flate2.workspace = true

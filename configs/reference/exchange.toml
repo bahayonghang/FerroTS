@@ -1,0 +1,12 @@
+[data]
+protocol_id = "exchange-inspection-v1"
+path = "data/exchange_rate/exchange_rate.csv"
+timestamp_format = "%Y/%m/%d %H:%M"
+interval_seconds = 86400
+input_columns = ["0", "1", "2", "3", "4", "5", "6", "OT"]
+target_columns = ["OT"]
+[window]
+lookback = 96
+horizon = 96
+[model]
+name = "last_value"

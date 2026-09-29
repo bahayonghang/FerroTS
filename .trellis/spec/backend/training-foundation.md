@@ -2,7 +2,7 @@
 
 ## 1. Scope / trigger
 
-Apply this spec when changing core device/precision types, nn operations, optimizer state, or doctor. The dependency direction is cli → train → nn → core; data → core. Core must not import Candle. P0 data is an empty crate. Do not add P1 data/model behavior to this layer.
+Apply this spec when changing core device/precision types, nn operations, optimizer state, or doctor. The dependency direction is cli → train → nn → core; data → core. Core must not import Candle. P1 data/model/Trainer contracts are in data-pipeline.md and training-loop.md. Data remains independent of Candle.
 
 ## 2. Signatures
 

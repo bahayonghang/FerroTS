@@ -1,0 +1,19 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "Existing backend spec index and full quality gates"}
+{"file": ".trellis/spec/backend/training-foundation.md", "reason": "P0 device, autograd, optimizer and checkpoint contracts"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Data, model, trainer and CLI boundary checks"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Reuse P0 APIs and the existing reference runner"}
+{"file": ".trellis/tasks/09-28-p1-data-train-loop/research/planning-evidence.md", "reason": "Verified source anchors, gaps and total-plan reading map"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/prd.md", "reason": "Parent D1-D6, D4 formal gate and X1-X6"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/upstream-verification.md", "reason": "Historical upstream audit; current environment is in P0 docs"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/dataset-profile.md", "reason": "Raw private-data statistics only; f-CaO is out of scope"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/public-datasets.md", "reason": "Public file identities and Exchange parse expectations"}
+{"file": "docs/datasets/README.md", "reason": "Protocol versions, storage boundaries and existing tools"}
+{"file": "docs/datasets/ett.md", "reason": "ETT splits, windows, time features and official parameters"}
+{"file": "docs/datasets/cement-yangquan.md", "reason": "Approved four adjustments and segment/window/scaler expectations"}
+{"file": "docs/datasets/custom-lsf.md", "reason": "Special headers and Exchange format; other experiments stay in P4"}
+{"file": "docs/datasets/manifest.toml", "reason": "Pinned public data sizes and SHA256"}
+{"file": "docs/environment.md", "reason": "Windows static CRT, pinned Rust and existing reference uv environment"}
+{"file": ".trellis/tasks/09-28-p1-data-train-loop/research/d4-diagnosis.md", "reason": "Approved RNG correction and retained original failure evidence"}
+{"file": "docs/models/dlinear.md", "reason": "Pinned initialization and sampler contract"}
+{"file": ".trellis/spec/backend/data-pipeline.md", "reason": "Implemented P1 data, mask, cache and window contracts"}
+{"file": ".trellis/spec/backend/training-loop.md", "reason": "Implemented P1 RNG, training, bundle and formal acceptance contracts"}

@@ -1,0 +1,39 @@
+{
+  "atol": 1e-05,
+  "cases": [
+    {
+      "batch": 2,
+      "channels": 3,
+      "horizon": 3,
+      "id": "shared",
+      "individual": false,
+      "lookback": 5,
+      "moving_avg": 3
+    },
+    {
+      "batch": 2,
+      "channels": 3,
+      "horizon": 3,
+      "id": "individual",
+      "individual": true,
+      "lookback": 5,
+      "moving_avg": 3
+    },
+    {
+      "batch": 1,
+      "channels": 2,
+      "horizon": 2,
+      "id": "length_one",
+      "individual": false,
+      "lookback": 1,
+      "moving_avg": 25
+    }
+  ],
+  "learning_rate": 0.001,
+  "rtol": 0.0001,
+  "seed": 137,
+  "source": "synthetic only",
+  "torch": "2.14.0+cu130",
+  "upstream_sha": "4e938a1767106324dd753b2a44832bf870a0252e",
+  "version": 1
+}

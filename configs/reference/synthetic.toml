@@ -1,0 +1,23 @@
+[data]
+protocol_id = "synthetic-example-v1"
+path = "tests/fixtures/p1/synthetic.csv"
+input_columns = ["x", "y"]
+target_columns = ["x", "y"]
+interval_seconds = 86400
+[data.split]
+kind = "rows"
+train_end = 12
+validation_end = 17
+test_end = 22
+[window]
+lookback = 2
+horizon = 2
+[model]
+name = "dlinear"
+individual = false
+moving_avg = 25
+[train]
+max_epochs = 2
+batch_size = 4
+[output]
+root = "runs/synthetic-example"

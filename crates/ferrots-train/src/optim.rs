@@ -119,6 +119,16 @@ impl<const DECOUPLED: bool> StatefulOptimizer<DECOUPLED> {
     pub fn groups(&self) -> &[ParamGroup] {
         &self.groups
     }
+    /// Change rates without replacing moments or per-parameter step counters.
+    pub fn set_learning_rate(&mut self, learning_rate: f64) -> Result<()> {
+        if !learning_rate.is_finite() || learning_rate < 0.0 {
+            return Err(TrainError::InvalidState("invalid learning rate".into()));
+        }
+        for group in &mut self.groups {
+            group.lr = learning_rate;
+        }
+        Ok(())
+    }
     pub fn state(&self, name: &str) -> Option<&ParamState> {
         self.state.get(name)
     }

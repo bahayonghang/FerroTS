@@ -1,0 +1,17 @@
+{"file": ".trellis/spec/backend/index.md", "reason": "Authoritative CPU/CUDA full-gate requirements"}
+{"file": ".trellis/spec/backend/training-foundation.md", "reason": "P0 regression contracts and forbidden training paths"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Check config, data, schema, device and result transitions"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Detect duplicated data/metric logic and dependency cycles"}
+{"file": ".trellis/tasks/09-28-p1-data-train-loop/research/planning-evidence.md", "reason": "Verified differences and unverified formal outcomes"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/prd.md", "reason": "D4 and cross-stage acceptance requirements"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/dataset-profile.md", "reason": "Check raw statistics without exporting private rows"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/research/public-datasets.md", "reason": "Exchange identity, counts and dates"}
+{"file": "docs/datasets/ett.md", "reason": "Check all 48+48 runs, windows, settings and metric units"}
+{"file": "docs/datasets/cement-yangquan.md", "reason": "Check four approved adjustments and three horizons"}
+{"file": "docs/datasets/manifest.toml", "reason": "Verify experiments use pinned local public data"}
+{"file": "docs/datasets/README.md", "reason": "Check fixture provenance and data/runs exclusion"}
+{"file": "docs/environment.md", "reason": "Verify Windows CUDA, Rust pinning and toolchain restrictions"}
+{"file": ".trellis/tasks/09-28-p1-data-train-loop/research/d4-diagnosis.md", "reason": "Approved RNG correction and retained original failure evidence"}
+{"file": "docs/models/dlinear.md", "reason": "Pinned initialization and sampler contract"}
+{"file": ".trellis/spec/backend/data-pipeline.md", "reason": "Implemented P1 data, mask, cache and window contracts"}
+{"file": ".trellis/spec/backend/training-loop.md", "reason": "Implemented P1 RNG, training, bundle and formal acceptance contracts"}

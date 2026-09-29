@@ -16,6 +16,10 @@ serde_json.workspace = true
 thiserror.workspace = true
 ferrots-core.workspace = true
 ferrots-nn.workspace = true
+ferrots-data.workspace = true
+toml.workspace = true
+csv.workspace = true
+flate2.workspace = true
 
 [dev-dependencies]
 safetensors.workspace = true
