@@ -19,3 +19,10 @@ If you're using Codex or another agent-capable tool, additional project-scoped h
 Managed by Trellis. Edits outside this block are preserved; edits inside may be overwritten by a future `trellis update`.
 
 <!-- TRELLIS:END -->
+
+## Validation preference (2026-09-29)
+
+- Prefer CUDA for training and model behavior checks. Do not schedule routine CPU-only tests or CPU training.
+- If CUDA fails, retain the original evidence. Use about three CPU training epochs for diagnosis when needed.
+- CPU diagnostic runs do not replace CUDA acceptance or complete formal training. Keep existing CPU evidence and report unexecuted CPU requirements accurately.
+- Shared project memory: Basic Memory project basic_memory, decisions/ferrots/FerroTS CUDA 优先验证策略.md.
