@@ -49,6 +49,37 @@ fn finite_difference(
 }
 
 #[test]
+fn train_ops_exact_gelu_and_biased_linear_gradients() -> TestResult {
+    finite_difference(
+        &[vec![-3., -1., -0.1, 0., 0.2, 1., 2., 3.]],
+        &[vec![2, 4]],
+        |xs| train_ops::gelu(&xs[0]),
+    )?;
+    finite_difference(
+        &[
+            vec![0.2, -0.3, 0.5, 1.2],
+            vec![0.1, 0.4, -0.2, 0.5, 1., -1.],
+            vec![0.2, -0.4, 0.1],
+        ],
+        &[vec![2, 2], vec![3, 2], vec![3]],
+        |xs| train_ops::gelu(&train_ops::linear(&xs[0].transpose(0, 1)?, &xs[1], &xs[2])?),
+    )?;
+    let x = Tensor::zeros((1, 1, 2), candle_core::DType::F64, &Device::Cpu)?;
+    let w = Tensor::ones((3, 2), candle_core::DType::F64, &Device::Cpu)?;
+    let b = Tensor::ones(3, candle_core::DType::F64, &Device::Cpu)?;
+    assert_eq!(train_ops::linear(&x, &w, &b)?.dims(), [1, 1, 3]);
+    assert!(
+        train_ops::linear(
+            &x,
+            &w,
+            &Tensor::zeros(2, candle_core::DType::F64, &Device::Cpu)?
+        )
+        .is_err()
+    );
+    Ok(())
+}
+
+#[test]
 fn train_ops_softmax_arbitrary_axes_and_noncontiguous() -> TestResult {
     let input = vec![0.3, -0.7, 2.0, 0.4, -0.2, 0.9];
     for dim in [0, 1] {

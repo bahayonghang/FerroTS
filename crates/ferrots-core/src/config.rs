@@ -228,6 +228,34 @@ impl Default for WindowSpec {
 fn default_kernel() -> usize {
     25
 }
+fn default_model_width() -> usize {
+    512
+}
+fn default_heads() -> usize {
+    8
+}
+fn default_ff_width() -> usize {
+    2048
+}
+fn default_encoder_layers() -> usize {
+    2
+}
+fn default_dropout() -> f64 {
+    0.1
+}
+fn default_true() -> bool {
+    true
+}
+fn is_false(value: &bool) -> bool {
+    !value
+}
+#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum Activation {
+    #[default]
+    Gelu,
+    Relu,
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "name", rename_all = "snake_case", deny_unknown_fields)]
 pub enum ModelSpec {
@@ -245,6 +273,22 @@ pub enum ModelSpec {
         #[serde(default = "default_kernel")]
         moving_avg: usize,
     },
+    Itransformer {
+        #[serde(default = "default_model_width")]
+        d_model: usize,
+        #[serde(default = "default_heads")]
+        n_heads: usize,
+        #[serde(default = "default_ff_width")]
+        d_ff: usize,
+        #[serde(default = "default_encoder_layers")]
+        e_layers: usize,
+        #[serde(default = "default_dropout")]
+        dropout: f64,
+        #[serde(default)]
+        activation: Activation,
+        #[serde(default = "default_true")]
+        use_norm: bool,
+    },
 }
 impl Default for ModelSpec {
     fn default() -> Self {
@@ -261,10 +305,14 @@ impl ModelSpec {
             Self::SeasonalNaive { .. } => "seasonal_naive",
             Self::Linear { .. } => "linear",
             Self::Dlinear { .. } => "dlinear",
+            Self::Itransformer { .. } => "itransformer",
         }
     }
     pub fn trainable(&self) -> bool {
-        matches!(self, Self::Linear { .. } | Self::Dlinear { .. })
+        matches!(
+            self,
+            Self::Linear { .. } | Self::Dlinear { .. } | Self::Itransformer { .. }
+        )
     }
 }
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
@@ -280,6 +328,8 @@ pub struct TrainSpec {
     pub device: String,
     pub dtype: String,
     pub batch_size: usize,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub drop_last: bool,
     pub accumulation_steps: usize,
     pub max_epochs: usize,
     pub patience: usize,
@@ -297,6 +347,7 @@ impl Default for TrainSpec {
             device: "cpu".into(),
             dtype: "f32".into(),
             batch_size: 32,
+            drop_last: false,
             accumulation_steps: 1,
             max_epochs: 10,
             patience: 3,
@@ -502,6 +553,40 @@ impl Config {
                 period > 0 && period <= self.window.lookback,
                 "seasonal period must be in 1..=lookback",
             )?,
+            ModelSpec::Itransformer {
+                d_model,
+                n_heads,
+                d_ff,
+                e_layers,
+                dropout,
+                ..
+            } => {
+                require(
+                    d_model > 0 && n_heads > 0 && d_ff > 0 && e_layers > 0,
+                    "iTransformer dimensions must be positive",
+                )?;
+                require(
+                    d_model.is_multiple_of(n_heads),
+                    "iTransformer d_model must be divisible by n_heads",
+                )?;
+                require(
+                    dropout.is_finite() && (0.0..1.0).contains(&dropout),
+                    "iTransformer dropout must be finite and in [0, 1)",
+                )?;
+                require(
+                    d.future_known_columns.is_empty(),
+                    "iTransformer does not support future-known inputs",
+                )?;
+                let indices: Vec<_> = d
+                    .target_columns
+                    .iter()
+                    .map(|c| d.input_columns.iter().position(|input| input == c).unwrap())
+                    .collect();
+                require(
+                    indices.windows(2).all(|pair| pair[0] < pair[1]),
+                    "iTransformer targets must preserve input column order",
+                )?;
+            }
             _ => {}
         }
         let t = &self.train;

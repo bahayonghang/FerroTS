@@ -4,6 +4,7 @@ pub mod config;
 mod device;
 mod dtype;
 pub mod metrics;
+pub mod model;
 pub mod reference_rng;
 
 pub use device::{Device, DeviceError};

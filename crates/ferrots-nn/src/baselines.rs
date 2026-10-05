@@ -7,21 +7,7 @@ use ferrots_core::reference_rng::ReferenceRng;
 use std::collections::BTreeMap;
 
 pub const UPSTREAM_SHA: &str = "4e938a1767106324dd753b2a44832bf870a0252e";
-/// Supervision has no representation in the model input type.
-pub struct ModelInput {
-    pub history: Tensor,
-    pub history_time: Option<Tensor>,
-    pub future_time: Option<Tensor>,
-}
-impl ModelInput {
-    pub fn history(history: Tensor) -> Self {
-        Self {
-            history,
-            history_time: None,
-            future_time: None,
-        }
-    }
-}
+pub use crate::model::ModelInput;
 
 /// Frozen models own detached copies and have no trainable variables.
 pub struct Baseline {
@@ -72,6 +58,9 @@ impl Baseline {
     ) -> Result<Self> {
         if channels == 0 || window.lookback == 0 || window.horizon == 0 {
             candle_core::bail!("empty model dimensions");
+        }
+        if matches!(spec, ModelSpec::Itransformer { .. }) {
+            candle_core::bail!("iTransformer requires the common model constructor");
         }
         if let ModelSpec::SeasonalNaive { period } = spec
             && (*period == 0 || *period > window.lookback)
@@ -232,6 +221,7 @@ impl Baseline {
             candle_core::bail!("model input shape/dtype mismatch");
         }
         match self.spec {
+            ModelSpec::Itransformer { .. } => candle_core::bail!("iTransformer is not a baseline"),
             ModelSpec::LastValue => x
                 .narrow(1, l - 1, 1)?
                 .broadcast_as((b, self.window.horizon, c))?

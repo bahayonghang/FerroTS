@@ -31,6 +31,46 @@ fn validate_dim(x: &Tensor, dim: usize) -> Result<()> {
     Ok(())
 }
 
+/// Exact erf GELU, including the derivative of the erf expression.
+pub fn gelu(x: &Tensor) -> Result<Tensor> {
+    validate_float(x)?;
+    // Candle's gelu_erf backward uses a rounded coefficient (0.398942).
+    // Composing erf preserves the full coefficient in CPU F64 checks.
+    Ok(x.mul(
+        &x.affine(std::f64::consts::FRAC_1_SQRT_2, 0.0)?
+            .erf()?
+            .affine(0.5, 0.5)?,
+    )?)
+}
+
+/// Apply x W^T + bias to the final axis, preserving all leading dimensions.
+pub fn linear(x: &Tensor, weight: &Tensor, bias: &Tensor) -> Result<Tensor> {
+    validate_float(x)?;
+    validate_float(weight)?;
+    validate_float(bias)?;
+    let Some(&input_width) = x.dims().last() else {
+        return Err(OpError::InvalidArgument(
+            "linear requires a nonempty final axis",
+        ));
+    };
+    let (output_width, expected_width) = weight.dims2()?;
+    if input_width == 0
+        || output_width == 0
+        || input_width != expected_width
+        || bias.dims() != [output_width]
+        || x.elem_count() == 0
+    {
+        return Err(OpError::InvalidArgument("linear shape mismatch"));
+    }
+    let mut shape = x.dims().to_vec();
+    *shape.last_mut().expect("validated rank") = output_width;
+    Ok(x.contiguous()?
+        .reshape((x.elem_count() / input_width, input_width))?
+        .matmul(&weight.t()?)?
+        .broadcast_add(bias)?
+        .reshape(shape)?)
+}
+
 pub fn softmax(x: &Tensor, dim: usize) -> Result<Tensor> {
     validate_dim(x, dim)?;
     let shifted = x.broadcast_sub(&x.max_keepdim(dim)?.detach())?;

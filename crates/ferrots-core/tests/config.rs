@@ -111,3 +111,92 @@ fn future_known_schema_is_readable_but_baselines_reject_it() {
     c.validate().unwrap();
     assert!(c.validate_model_inputs().is_err());
 }
+
+#[test]
+fn itransformer_defaults_and_explicit_parameters_are_strict() {
+    use ferrots_core::config::Activation;
+    let source = format!("{BASE}\n[model]\nname='itransformer'\n");
+    let c = Config::from_toml(&source, Overrides::default()).unwrap();
+    assert!(matches!(
+        c.model,
+        ModelSpec::Itransformer {
+            d_model: 512,
+            n_heads: 8,
+            d_ff: 2048,
+            e_layers: 2,
+            dropout: 0.1,
+            activation: Activation::Gelu,
+            use_norm: true
+        }
+    ));
+    assert!(c.model.trainable());
+    let explicit = format!(
+        "{source}d_model=16\nn_heads=4\nd_ff=32\ne_layers=1\ndropout=0.0\nactivation='relu'\nuse_norm=false\n[train]\ndrop_last=true\n"
+    );
+    let c = Config::from_toml(&explicit, Overrides::default()).unwrap();
+    assert!(c.train.drop_last);
+    let encoded = toml::to_string(&c).unwrap();
+    assert_eq!(
+        toml::to_string(&Config::from_toml(&encoded, Overrides::default()).unwrap()).unwrap(),
+        encoded
+    );
+    for invalid in [
+        "d_model=0",
+        "n_heads=0",
+        "d_ff=0",
+        "e_layers=0",
+        "n_heads=3",
+        "dropout=-0.1",
+        "dropout=1.0",
+        "dropout=nan",
+        "dropout=inf",
+        "activation='silu'",
+        "label_len=48",
+        "d_layers=1",
+        "decoder=true",
+        "dec_in=7",
+        "c_out=7",
+        "distil=true",
+        "factor=1",
+        "unknown=1",
+    ] {
+        assert!(
+            Config::from_toml(&format!("{source}{invalid}\n"), Overrides::default()).is_err(),
+            "{invalid}"
+        );
+    }
+}
+
+#[test]
+fn itransformer_rejects_future_known_and_reordered_targets() {
+    let source = format!("{BASE}\n[model]\nname='itransformer'\n");
+    let mut c = Config::from_toml(&source, Overrides::default()).unwrap();
+    c.data.future_known_columns.push("planned".into());
+    assert!(c.validate().is_err());
+    c.data.future_known_columns.clear();
+    c.data.target_columns = vec!["% WEIGHTED ILI".into(), "过程量甲".into()];
+    assert!(c.validate().is_err());
+    c.data.target_columns.reverse();
+    c.validate().unwrap();
+}
+
+#[test]
+fn default_tail_policy_preserves_p1_serialized_identity() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../configs/reference");
+    for entry in std::fs::read_dir(root).unwrap() {
+        let path = entry.unwrap().path();
+        if path.extension().is_none_or(|extension| extension != "toml") {
+            continue;
+        }
+        let c = Config::load(&path, Overrides::default()).unwrap();
+        assert!(!c.train.drop_last);
+        let encoded = toml::to_string(&c).unwrap();
+        assert!(!encoded.contains("drop_last"));
+        let explicit = encoded.replace("[train]", "[train]\ndrop_last=false");
+        let restored = Config::from_toml(&explicit, Overrides::default()).unwrap();
+        assert_eq!(
+            toml::to_string(&restored).unwrap().as_bytes(),
+            encoded.as_bytes()
+        );
+    }
+}
