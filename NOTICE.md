@@ -126,3 +126,7 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
+
+## iTransformer
+
+The iTransformer architecture and parameter mapping follow thuml/iTransformer at commit c2426e68ca13f74aaec08045c5c724d8ad328124. Copyright (c) 2022 THUML @ Tsinghua University. The full MIT license is included in docs/models/itransformer.md. Synthetic reference fixtures are documented in tests/fixtures/p2/README.md.
