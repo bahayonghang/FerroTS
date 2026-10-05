@@ -133,8 +133,20 @@ fn emit(value: &impl serde::Serialize, path: Option<&Path>) -> Result<()> {
     println!("{}", String::from_utf8(bytes)?);
     Ok(())
 }
-fn provenance() -> Provenance {
-    Provenance {
+pub fn models(task: &str, device: ferrots_core::Device) -> Result<()> {
+    let requested = device.to_string();
+    let backend = if requested == "cpu" { "cpu" } else { "cuda" };
+    let models: Vec<_> = ferrots_nn::registry::MODELS
+        .iter()
+        .filter(|m| m.task == task && m.build_devices.contains(&backend))
+        .collect();
+    emit(
+        &serde_json::json!({"task":task,"device":requested,"models":models}),
+        None,
+    )
+}
+fn provenance(device: &candle_core::Device) -> Result<Provenance> {
+    let mut result = Provenance {
         code_sha: env!("FERROTS_CODE_SHA").into(),
         dirty: env!("FERROTS_DIRTY") == "true",
         source_sha256: env!("FERROTS_SOURCE_SHA256").into(),
@@ -144,7 +156,77 @@ fn provenance() -> Provenance {
             ("features".into(), env!("FERROTS_FEATURES").into()),
             ("candle".into(), "0.11.0".into()),
         ]),
+    };
+    for name in [
+        "RAYON_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "MKL_NUM_THREADS",
+        "CUBLAS_WORKSPACE_CONFIG",
+        "NVIDIA_TF32_OVERRIDE",
+        "PROCESSOR_IDENTIFIER",
+    ] {
+        result.environment.insert(
+            name.into(),
+            std::env::var(name).unwrap_or_else(|_| "unset".into()),
+        );
     }
+    result
+        .environment
+        .insert("os".into(), std::env::consts::OS.into());
+    result
+        .environment
+        .insert("arch".into(), std::env::consts::ARCH.into());
+    result.environment.insert(
+        "parallelism".into(),
+        std::thread::available_parallelism()?.get().to_string(),
+    );
+    match device {
+        candle_core::Device::Cpu => {}
+        #[cfg(feature = "cuda")]
+        candle_core::Device::Cuda(cuda) => {
+            let stream = cuda.cuda_stream();
+            let context = stream.context();
+            context.bind_to_thread()?;
+            result
+                .environment
+                .insert("gpu_name".into(), context.name()?);
+            result.environment.insert(
+                "gpu_compute_capability".into(),
+                format!("{:?}", context.compute_capability()?),
+            );
+            result
+                .environment
+                .insert("gpu_memory_bytes".into(), context.total_mem()?.to_string());
+            result.environment.insert(
+                "cuda_driver_api".into(),
+                cudarc::runtime::result::version::get_driver_version()?.to_string(),
+            );
+            result.environment.insert(
+                "cuda_runtime".into(),
+                cudarc::runtime::result::version::get_runtime_version()?.to_string(),
+            );
+            let candle_core::DeviceLocation::Cuda { gpu_id } = device.location() else {
+                unreachable!()
+            };
+            let query = std::process::Command::new("nvidia-smi")
+                .args([
+                    "--query-gpu=uuid,driver_version",
+                    "--format=csv,noheader",
+                    "--id",
+                    &gpu_id.to_string(),
+                ])
+                .output()?;
+            if !query.status.success() {
+                return Err("nvidia-smi could not identify the resume environment".into());
+            }
+            result.environment.insert(
+                "gpu_uuid_and_driver".into(),
+                String::from_utf8(query.stdout)?.trim().into(),
+            );
+        }
+        _ => return Err("unsupported training backend".into()),
+    }
+    Ok(result)
 }
 pub fn inspect(args: &ConfigArgs, output: Option<&Path>) -> Result<()> {
     let config = args.resolve()?;
@@ -168,7 +250,7 @@ pub fn inspect(args: &ConfigArgs, output: Option<&Path>) -> Result<()> {
         output,
     )
 }
-pub fn train(args: &ConfigArgs) -> Result<()> {
+pub fn train(args: &ConfigArgs, stop_after_steps: Option<u64>) -> Result<()> {
     let config = args.resolve()?;
     config.validate_model_inputs()?;
     let device = ferrots_nn::resolve_device(config.train.device.parse()?)?;
@@ -177,14 +259,33 @@ pub fn train(args: &ConfigArgs) -> Result<()> {
         "cache_hit={} parse_count={} data_seconds={:.3}",
         data.cache.hit, data.cache.parse_count, data.cache.total_seconds
     );
-    let identity = provenance();
+    let identity = provenance(&device)?;
     let result = Trainer {
         config: &config,
         data: &data,
         device: &device,
         provenance: &identity,
     }
-    .fit()?;
+    .fit_with_limit(stop_after_steps)?;
+    emit(&result, None)
+}
+pub fn resume(path: &Path, stop_after_steps: Option<u64>) -> Result<()> {
+    let directory = checkpoint::resolve(path)?;
+    let config = Config::load(directory.join("resolved-config.toml"), Overrides::default())?;
+    let device = ferrots_nn::resolve_device(config.train.device.parse()?)?;
+    let saved = checkpoint::load(&directory, &device)?;
+    if saved.manifest.inference_only {
+        return Err("v1 checkpoint is inference-only; resume requires v2".into());
+    }
+    let data = Dataset::load(&config.data, &config.window, Some(saved.scaler))?;
+    let identity = provenance(&device)?;
+    let result = Trainer {
+        config: &config,
+        data: &data,
+        device: &device,
+        provenance: &identity,
+    }
+    .resume(&directory, stop_after_steps)?;
     emit(&result, None)
 }
 fn open(args: &CheckpointArgs) -> Result<(Checkpoint, candle_core::Device, String, usize)> {
@@ -198,19 +299,11 @@ fn open(args: &CheckpointArgs) -> Result<(Checkpoint, candle_core::Device, Strin
     )?;
     let loaded = checkpoint::load(&directory, &device)?;
     let run_id = loaded
-        .config
-        .output
-        .run_id
-        .clone()
-        .or_else(|| {
-            loaded
-                .directory
-                .parent()?
-                .parent()?
-                .file_name()?
-                .to_str()
-                .map(str::to_string)
-        })
+        .directory
+        .parent()
+        .filter(|p| p.file_name().is_some_and(|n| n == "checkpoints"))
+        .and_then(|p| p.parent()?.file_name()?.to_str().map(str::to_owned))
+        .or_else(|| loaded.config.output.run_id.clone())
         .unwrap_or_else(|| "run".into());
     let batch_size = args.batch_size.unwrap_or(loaded.config.train.batch_size);
     if batch_size == 0 {

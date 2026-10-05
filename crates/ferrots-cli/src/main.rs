@@ -11,6 +11,11 @@ struct Cli {
 }
 #[derive(Subcommand)]
 enum Commands {
+    /// List model capabilities compiled into this binary.
+    Models {
+        #[command(subcommand)]
+        command: ModelCommand,
+    },
     /// Report build/device information and optionally test training.
     Doctor {
         #[arg(long, default_value = "cpu")]
@@ -23,10 +28,19 @@ enum Commands {
         #[command(subcommand)]
         command: DataCommand,
     },
-    /// Train a baseline; select a frozen checkpoint using validation only.
+    /// Train a forecasting model; select a checkpoint using validation only.
     Train {
         #[command(flatten)]
         args: ConfigArgs,
+        #[arg(long)]
+        stop_after_steps: Option<u64>,
+    },
+    /// Resume a complete training checkpoint into a new continuation run.
+    Resume {
+        #[arg(long)]
+        checkpoint: PathBuf,
+        #[arg(long)]
+        stop_after_steps: Option<u64>,
     },
     /// Evaluate a checkpoint on its fingerprinted source data.
     Evaluate {
@@ -56,8 +70,20 @@ enum DataCommand {
         output: Option<PathBuf>,
     },
 }
+#[derive(Subcommand)]
+enum ModelCommand {
+    List {
+        #[arg(long, default_value = "forecast")]
+        task: String,
+        #[arg(long, default_value = "cuda:0")]
+        device: ferrots_core::Device,
+    },
+}
 fn main() -> std::process::ExitCode {
     let (label, result) = match Cli::parse().command {
+        Commands::Models {
+            command: ModelCommand::List { task, device },
+        } => ("models list", pipeline::models(&task, device)),
         Commands::Doctor {
             device,
             training_smoke_test,
@@ -65,7 +91,14 @@ fn main() -> std::process::ExitCode {
         Commands::Data {
             command: DataCommand::Inspect { args, output },
         } => ("data inspect", pipeline::inspect(&args, output.as_deref())),
-        Commands::Train { args } => ("train", pipeline::train(&args)),
+        Commands::Train {
+            args,
+            stop_after_steps,
+        } => ("train", pipeline::train(&args, stop_after_steps)),
+        Commands::Resume {
+            checkpoint,
+            stop_after_steps,
+        } => ("resume", pipeline::resume(&checkpoint, stop_after_steps)),
         Commands::Evaluate { args, output } => {
             ("evaluate", pipeline::evaluate(&args, output.as_deref()))
         }
