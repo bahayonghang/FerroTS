@@ -1,4 +1,5 @@
-//! Immutable inference bundles and append-only best/last references.
+//! Immutable versioned bundles and append-only best/last references.
+mod training;
 use crate::{Result, TrainError};
 use candle_core::{DType, Device};
 use ferrots_core::config::{Config, Overrides};
@@ -6,13 +7,17 @@ use ferrots_data::{
     cache::{fingerprint, hash_bytes, protocol_hash, write_synced},
     scaler::Scaler,
 };
-use ferrots_nn::baselines::{Baseline, UPSTREAM_SHA};
+use ferrots_nn::{baselines::UPSTREAM_SHA, model::ForecastModel};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::{BTreeMap, HashMap},
     fs,
     path::{Path, PathBuf},
     time::{SystemTime, UNIX_EPOCH},
+};
+pub use training::{
+    ParentGeneration, PublishStage, TrainingIdentity, inherit_best, load_session, publish_training,
+    publish_training_with_hook,
 };
 
 const FILES: [&str; 4] = [
@@ -21,6 +26,11 @@ const FILES: [&str; 4] = [
     "data-schema.json",
     "resolved-config.toml",
 ];
+fn model_upstream(config: &Config) -> &'static str {
+    ferrots_nn::registry::find(config.model.name())
+        .and_then(|model| model.source_sha)
+        .unwrap_or(UPSTREAM_SHA)
+}
 fn require(ok: bool, message: &str) -> Result<()> {
     if ok {
         Ok(())
@@ -84,7 +94,9 @@ pub struct Manifest {
     pub seed: u64,
     pub device: String,
     pub epoch: usize,
-    pub validation_loss: f64,
+    pub validation_loss: Option<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub training: Option<TrainingIdentity>,
     pub provenance: Provenance,
     pub parameters: BTreeMap<String, Vec<usize>>,
     pub files: BTreeMap<String, FileReceipt>,
@@ -97,7 +109,7 @@ struct Reference {
     manifest_sha256: String,
 }
 pub struct Snapshot<'a> {
-    pub model: &'a Baseline,
+    pub model: &'a ForecastModel,
     pub config: &'a Config,
     pub scaler: &'a Scaler,
     pub provenance: &'a Provenance,
@@ -106,7 +118,7 @@ pub struct Snapshot<'a> {
     pub validation_loss: f64,
 }
 pub struct Checkpoint {
-    pub model: Baseline,
+    pub model: ForecastModel,
     pub config: Config,
     pub scaler: Scaler,
     pub schema: DataSchema,
@@ -167,25 +179,51 @@ pub fn load(path: impl AsRef<Path>, device: &Device) -> Result<Checkpoint> {
     let directory = resolve(path.as_ref())?;
     let manifest: Manifest = serde_json::from_slice(&fs::read(directory.join("manifest.json"))?)?;
     require(
-        manifest.format_version == 1
+        ((manifest.format_version == 1 && manifest.inference_only && manifest.training.is_none())
+            || (manifest.format_version == 2
+                && !manifest.inference_only
+                && manifest.training.is_some()))
             && manifest.model_version == 1
-            && manifest.inference_only
-            && manifest.dtype == "f32"
-            && manifest.upstream_sha == UPSTREAM_SHA,
+            && manifest.dtype == "f32",
         "unsupported checkpoint version/capability/dtype/upstream",
     )?;
     require(
-        manifest.validation_loss.is_finite()
+        manifest.validation_loss.is_none_or(f64::is_finite)
+            && (manifest.format_version == 2 || manifest.validation_loss.is_some())
             && manifest.data_sha256.len() == 64
             && manifest.provenance.source_sha256.len() == 64,
         "invalid checkpoint provenance",
     )?;
+    let files: &[&str] = if manifest.format_version == 1 {
+        &FILES
+    } else {
+        &training::FILES
+    };
     require(
-        manifest.files.len() == FILES.len()
-            && FILES.iter().all(|n| manifest.files.contains_key(*n)),
+        manifest.files.len() == files.len()
+            && files.iter().all(|n| manifest.files.contains_key(*n)),
         "checkpoint file set mismatch",
     )?;
-    for name in FILES {
+    let mut actual = std::collections::BTreeSet::new();
+    for entry in fs::read_dir(&directory)? {
+        let entry = entry?;
+        require(
+            entry.file_type()?.is_file(),
+            "checkpoint contains a directory or symlink",
+        )?;
+        actual.insert(entry.file_name().to_string_lossy().into_owned());
+    }
+    let expected_files: std::collections::BTreeSet<_> = files
+        .iter()
+        .copied()
+        .chain(std::iter::once("manifest.json"))
+        .map(str::to_owned)
+        .collect();
+    require(
+        actual == expected_files,
+        "checkpoint directory file set mismatch",
+    )?;
+    for &name in files {
         let p = directory.join(name);
         let r = &manifest.files[name];
         require(
@@ -199,6 +237,10 @@ pub fn load(path: impl AsRef<Path>, device: &Device) -> Result<Checkpoint> {
     )?;
     let config = Config::load(directory.join("resolved-config.toml"), Overrides::default())?;
     config.validate_model_inputs()?;
+    require(
+        manifest.upstream_sha == model_upstream(&config),
+        "checkpoint upstream mismatch",
+    )?;
     require(
         config.model.name() == manifest.model
             && config.train.seed == manifest.seed
@@ -214,13 +256,7 @@ pub fn load(path: impl AsRef<Path>, device: &Device) -> Result<Checkpoint> {
     )?;
     let scaler: Scaler = serde_json::from_slice(&fs::read(directory.join("scaler.json"))?)?;
     scaler.validate_for(&config.data, &schema.input_columns)?;
-    let model = Baseline::new(
-        &config.model,
-        &config.window,
-        schema.input_columns.len(),
-        config.train.seed,
-        device,
-    )?;
+    let model = ForecastModel::from_config(&config, device)?;
     let expected: BTreeMap<_, _> = model
         .weights()
         .iter()
@@ -238,15 +274,29 @@ pub fn load(path: impl AsRef<Path>, device: &Device) -> Result<Checkpoint> {
             }),
         "checkpoint tensor names/shapes/dtypes mismatch",
     )?;
+    for tensor in weights.values() {
+        require(
+            tensor
+                .flatten_all()?
+                .to_vec1::<f32>()?
+                .iter()
+                .all(|v| v.is_finite()),
+            "non-finite checkpoint parameter",
+        )?;
+    }
     model.load_weights(&weights.into_iter().collect())?;
-    Ok(Checkpoint {
+    let result = Checkpoint {
         model: model.freeze_for_eval()?,
         config,
         scaler,
         schema,
         manifest,
         directory,
-    })
+    };
+    if result.manifest.format_version == 2 {
+        training::read_state(&result, device)?;
+    }
+    Ok(result)
 }
 
 pub fn publish(run: &Path, selector: &str, snapshot: &Snapshot<'_>) -> Result<PathBuf> {
@@ -263,11 +313,11 @@ pub fn publish(run: &Path, selector: &str, snapshot: &Snapshot<'_>) -> Result<Pa
         "non-finite checkpoint validation loss",
     )?;
     require(
-        serde_json::to_value(&snapshot.model.spec)?
+        serde_json::to_value(snapshot.model.spec())?
             == serde_json::to_value(&snapshot.config.model)?
-            && serde_json::to_value(&snapshot.model.window)?
+            && serde_json::to_value(snapshot.model.window())?
                 == serde_json::to_value(&snapshot.config.window)?
-            && snapshot.model.channels == snapshot.config.data.input_columns.len(),
+            && snapshot.model.channels() == snapshot.config.data.input_columns.len(),
         "snapshot model/config mismatch",
     )?;
     let nonce = SystemTime::now()
@@ -323,14 +373,15 @@ pub fn publish(run: &Path, selector: &str, snapshot: &Snapshot<'_>) -> Result<Pa
         inference_only: true,
         model: snapshot.config.model.name().into(),
         dtype: "f32".into(),
-        upstream_sha: UPSTREAM_SHA.into(),
+        upstream_sha: model_upstream(snapshot.config).into(),
         data_sha256: snapshot.data_sha256.into(),
         config_sha256: hash_bytes(config.as_bytes()),
         protocol_fingerprint: schema.protocol_fingerprint,
         seed: snapshot.config.train.seed,
         device: snapshot.config.train.device.clone(),
         epoch: snapshot.epoch,
-        validation_loss: snapshot.validation_loss,
+        validation_loss: Some(snapshot.validation_loss),
+        training: None,
         provenance: snapshot.provenance.clone(),
         parameters: tensors
             .iter()

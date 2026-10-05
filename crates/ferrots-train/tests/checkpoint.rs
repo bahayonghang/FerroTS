@@ -1,10 +1,10 @@
 use candle_core::{Device, Tensor};
-use ferrots_core::config::{Config, ModelSpec};
+use ferrots_core::config::{Activation, Config, ModelSpec};
 use ferrots_data::{
     cache::{fingerprint, protocol_hash},
     scaler::{ColumnScale, Scaler},
 };
-use ferrots_nn::baselines::{Baseline, ModelInput};
+use ferrots_nn::model::{ForecastModel as Baseline, ModelInput};
 use ferrots_train::checkpoint::{self, Provenance, Snapshot};
 use std::{
     collections::BTreeMap,
@@ -77,9 +77,18 @@ fn bundles_roundtrip_empty_and_trainable_and_keep_previous_reference() -> R {
                 individual: true,
                 moving_avg: 25,
             },
+            ModelSpec::Itransformer {
+                d_model: 8,
+                n_heads: 2,
+                d_ff: 16,
+                e_layers: 2,
+                dropout: 0.1,
+                activation: Activation::Gelu,
+                use_norm: true,
+            },
         ] {
             let (c, s, p) = config(spec);
-            let model = Baseline::new(&c.model, &c.window, 1, 1, &device)?;
+            let model = Baseline::from_config(&c, &device)?;
             let run = dir();
             let snapshot = Snapshot {
                 model: &model,
@@ -101,7 +110,11 @@ fn bundles_roundtrip_empty_and_trainable_and_keep_previous_reference() -> R {
                 assert!(bundle.join(name).is_file());
             }
             let loaded = checkpoint::load(run.join("best"), &device)?;
-            let input = ModelInput::history(Tensor::from_vec(vec![1f32, 2.], (1, 2, 1), &device)?);
+            let input = ModelInput {
+                history: Tensor::from_vec(vec![1f32, 2.], (1, 2, 1), &device)?,
+                history_time: Some(Tensor::zeros((1, 2, 4), candle_core::DType::F32, &device)?),
+                future_time: None,
+            };
             let a = model
                 .freeze_for_eval()?
                 .forward(&input)?
@@ -132,6 +145,40 @@ fn bundles_roundtrip_empty_and_trainable_and_keep_previous_reference() -> R {
             assert!(checkpoint::load(run.join("best"), &device).is_err());
         }
     }
+    Ok(())
+}
+
+#[test]
+fn itransformer_discards_time_tokens_before_selecting_target_subset() -> R {
+    let (mut c, _, _) = config(ModelSpec::Itransformer {
+        d_model: 8,
+        n_heads: 2,
+        d_ff: 16,
+        e_layers: 2,
+        dropout: 0.,
+        activation: Activation::Gelu,
+        use_norm: true,
+    });
+    c.data.input_columns = vec!["a".into(), "b".into(), "c".into()];
+    c.data.target_columns = vec!["a".into(), "c".into()];
+    let model = Baseline::from_config(&c, &Device::Cpu)?;
+    let output = model.forward(&ModelInput {
+        history: Tensor::from_vec(vec![1f32, 2., 3., 4., 5., 6.], (1, 2, 3), &Device::Cpu)?,
+        history_time: Some(Tensor::zeros(
+            (1, 2, 4),
+            candle_core::DType::F32,
+            &Device::Cpu,
+        )?),
+        future_time: None,
+    })?;
+    assert_eq!(output.dims(), &[1, 1, 3]);
+    let selected = ferrots_train::trainer::select_targets(&output, &[0, 2])?;
+    assert_eq!(selected.dims(), &[1, 1, 2]);
+    let full = output.flatten_all()?.to_vec1::<f32>()?;
+    assert_eq!(
+        selected.flatten_all()?.to_vec1::<f32>()?,
+        [full[0], full[2]]
+    );
     Ok(())
 }
 #[test]

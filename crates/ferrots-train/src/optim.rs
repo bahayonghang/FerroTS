@@ -69,6 +69,11 @@ pub struct ParamState {
     pub exp_avg: Tensor,
     pub exp_avg_sq: Tensor,
 }
+pub struct OptimizerSnapshot {
+    pub kind: String,
+    pub groups: Vec<ParamGroup>,
+    pub state: BTreeMap<String, ParamState>,
+}
 /// Adam uses coupled L2 decay. AdamW uses decoupled parameter decay.
 pub type StatefulAdam = StatefulOptimizer<false>;
 pub type StatefulAdamW = StatefulOptimizer<true>;
@@ -94,6 +99,68 @@ struct Metadata {
     groups: Vec<ParamGroup>,
 }
 impl<const DECOUPLED: bool> StatefulOptimizer<DECOUPLED> {
+    pub fn snapshot(&self) -> Result<OptimizerSnapshot> {
+        Ok(OptimizerSnapshot {
+            kind: Self::kind().into(),
+            groups: self.groups.clone(),
+            state: self
+                .state
+                .iter()
+                .map(|(name, s)| {
+                    Ok((
+                        name.clone(),
+                        ParamState {
+                            step: s.step,
+                            exp_avg: s.exp_avg.detach().copy()?,
+                            exp_avg_sq: s.exp_avg_sq.detach().copy()?,
+                        },
+                    ))
+                })
+                .collect::<Result<_>>()?,
+        })
+    }
+    pub fn restore_snapshot(&mut self, snapshot: &OptimizerSnapshot) -> Result<()> {
+        if snapshot.kind != Self::kind() || snapshot.state.len() != self.params.iter().count() {
+            return Err(TrainError::InvalidState(
+                "optimizer snapshot kind/parameter set mismatch".into(),
+            ));
+        }
+        validate_groups(&self.params, &snapshot.groups)?;
+        let mut pending = BTreeMap::new();
+        for (name, var) in self.params.iter() {
+            let s = snapshot.state.get(name).ok_or_else(|| {
+                TrainError::InvalidState(format!("missing optimizer state {name}"))
+            })?;
+            validate_like(name, &s.exp_avg, var)?;
+            validate_like(name, &s.exp_avg_sq, var)?;
+            if s.exp_avg
+                .flatten_all()?
+                .to_vec1::<f32>()?
+                .iter()
+                .any(|v| !v.is_finite())
+                || s.exp_avg_sq
+                    .flatten_all()?
+                    .to_vec1::<f32>()?
+                    .iter()
+                    .any(|&v| !v.is_finite() || v < 0.)
+            {
+                return Err(TrainError::InvalidState(
+                    "non-finite optimizer state or negative second moment".into(),
+                ));
+            }
+            pending.insert(
+                name.into(),
+                ParamState {
+                    step: s.step,
+                    exp_avg: s.exp_avg.detach().copy()?,
+                    exp_avg_sq: s.exp_avg_sq.detach().copy()?,
+                },
+            );
+        }
+        self.state = pending;
+        self.groups = snapshot.groups.clone();
+        Ok(())
+    }
     pub fn new(params: NamedParams, groups: Vec<ParamGroup>) -> Result<Self> {
         validate_groups(&params, &groups)?;
         let mut state = BTreeMap::new();
@@ -292,8 +359,10 @@ impl<const DECOUPLED: bool> StatefulOptimizer<DECOUPLED> {
             );
         }
         self.params.device().synchronize()?;
-        self.state = state;
-        self.groups = metadata.groups;
-        Ok(())
+        self.restore_snapshot(&OptimizerSnapshot {
+            kind: metadata.kind,
+            state,
+            groups: metadata.groups,
+        })
     }
 }

@@ -7,6 +7,7 @@ pub mod loss;
 pub mod optim;
 mod params;
 pub mod schedule;
+pub mod session;
 pub mod trainer;
 pub use ferrots_nn::RngStream;
 pub use optim::{ParamGroup, ParamState, StatefulAdam, StatefulAdamW, StatefulOptimizer};

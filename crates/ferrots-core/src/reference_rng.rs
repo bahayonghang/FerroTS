@@ -2,6 +2,20 @@
 //! 08187d9e0fba026dc8217405802ab5381dc88d90. See NOTICE.md for licenses.
 //! MT19937: Copyright (C) 1997-2002 Makoto Matsumoto and Takuji Nishimura.
 //! This stream is separate from the P0 dropout ChaCha8 contract.
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ReferenceRngState {
+    pub format_version: u32,
+    pub algorithm: String,
+    pub words: Vec<u32>,
+    pub index: usize,
+}
+
+#[derive(Debug, thiserror::Error)]
+#[error("invalid ReferenceRng state: version, algorithm, 624 words or index mismatch")]
+pub struct InvalidRngState;
 
 #[derive(Clone)]
 pub struct ReferenceRng {
@@ -10,6 +24,34 @@ pub struct ReferenceRng {
 }
 
 impl ReferenceRng {
+    pub fn snapshot(&self) -> ReferenceRngState {
+        ReferenceRngState {
+            format_version: 1,
+            algorithm: "mt19937-pytorch-cpu-v1".into(),
+            words: self.state.to_vec(),
+            index: self.index,
+        }
+    }
+
+    pub fn from_state(state: &ReferenceRngState) -> Result<Self, InvalidRngState> {
+        if state.format_version != 1
+            || state.algorithm != "mt19937-pytorch-cpu-v1"
+            || state.words.len() != 624
+            || state.index > 624
+            || state.words.iter().all(|&n| n == 0)
+        {
+            return Err(InvalidRngState);
+        }
+        Ok(Self {
+            state: state
+                .words
+                .as_slice()
+                .try_into()
+                .map_err(|_| InvalidRngState)?,
+            index: state.index,
+        })
+    }
+
     pub fn new(seed: u64) -> Self {
         let mut state = [0; 624];
         state[0] = seed as u32;

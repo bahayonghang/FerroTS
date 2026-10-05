@@ -7,6 +7,9 @@ pub struct GradientAccumulator {
     pub valid_count: u64,
 }
 impl GradientAccumulator {
+    pub fn is_empty(&self) -> bool {
+        self.valid_count == 0 && self.sums.is_empty()
+    }
     pub fn new(params: NamedParams) -> Self {
         Self {
             params,
