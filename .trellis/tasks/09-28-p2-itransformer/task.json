@@ -3,7 +3,7 @@
   "name": "p2-itransformer",
   "title": "P2 iTransformer 复现",
   "description": "官方 iTransformer 逐层前向与梯度对齐、权重映射、完整恢复状态；ETT 与水泥孪生样本实验",
-  "status": "planning",
+  "status": "in_progress",
   "dev_type": null,
   "scope": null,
   "package": null,
@@ -12,8 +12,8 @@
   "assignee": "lyh",
   "createdAt": "2026-09-28",
   "completedAt": null,
-  "branch": null,
-  "base_branch": "main",
+  "branch": "feat/p2-itransformer",
+  "base_branch": "feat/p1-data-train-loop",
   "worktree_path": null,
   "commit": null,
   "pr_url": null,
@@ -21,6 +21,189 @@
   "children": [],
   "parent": "09-28-ferrots-implementation",
   "relatedFiles": [],
-  "notes": "",
-  "meta": {}
+  "notes": "Implementation and AC3 revision approved; task in_progress on feat/p2-itransformer. Ordered inline execution; no sub-agents. Steps 1-14 implemented and verified. Current frozen suite: runs/p2-acceptance/20260929-cuda-v2; runtime source d14b82559d78f124a073e5fe3f6fb9f2c5b80c0847d4acba080643b7ce2fde81. Prerequisites passed: Rust102/Python28, CUDA numerics, ten fresh-process recovery cases, full data gate, historical public v1 inference. Step 15 original CPU formal control remains unexecuted under the 2026-09-29 CUDA-first instruction; preference saved in Basic Memory and AGENTS.md. No routine CPU training; only after CUDA failure use about three CPU epochs if diagnosis needs them. The unchanged formal CUDA matrix contains 105 runs. Step 16 completed: official CUDA ETT 48/48 and full matrix verification, exit 0 on 2026-09-29. Step 17 Rust ETT48 followed by D4 has been launched using the same suite and frozen CUDA binary. Cement9, independent recomputation and final quality remain pending. Original np.Inf failure and its process-local compatibility correction remain in implementation-evidence.md and the original suite; no failed receipt was replaced. No commit, push or archive has occurred. Step 17 milestone: Rust ETTh1/H96 and H192 completed all seeds, 6/48 Rust ETT entries; the four comparisons for these two configurations pass as partial diagnostics only. H336 is running. P2 backend contract and inline review checkpoint added; final acceptance remains pending. Continuation 2026-09-29 20:31 America/Chicago: Rust ETT 7/48; H336/seed2022 is active in the existing session 6728 (shell PID43756). Sequential continuation session14068/PID40828 waits for the existing shell and a passed D4 before cement9, recompute, final CUDA quality and final acceptance. Execution script and status are under ignored runs/p2-development; final report review and sign-off remain pending. No ETT matrix was restarted. Takeover verified 2026-09-29 20:44 America/Chicago: original PID43756/PID40828 alive with matching creation times; one active ETTh1/H720/seed2021 training child. Official48 and Rust9 completed entries revalidated, frozen identities unchanged. Partial reports and acceptance status written; D4, cement, recompute, final quality and final inline sign-off pending. No duplicate launch, task restart, commit, archive or push. Continuation 2026-09-29 21:05 America/Chicago: a cement metric-map consumer defect was reproduced in three validation/report functions. Candidate-only correction passed 8 synthetic tests. Frozen tools and receipts unchanged; explicit evidence-transition decision pending. Original ETT training continues; 13 completed entries observed, ETTh2/H96/seed2022 active. Final acceptance remains pending. Verified continuation 2026-09-29 21:20 America/Chicago: official48/Rust18, 12/12 available diagnostic comparisons pass; final gates pending. Candidate real-P1 integration passed, frozen-evidence transition still pending. Evidence: runs/p2-development/continued-verification-20260929-211647-8010923/verification-update.json. User selected versioned evidence migration on 2026-09-29. Idle downstream waiter PID40828 intentionally stopped after identity/child checks; original ETT/D4 PID43756 remains active. Successor suite is planned, not yet created; frozen production validator unchanged. ETT96 and D4 32/32 completed on 2026-09-30. Approved versioned migration, successor quality and successor D4 passed. Isolated executor PID73220 continues cement. The environment reentry failure is retained. No ETT retraining, commit, archive or push. Cement interruption retained: PID73220 and its first cement training tree exited with unknown cause and no completed epoch. After verifying no live P2 process tree, PID67188 was launched through Windows CIM at 2026-09-30T08:06:42.4105976Z; actual parent WmiPrvSE.exe. Only unfinished cement and dependent final gates are running. The task remains in_progress. On 2026-09-30 the user requested stopping training and fixing low GPU utilization. The identity-verified executor and training tree were stopped at 08:42 America/Chicago; two full epochs and original artifacts remain. Heartbeat PAUSED. Scoped dev-profile performance repair and CUDA validation are in progress; no formal run is restarted during repair. Prior Rust receipts remain evidence for the previous source and binary only. Continuation 2026-10-02 09:16 America/Chicago: the repaired runtime 513a8c4a and binary a8cc02c5 cannot import v3 receipts. The user selected a full v4 suite with unchanged tooling: runs/p2-acceptance/20261002-cuda-v4. Executor PID22708 was launched through Windows CIM (script runs/p2-development/p2-v4-20261002/execute-v4.ps1). Preflight passed. Stages: initial quality, data, numerics, resume, official ETT48, Rust ETT48, D4, cement9, recompute, final quality, final. v3 and older suites remain retained historical evidence. No commit, archive or push. v4 numerics attempt 1 failed on an ANSI-wrapped report path (test passed); executor stage header now sets NO_COLOR=1, tooling unchanged. Relaunched executor PID63504 at 2026-10-02T14:23:37Z; numerics passed. v4 resume attempt 1 failed on GBK-encoded replayed linker warnings (test passed, binary unchanged); stage header now sets UTF-8 console encoding. Relaunched executor PID48028 at 2026-10-02T14:26:00Z; resume passed; official ETT48 running. v4 checkpoint 2026-10-03 07:12 UTC: official ETT 48/48, Rust ETT 48/48, D4 32/32 passed; cement 6/9, H60/seed2021 at epoch 6. Executor PID48028 alive. v4 complete 2026-10-03 10:47 UTC: executor PID48028 reached validation-complete. final.json passed: official 48, Rust ETT 48, cement 9, D4 32/32, 18,574,560 rows recomputed 6/6, quality Rust CUDA 102 and Python 52 with zero failed/ignored. Remaining: report reconciliation, final inline trellis-check, spec/model-card update, local commit. No commit, archive or push. Registry decision 2026-10-03: v4 passed with registry status pending in the tested source. The user selected the status change to p2_cuda_formal_pass plus a full v5 rerun. New source fd634747, binary be54cf2e. Suite runs/p2-acceptance/20261003-cuda-v5; executor PID24056 launched through Windows CIM at 2026-10-03T12:38:58Z; preflight passed. v4 retained as historical evidence. No commit, archive or push. v5 executor exit 2026-10-03: at 13:19:32Z executor PID24056 no longer existed; status.json still running/ett-reference; cause and exit code unknown. Stage child pwsh PID56192 and training python PID28660 survive; official ETT 24 completed, ETTm1/H96/seed2021 active. No later stage will start without an executor. Scheduled job 112ef141 deleted; nothing stopped or restarted. User decision pending. User decision 2026-10-03: wait for surviving official ETT48, then relaunch execute-v5.ps1 unchanged via relaunch-v5.ps1; 15-minute session check job e3e5a08e. v5 relaunch 2026-10-03: surviving child completed official ETT 48/48. Executor PID17988 launched via CIM at 15:13:51Z (predecessor PID24056); ett-reference verified 48 entries without retraining; ett-rust running. Hourly monitor replaces wait job e3e5a08e. v5 host power-off 2026-10-03: user-initiated Start-menu power off at 10:57:17 America/Chicago (User32 1074, EventLog 6006) ended executor PID17988 during ett-rust. Rust ETT 27/48; ETTm1/H192/seed2021 incomplete after epoch 1, not counted. Monitor 16d819d2 deleted; nothing restarted. User decision pending. Continuation 2026-10-05: user requested resume. Source and binary still match v5. Executor PID47012 launched via CIM at 2026-10-05T08:39:49Z, parent WmiPrvSE PID9020. Records runs/p2-development/p2-v5-20261003/executor-20261005-033949-8301611. Prerequisites skipped. Official ETT 48/48 reverified. Rust ETT 27 verified; ETTm1/H192/seed2021 training started. Receipt relaunch-20261005.json. No commit, archive or push.",
+  "meta": {
+    "p2_acceptance_progress": {
+      "snapshot_local": "2026-09-30T05:43:08.9996733-05:00",
+      "suite": "runs/p2-acceptance/20261003-cuda-v5",
+      "official_cuda_verified": 48,
+      "rust_ett_cuda_verified": 27,
+      "cement_cuda_verified": 9,
+      "d4_status": "v4 passed 32/32 ddof0 at 2026-10-02T18:41:40Z; v2/v3 retained",
+      "final_status": "v5 resumed 2026-10-05; executor 47012 running ett-rust",
+      "active_run": "rust-ETTm1-itransformer-cuda-h192-s2021-train",
+      "predecessor_pid": null,
+      "continuation_pid": null,
+      "verification_evidence": "runs/p2-development/tooling-transition-20260929-2129/ett-transition-checkpoint-20260930-025430-462084.json",
+      "process_evidence": "runs/p2-development/tooling-transition-20260929-2129/live-observations.jsonl",
+      "cpu_control": "not executed under CUDA-first instruction",
+      "last_observed_utc": "2026-10-05T08:40:31Z",
+      "active_completed_epochs": 2,
+      "document_check_evidence": "runs/p2-development/tooling-transition-20260929-2129/document-check-20260930-031230-7592278/result.json",
+      "tooling_correction": {
+        "status": "installed; parent audit, versioned suite, current quality and D4 passed",
+        "affected_functions": [
+          "cement_entries",
+          "cement_gate",
+          "cement_report"
+        ],
+        "candidate_passed": 8,
+        "candidate_failed": 0,
+        "candidate_errors": 0,
+        "candidate_ignored": 0,
+        "report": "research/cement-metric-contract-diagnosis.md",
+        "evidence": "runs/p2-development/cement-contract-20260929-210242-974583/review.json",
+        "production_tool_changed": true,
+        "real_p1_integration": {
+          "passed": true,
+          "entries": 9,
+          "variables_per_entry": 18,
+          "rows": 108,
+          "metric_cells": 324,
+          "formal_cuda_runs_added": 0,
+          "evidence": "runs/p2-development/continued-verification-20260929-211647-8010923/cement-integration.json"
+        },
+        "decision": "User explicitly selected versioned migration with full validation of unaffected ETT receipts and rerun of affected gates and final quality",
+        "planned_successor_suite": "runs/p2-acceptance/20260929-cuda-v3",
+        "provenance_candidate_passed": 16,
+        "cement_candidate_passed": 8,
+        "transition_report": "research/tooling-transition.md",
+        "full_candidate_python": {
+          "passed": 52,
+          "failed": 0,
+          "errors": 0,
+          "ignored": 0,
+          "evidence": "runs/p2-development/tooling-transition-20260929-2129/python-all-20260929-213608-755737/result.json"
+        },
+        "transition_evidence": "runs/p2-development/tooling-transition-20260929-2129/ett-transition-checkpoint-20260930-025430-462084.json"
+      },
+      "active_pid": 47012,
+      "partial_diagnostic_passed": 30,
+      "partial_diagnostic_failed": 0,
+      "report_snapshot_local": "2026-09-29T21:43:48.577501-05:00",
+      "stopped_continuation_pid": 40828,
+      "continuation_status": "stopped_by_user_for_performance_repair",
+      "continuation_evidence": "runs/p2-development/tooling-transition-20260929-2129/cement-executor-20260930-030642-6615984",
+      "heartbeat_automation_id": "ferrots-p2-cuda",
+      "partial_diagnostic_evidence": "runs/p2-development/tooling-transition-20260929-2129/configuration-diagnostics-20260930-021421-697651.json",
+      "retired_predecessor_pid": 43756,
+      "failed_continuation_pid": 32276,
+      "latest_interruption": {
+        "evidence": "runs/p2-development/tooling-transition-20260929-2129/host-interruption-20260930-030009-2678822/interruption.json",
+        "executor_pid": 73220,
+        "training_pid": 38688,
+        "exit_code": null,
+        "cause": "unknown",
+        "cuda_failure_established": false,
+        "completed_epochs": 0,
+        "completed_cement_entries": 0,
+        "incomplete_run": "rust-cement-itransformer-cuda-h15-s2021-20260930-025124-944940",
+        "recovery_launch": "runs/p2-development/tooling-transition-20260929-2129/independent-cement-launch-20260930-030642-3862657/launch.json"
+      },
+      "parent_d4_passed": 32,
+      "successor_d4_passed": 32,
+      "continuation_created_utc": "2026-09-30T08:06:42.4105976Z",
+      "retired_recovery_pid": 67224,
+      "current_successor_quality": {
+        "cuda-test": {
+          "passed": 102,
+          "failed": 0,
+          "ignored": 0
+        },
+        "python-tests": {
+          "passed": 52,
+          "failed": 0,
+          "ignored": 0
+        }
+      },
+      "successor_suite_sha256": "44558bac496259c05a0787fe899f1eff14aaed2554aa0c5fbeba0bcfeb6c7f08",
+      "environment_reentry_failure": {
+        "executor_pid": 67224,
+        "evidence": "runs/p2-development/tooling-transition-20260929-2129/msvc-path-reproduction-20260930-024540-7128072/diagnosis.json",
+        "correction": "Fresh child environment per stage; frozen helper unchanged",
+        "training_repeated": false
+      },
+      "interruption_history": [
+        {
+          "evidence": "runs/p2-development/interruption-20260929-234423-4955379/interruption.json",
+          "exit_code": null,
+          "cause": "unknown",
+          "cuda_failure_established": false,
+          "retained_completed_entries": 32,
+          "incomplete_run": "rust-ETTm1-itransformer-cuda-h336-s2023-20260929-233416-770332",
+          "recovery_launch": "runs/p2-development/tooling-transition-20260929-2129/recovery-launch-20260929-234557-9868650/launch.json"
+        }
+      ],
+      "latest_process_checkpoint": "runs/p2-development/tooling-transition-20260929-2129/cement-recovery-checkpoint-20260930-031156-482696.json",
+      "retired_isolated_executor_pid": 73220,
+      "first_cement_epoch_evidence": "runs/p2-development/tooling-transition-20260929-2129/cement-first-epoch-20260930-054416-417122.json",
+      "heartbeat_status": "PAUSED",
+      "performance_repair_report": "research/gpu-performance-repair.md",
+      "performance_stop_evidence": "runs/p2-development/tooling-transition-20260929-2129/user-requested-performance-stop-20260930-084222-4339185",
+      "performance_baseline": "runs/p2-development/gpu-performance-repair-20260930/profile-before/profile.json",
+      "active_executor": "runs/p2-development/p2-v5-20261003/executor-20261005-033949-8301611",
+      "v4_decision": "2026-10-02 user selected full v4 suite under unchanged tooling; official ETT48 rerun accepted",
+      "v4_source_sha256": "513a8c4ac49d04d5c528c2b4e1be6abcd349bfce5b9a533391c191cd049951b2",
+      "v4_binary_sha256": "a8cc02c50065b714cecd96a55edc2a018a6854461a484d47382add1173585379",
+      "v4_failed_attempts": [
+        "numerics attempt 1: ANSI-wrapped report path; evidence runs/p2-development/p2-v4-20261002/executor-20261002-091634-8818359",
+        "resume attempt 1: GBK replayed linker warnings in stdout; evidence runs/p2-development/p2-v4-20261002/executor-20261002-092338-4911385"
+      ],
+      "v4_final": {
+        "official": 48,
+        "rust_ett": 48,
+        "cement": 9,
+        "d4_passed": 32,
+        "recomputed_rows": 18574560,
+        "recompute_checks_passed": 6,
+        "cuda_tests": 102,
+        "python_tests": 52,
+        "failed": 0,
+        "ignored": 0,
+        "suite_sha256": "f119304da92357f4076079adb8a7a92480627a7945cad0550a0ff4c57e93cab5"
+      },
+      "v5_decision": "2026-10-03 user selected registry status p2_cuda_formal_pass plus full v5 rerun",
+      "v5_source_sha256": "fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055",
+      "v5_binary_sha256": "be54cf2e1f6b393d20cadae41faf7bb3e73a4af463f7347e038762488747e4ad",
+      "v5_executor_pid": 24056,
+      "v5_launch": "runs/p2-development/p2-v5-20261003/launch.json",
+      "v5_executor_exit": {
+        "observed_utc": "2026-10-03T13:19:32Z",
+        "executor_pid": 24056,
+        "cause": "unknown",
+        "exit_code": null,
+        "surviving_stage_pid": 56192,
+        "surviving_training_pid": 28660,
+        "official_completed": 24,
+        "evidence": "runs/p2-development/p2-v5-20261003/executor-20261003-073859-9869953"
+      },
+      "v5_relaunch": {
+        "predecessor_pid": 24056,
+        "executor_pid": 17988,
+        "created_utc": "2026-10-03T15:13:51.9053400Z",
+        "script_sha256": "b30f7ad2a2e42e8276bf8790a2e514b7235a79ffc1672878ec88e96194c42ed6",
+        "records": "runs/p2-development/p2-v5-20261003/executor-20261003-101352-9001675",
+        "receipt": "runs/p2-development/p2-v5-20261003/relaunch.json"
+      },
+      "v5_power_off": {
+        "event_time": "2026-10-03T10:57:17-05:00",
+        "source": "User32 1074 StartMenuExperienceHost power off",
+        "executor_pid": 17988,
+        "rust_ett_completed": 27,
+        "incomplete_run": "rust-ETTm1-itransformer-cuda-h192-s2021-20261003-105623-332087",
+        "observed_utc": "2026-10-04T01:50:27Z"
+      },
+      "v5_resume_20261005": {
+        "executor_pid": 47012,
+        "created_utc": "2026-10-05T08:39:49.0917910Z",
+        "parent": "WmiPrvSE.exe PID9020",
+        "script_sha256": "b30f7ad2a2e42e8276bf8790a2e514b7235a79ffc1672878ec88e96194c42ed6",
+        "records": "runs/p2-development/p2-v5-20261003/executor-20261005-033949-8301611",
+        "receipt": "runs/p2-development/p2-v5-20261003/relaunch-20261005.json",
+        "official_reverified": 48,
+        "rust_verified_before_new_training": 27,
+        "predecessor_pid": 17988
+      }
+    }
+  }
 }

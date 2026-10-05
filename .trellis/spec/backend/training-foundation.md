@@ -42,6 +42,8 @@ Doctor prints rustc, target, build features, Candle version/SHA, requested devic
 
 Use the measured Windows environment in docs/environment.md: initialized MSVC, CUDA_PATH, bin/x64 on PATH, CL=/Zc:preprocessor /utf-8, and consistent static CRT. Do not suppress LNK4098. Select a new ignored target directory when changing native CRT flags. Set RUSTUP_AUTO_INSTALL=0 and pin the toolchain before commands. Installing a system toolchain requires user approval.
 
+For CUDA development and test builds that retain deterministic host-side dropout or gradient validation, package-scoped Cargo opt-level = 3 is allowed when measurements identify host code as the bottleneck. Keep debug assertions enabled. Preserve RNG calls, tensor arithmetic, synchronization boundaries, release settings and formal training profiles. Record the source and binary identity change, and do not reuse prior runtime receipts as current-source acceptance without a new identity audit.
+
 ## 4. Validation and error matrix
 
 | Input or state | Required result |

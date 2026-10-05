@@ -1,0 +1,17 @@
+{"file":".trellis/spec/backend/index.md","reason":"Backend ownership, required specs and quality gate"}
+{"file":".trellis/spec/backend/training-foundation.md","reason":"Train-safe operations, FP32 optimizers, RNG and native CUDA contracts"}
+{"file":".trellis/spec/backend/data-pipeline.md","reason":"Preserve scaler, windows, time features and approved cement preprocessing"}
+{"file":".trellis/spec/backend/training-loop.md","reason":"Preserve P1 RNG, validation isolation, weighted loss and v1 bundle compatibility"}
+{"file":".trellis/spec/guides/cross-layer-thinking-guide.md","reason":"Trace config, model, trainer state, checkpoint and CLI boundaries"}
+{"file":".trellis/spec/guides/code-reuse-thinking-guide.md","reason":"Reuse existing model, optimizer, data and receipt mechanisms"}
+{"file":"docs/environment.md","reason":"Authoritative Rust 1.98.0, Windows MSVC/CUDA/static CRT and uv settings"}
+{"file":"docs/datasets/ett.md","reason":"Pinned official iTransformer, 16 configurations, time features and loading differences"}
+{"file":"docs/datasets/cement-yangquan.md","reason":"All four approved protocol adjustments, segment/scaler/window statistics"}
+{"file":"docs/datasets/custom-lsf.md","reason":"Preserve Exchange 7588-row correction and non-ETT protocol boundaries"}
+{"file":".trellis/tasks/09-28-ferrots-implementation/prd.md","reason":"Parent D3-D6 and X1-X6 are binding scope and acceptance constraints"}
+{"file":".trellis/tasks/09-28-ferrots-implementation/research/upstream-verification.md","reason":"Historical upstream semantics; current environment and P1 evidence supersede old platform status"}
+{"file":".trellis/tasks/09-28-ferrots-implementation/research/public-datasets.md","reason":"Public snapshot identity, source hashes and approved Exchange count"}
+{"file":".trellis/tasks/09-28-p2-itransformer/research/planning-evidence.md","reason":"Current code interfaces, fixed official source, gradient probe and full 106-run matrix"}
+{"file":".trellis/spec/backend/itransformer-training.md","reason":"Verify implemented P2 model, optimizer-boundary state, v2 resume and CUDA-first acceptance contracts"}
+{"file":".trellis/tasks/09-28-p2-itransformer/research/cement-metric-contract-diagnosis.md","reason":"Cement metric-map contract defect, tested candidate patch and pending frozen-tool evidence transition"}
+{"file":".trellis/tasks/09-28-p2-itransformer/research/tooling-transition.md","reason":"User-selected versioned evidence migration, immutable parent inventory and scoped cement consumer correction"}

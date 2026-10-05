@@ -1,0 +1,17 @@
+{"file":".trellis/spec/backend/index.md","reason":"Complete backend quality gate, including CPU and CUDA"}
+{"file":".trellis/spec/backend/training-foundation.md","reason":"All parameter gradients, safe ops, optimizer counters and no fallback"}
+{"file":".trellis/spec/backend/data-pipeline.md","reason":"No data leakage or protocol drift; complete windows and train-only scaler"}
+{"file":".trellis/spec/backend/training-loop.md","reason":"P1 behavior and v1 compatibility; strict validation and full formal gate requirements"}
+{"file":".trellis/spec/guides/cross-layer-thinking-guide.md","reason":"One source of truth for configuration, checkpoint state and derived CLI behavior"}
+{"file":".trellis/spec/guides/code-reuse-thinking-guide.md","reason":"Reject duplicated training loops, validators and fixture logic"}
+{"file":"docs/environment.md","reason":"Verify measured platform, exact toolchain and static CRT without installation"}
+{"file":"docs/datasets/ett.md","reason":"16 fixed configs and official protocol; published values cannot replace local D4"}
+{"file":"docs/datasets/cement-yangquan.md","reason":"All18-variable metrics, original units, segment and window counts"}
+{"file":"docs/datasets/custom-lsf.md","reason":"Exchange correction and retained non-ETT protocol behavior"}
+{"file":".trellis/tasks/09-28-ferrots-implementation/prd.md","reason":"Audit D4 two-sided bounds, three seeds and X1-X6"}
+{"file":".trellis/tasks/archive/2026-09/09-28-p1-data-train-loop/research/acceptance.md","reason":"Preserve completed P1 formal coverage and distinguish historical evidence from P2 results"}
+{"file":".trellis/tasks/archive/2026-09/09-28-p1-data-train-loop/research/review.md","reason":"Regression baseline and prior inline quality review"}
+{"file":".trellis/tasks/09-28-p2-itransformer/research/planning-evidence.md","reason":"Verify P2 mapping, state restoration, numerical risks and matrix completeness"}
+{"file":".trellis/spec/backend/itransformer-training.md","reason":"Verify implemented P2 model, optimizer-boundary state, v2 resume and CUDA-first acceptance contracts"}
+{"file":".trellis/tasks/09-28-p2-itransformer/research/cement-metric-contract-diagnosis.md","reason":"Cement metric-map contract defect, tested candidate patch and pending frozen-tool evidence transition"}
+{"file":".trellis/tasks/09-28-p2-itransformer/research/tooling-transition.md","reason":"User-selected versioned evidence migration, immutable parent inventory and scoped cement consumer correction"}

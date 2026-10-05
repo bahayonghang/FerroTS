@@ -26,7 +26,7 @@ type1 runs at epoch end: epochs 1 and 2 use the initial rate; epoch 3 uses half,
 
 Bundles are immutable generations. Each contains model.safetensors, scaler.json, data-schema.json, resolved-config.toml and manifest.json. The manifest records file sizes/hashes, parameter names/shapes, model/protocol versions, data/config/source identity, seed, device and build provenance. best/last are append-only numbered references published after the complete generation. A damaged latest reference fails; do not silently choose an older generation.
 
-Validate the complete bundle before loading parameters. P1 manifests have inference_only=true; P1 does not restore optimizer/scheduler/RNG state and has no resume command. Do not confuse this limit with P0's low-level optimizer-state roundtrip tests.
+Validate the complete bundle before loading parameters. P1 v1 manifests have inference_only=true and do not contain optimizer/scheduler/RNG training state. P2 adds v2 restoration and a resume command under itransformer-training.md. V1 remains inference-only and is explicitly rejected by resume. P0's optimizer-state roundtrip tests cover the lower-level optimizer API.
 
 evaluate requires the checkpoint's original data fingerprint. predict can use a schema-compatible new file and the saved scaler. Export column filtering does not change complete evaluation metrics. CSV/CSV.gz columns are run_id, series_id, forecast_origin, target_time, horizon, target_name, y_true, y_pred, valid. Stream rows; do not materialize the entire prediction matrix. Future outputs have no truth labels and valid=false.
 
