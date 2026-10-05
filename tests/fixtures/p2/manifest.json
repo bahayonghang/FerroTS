@@ -1,0 +1,9390 @@
+{
+  "cases": [
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "standard_k4",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "no_time",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 0,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "t",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "minute_k5",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 5,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": false
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "no_norm",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "relu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "relu",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 1,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "batch_one",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 1,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "length_one",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            1
+          ],
+          "rust_shape": [
+            16,
+            1
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": false,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": true,
+      "input_requires_grad": false,
+      "name": "constant_channel",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": false,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "input_requires_grad": false,
+      "name": "noncontiguous",
+      "noncontiguous_input": true,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    }
+  ],
+  "dropout_cases": [
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.1,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "dropout_site_version": 1,
+      "forward_id": 0,
+      "input_requires_grad": false,
+      "mask_source": "dropout-masks.safetensors",
+      "name": "dropout0",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    },
+    {
+      "adam": {
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "eps": 1e-08,
+        "lr": 0.0001,
+        "weight_decay": 0.0
+      },
+      "batch": 2,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.1,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "constant_channel": false,
+      "dropout_site_version": 1,
+      "forward_id": 1,
+      "input_requires_grad": false,
+      "mask_source": "dropout-masks.safetensors",
+      "name": "dropout1",
+      "noncontiguous_input": false,
+      "parameters": [
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.weight",
+          "official_shape": [
+            16,
+            12
+          ],
+          "rust_shape": [
+            16,
+            12
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "enc_embedding.value_embedding.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.0.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.query_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.key_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.value_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.weight",
+          "official_shape": [
+            16,
+            16
+          ],
+          "rust_shape": [
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.attention.out_projection.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.weight",
+          "official_shape": [
+            32,
+            16,
+            1
+          ],
+          "rust_shape": [
+            32,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv1.bias",
+          "official_shape": [
+            32
+          ],
+          "rust_shape": [
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.weight",
+          "official_shape": [
+            16,
+            32,
+            1
+          ],
+          "rust_shape": [
+            16,
+            32
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.conv2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm1.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.attn_layers.1.norm2.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.weight",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "encoder.norm.bias",
+          "official_shape": [
+            16
+          ],
+          "rust_shape": [
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.weight",
+          "official_shape": [
+            6,
+            16
+          ],
+          "rust_shape": [
+            6,
+            16
+          ]
+        },
+        {
+          "dtype": "F32",
+          "name": "projector.bias",
+          "official_shape": [
+            6
+          ],
+          "rust_shape": [
+            6
+          ]
+        }
+      ],
+      "probe": "MSE + sum(mean(key_projection_output ** 2)) across encoder layers",
+      "require_nonzero_probe": true,
+      "seed": 2021,
+      "time_channels": 4,
+      "traces": [
+        "enc_embedding.value_embedding.0",
+        "enc_embedding.dropout.0",
+        "enc_embedding.0",
+        "encoder.attn_layers.0.attention.query_projection.0",
+        "encoder.attn_layers.0.attention.key_projection.0",
+        "encoder.attn_layers.0.attention.value_projection.0",
+        "encoder.attn_layers.0.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.0.attention.out_projection.0",
+        "encoder.attn_layers.0.attention.0",
+        "encoder.attn_layers.0.dropout.0",
+        "encoder.attn_layers.0.norm1.0",
+        "encoder.attn_layers.0.conv1.0",
+        "encoder.attn_layers.0.dropout.1",
+        "encoder.attn_layers.0.conv2.0",
+        "encoder.attn_layers.0.dropout.2",
+        "encoder.attn_layers.0.norm2.0",
+        "encoder.attn_layers.0.0",
+        "encoder.attn_layers.1.attention.query_projection.0",
+        "encoder.attn_layers.1.attention.key_projection.0",
+        "encoder.attn_layers.1.attention.value_projection.0",
+        "encoder.attn_layers.1.attention.inner_attention.dropout.0",
+        "encoder.attn_layers.1.attention.out_projection.0",
+        "encoder.attn_layers.1.attention.0",
+        "encoder.attn_layers.1.dropout.0",
+        "encoder.attn_layers.1.norm1.0",
+        "encoder.attn_layers.1.conv1.0",
+        "encoder.attn_layers.1.dropout.1",
+        "encoder.attn_layers.1.conv2.0",
+        "encoder.attn_layers.1.dropout.2",
+        "encoder.attn_layers.1.norm2.0",
+        "encoder.attn_layers.1.0",
+        "encoder.norm.0",
+        "projector.0"
+      ]
+    }
+  ],
+  "files": {
+    "batch_one.safetensors": {
+      "bytes": 182624,
+      "sha256": "7715492e465f3e3b2f5eb4cc301383b316b66925ed542241c6b9952fc78dca5d"
+    },
+    "buffers.safetensors": {
+      "bytes": 16,
+      "sha256": "9bbcbf73561f6bc5d0a17ea6a2081feed2d1304e87602d8c502d9a5c4bd85576"
+    },
+    "constant_channel.safetensors": {
+      "bytes": 211568,
+      "sha256": "2b3c026a674b60c5fda6fb154ae498778bc0aa8a224de0a2faf82f036b12cc5b"
+    },
+    "dropout-masks.safetensors": {
+      "bytes": 42280,
+      "sha256": "98c301730ccbf03ed265e1c6d18f162d3e21a80539f8f6371f92ddd40e7f12a5"
+    },
+    "dropout0.safetensors": {
+      "bytes": 211568,
+      "sha256": "51b94f9b33ab524f09a516cc75190ae0823f21c64aa1d6badf651d559091f46e"
+    },
+    "dropout1.safetensors": {
+      "bytes": 211568,
+      "sha256": "e1c66a43885fce9fcd2418c2e5d9a5e8a65b02cba4e036cb8b82d37693af2d18"
+    },
+    "initialization.safetensors": {
+      "bytes": 85488,
+      "sha256": "8629ef90fbe4ef452d96c6344225e7062dbf603fd7f164b5b2283b2ded4b5537"
+    },
+    "layers.safetensors": {
+      "bytes": 1712,
+      "sha256": "e9edbe61a5fc5b25420ca5553c575c10343082187ece80cbc8e31bbdf5a8c373"
+    },
+    "length_one.safetensors": {
+      "bytes": 206352,
+      "sha256": "4772cfe75380d9d817ccae019bb00c8dcbe7e3447d091b8182b1b2f86c99e86b"
+    },
+    "minute_k5.safetensors": {
+      "bytes": 217536,
+      "sha256": "2b80ce4c3a36da3ed7d15121722c3fc6e8b3616f543e769bd28627dd08f07ae7"
+    },
+    "no_norm.safetensors": {
+      "bytes": 211568,
+      "sha256": "0dd489ef728f55ebe356a70ad44dd71d58e0c0ae719f975b8e0c3f44827f185c"
+    },
+    "no_time.safetensors": {
+      "bytes": 188856,
+      "sha256": "433a7908ae4f107a01f82e457a6edd56a55c47011df8a29cce3582434ebd9d0f"
+    },
+    "noncontiguous.safetensors": {
+      "bytes": 211568,
+      "sha256": "4689d477519f251bf485c93bd5857f1973d29ff99a00defdfd7f3264d7c91c0d"
+    },
+    "relu.safetensors": {
+      "bytes": 211568,
+      "sha256": "f36238b62d7611e3d7900b61dabcf61b5f76e6c7f5df37039cd324bb0452124d"
+    },
+    "standard_k4.safetensors": {
+      "bytes": 211568,
+      "sha256": "ab5ba59afc9f7ad1985d6fccd94ba3b27fceefa86829430e5383f56dea2db451"
+    }
+  },
+  "format_version": 1,
+  "identity": {
+    "python": "3.12.12",
+    "sources": {
+      "layers/Embed.py": "cb1b8934d87659e656e6c92ba6290c4a76fbfb88389527ce43766c5b8cfd46ed",
+      "layers/SelfAttention_Family.py": "155f104d30a8576639a185efdb3b27a294d55147dfa17feaeaddbb965394c550",
+      "layers/Transformer_EncDec.py": "eed892a31468b1142777420f4b7ecb8cdbae020d835bbdd59a045c99bbe986df",
+      "model/iTransformer.py": "b89cebca695824ba1c074923527614f7fa5326d8dae884a3efa8f87aa9431be7"
+    },
+    "torch": "2.14.0+cu130",
+    "torch_sha": "08187d9e0fba026dc8217405802ab5381dc88d90",
+    "upstream_sha": "c2426e68ca13f74aaec08045c5c724d8ad328124"
+  },
+  "initializations": [
+    {
+      "batch_size": 32,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "drop_last": true,
+      "orders": [
+        [
+          128,
+          79,
+          65,
+          114,
+          101,
+          46,
+          23,
+          85,
+          59,
+          89,
+          106,
+          27,
+          49,
+          51,
+          92,
+          73,
+          94,
+          98,
+          12,
+          57,
+          43,
+          69,
+          53,
+          45,
+          41,
+          16,
+          40,
+          93,
+          81,
+          125,
+          20,
+          15,
+          26,
+          135,
+          9,
+          108,
+          105,
+          76,
+          119,
+          13,
+          30,
+          50,
+          44,
+          96,
+          42,
+          95,
+          77,
+          83,
+          33,
+          38,
+          18,
+          74,
+          4,
+          107,
+          131,
+          70,
+          24,
+          78,
+          48,
+          8,
+          72,
+          67,
+          17,
+          62,
+          56,
+          52,
+          31,
+          103,
+          7,
+          124,
+          60,
+          121,
+          120,
+          64,
+          37,
+          133,
+          29,
+          39,
+          6,
+          35,
+          34,
+          100,
+          102,
+          68,
+          111,
+          2,
+          0,
+          5,
+          1,
+          116,
+          130,
+          123,
+          109,
+          58,
+          90,
+          129,
+          66,
+          110,
+          113,
+          75,
+          84,
+          11,
+          19,
+          10,
+          87,
+          71,
+          136,
+          126,
+          118,
+          104,
+          97,
+          21,
+          86,
+          28,
+          112,
+          122,
+          55,
+          47,
+          88,
+          22,
+          25,
+          127,
+          115,
+          80,
+          36,
+          82,
+          61,
+          54
+        ],
+        [
+          62,
+          68,
+          47,
+          135,
+          12,
+          20,
+          93,
+          39,
+          73,
+          136,
+          3,
+          134,
+          32,
+          101,
+          119,
+          98,
+          51,
+          92,
+          44,
+          108,
+          30,
+          2,
+          64,
+          103,
+          55,
+          86,
+          116,
+          27,
+          54,
+          61,
+          111,
+          59,
+          99,
+          4,
+          50,
+          123,
+          60,
+          109,
+          19,
+          72,
+          43,
+          9,
+          129,
+          58,
+          38,
+          131,
+          114,
+          97,
+          10,
+          31,
+          85,
+          105,
+          66,
+          57,
+          17,
+          69,
+          125,
+          94,
+          107,
+          87,
+          104,
+          0,
+          121,
+          52,
+          106,
+          96,
+          76,
+          8,
+          124,
+          77,
+          26,
+          15,
+          117,
+          48,
+          74,
+          82,
+          63,
+          115,
+          11,
+          78,
+          84,
+          70,
+          67,
+          49,
+          46,
+          88,
+          37,
+          42,
+          65,
+          40,
+          80,
+          130,
+          118,
+          120,
+          13,
+          29,
+          75,
+          41,
+          110,
+          25,
+          95,
+          21,
+          127,
+          126,
+          112,
+          22,
+          91,
+          79,
+          6,
+          16,
+          14,
+          90,
+          122,
+          132,
+          81,
+          45,
+          100,
+          28,
+          35,
+          113,
+          133,
+          5,
+          89,
+          18,
+          56,
+          53,
+          7,
+          24
+        ],
+        [
+          95,
+          20,
+          13,
+          69,
+          11,
+          7,
+          58,
+          96,
+          128,
+          15,
+          84,
+          28,
+          55,
+          122,
+          36,
+          85,
+          3,
+          44,
+          127,
+          2,
+          24,
+          51,
+          126,
+          74,
+          101,
+          59,
+          108,
+          22,
+          1,
+          33,
+          123,
+          65,
+          133,
+          40,
+          129,
+          73,
+          39,
+          42,
+          47,
+          45,
+          111,
+          12,
+          92,
+          117,
+          66,
+          116,
+          136,
+          79,
+          125,
+          68,
+          72,
+          19,
+          62,
+          88,
+          107,
+          97,
+          112,
+          109,
+          50,
+          46,
+          21,
+          64,
+          82,
+          48,
+          31,
+          4,
+          75,
+          56,
+          27,
+          52,
+          23,
+          70,
+          38,
+          113,
+          106,
+          35,
+          132,
+          76,
+          0,
+          135,
+          18,
+          8,
+          86,
+          16,
+          121,
+          71,
+          105,
+          102,
+          43,
+          110,
+          41,
+          54,
+          49,
+          131,
+          120,
+          6,
+          17,
+          30,
+          103,
+          9,
+          104,
+          53,
+          119,
+          90,
+          94,
+          25,
+          91,
+          114,
+          115,
+          37,
+          89,
+          78,
+          98,
+          134,
+          77,
+          26,
+          93,
+          63,
+          29,
+          32,
+          14,
+          80,
+          57,
+          83,
+          67,
+          118,
+          87,
+          10
+        ],
+        [
+          119,
+          113,
+          9,
+          63,
+          46,
+          28,
+          131,
+          117,
+          11,
+          91,
+          88,
+          68,
+          12,
+          62,
+          16,
+          6,
+          126,
+          61,
+          20,
+          122,
+          102,
+          116,
+          73,
+          120,
+          111,
+          86,
+          78,
+          96,
+          17,
+          18,
+          19,
+          98,
+          0,
+          103,
+          71,
+          85,
+          49,
+          39,
+          56,
+          57,
+          133,
+          106,
+          114,
+          84,
+          24,
+          125,
+          121,
+          95,
+          32,
+          115,
+          53,
+          4,
+          92,
+          80,
+          97,
+          31,
+          70,
+          23,
+          99,
+          132,
+          54,
+          34,
+          26,
+          8,
+          108,
+          72,
+          67,
+          45,
+          66,
+          40,
+          51,
+          69,
+          48,
+          129,
+          64,
+          37,
+          118,
+          22,
+          13,
+          65,
+          87,
+          74,
+          93,
+          1,
+          82,
+          76,
+          112,
+          77,
+          90,
+          105,
+          83,
+          55,
+          52,
+          15,
+          128,
+          25,
+          3,
+          127,
+          7,
+          123,
+          136,
+          60,
+          21,
+          33,
+          2,
+          109,
+          134,
+          29,
+          5,
+          38,
+          75,
+          14,
+          10,
+          81,
+          79,
+          30,
+          58,
+          41,
+          101,
+          130,
+          36,
+          89,
+          110,
+          94,
+          135,
+          100,
+          44,
+          59
+        ],
+        [
+          0,
+          119,
+          122,
+          23,
+          51,
+          134,
+          102,
+          1,
+          31,
+          15,
+          78,
+          69,
+          25,
+          91,
+          124,
+          116,
+          130,
+          108,
+          99,
+          62,
+          72,
+          32,
+          92,
+          73,
+          107,
+          57,
+          135,
+          66,
+          41,
+          53,
+          47,
+          90,
+          79,
+          64,
+          112,
+          40,
+          55,
+          43,
+          88,
+          115,
+          58,
+          13,
+          105,
+          109,
+          126,
+          89,
+          33,
+          12,
+          120,
+          114,
+          86,
+          16,
+          48,
+          59,
+          7,
+          45,
+          18,
+          42,
+          52,
+          111,
+          20,
+          113,
+          65,
+          14,
+          54,
+          5,
+          83,
+          125,
+          94,
+          67,
+          21,
+          24,
+          39,
+          110,
+          103,
+          27,
+          75,
+          85,
+          11,
+          118,
+          81,
+          2,
+          6,
+          96,
+          9,
+          82,
+          36,
+          74,
+          56,
+          50,
+          80,
+          87,
+          133,
+          38,
+          93,
+          37,
+          129,
+          46,
+          26,
+          97,
+          49,
+          77,
+          71,
+          70,
+          22,
+          136,
+          61,
+          4,
+          17,
+          44,
+          60,
+          19,
+          100,
+          123,
+          106,
+          34,
+          3,
+          98,
+          28,
+          127,
+          95,
+          68,
+          76,
+          131,
+          35,
+          63,
+          132,
+          29
+        ],
+        [
+          71,
+          127,
+          39,
+          114,
+          28,
+          83,
+          105,
+          77,
+          109,
+          3,
+          1,
+          102,
+          15,
+          55,
+          89,
+          92,
+          134,
+          104,
+          50,
+          118,
+          133,
+          126,
+          13,
+          20,
+          90,
+          86,
+          42,
+          18,
+          52,
+          31,
+          103,
+          95,
+          130,
+          10,
+          116,
+          5,
+          65,
+          16,
+          119,
+          87,
+          76,
+          19,
+          40,
+          36,
+          106,
+          122,
+          9,
+          131,
+          37,
+          67,
+          72,
+          29,
+          57,
+          30,
+          34,
+          128,
+          80,
+          73,
+          23,
+          85,
+          41,
+          44,
+          38,
+          33,
+          69,
+          108,
+          61,
+          78,
+          82,
+          53,
+          60,
+          63,
+          45,
+          48,
+          111,
+          93,
+          25,
+          94,
+          62,
+          27,
+          11,
+          107,
+          117,
+          84,
+          22,
+          56,
+          81,
+          66,
+          2,
+          135,
+          0,
+          14,
+          96,
+          32,
+          6,
+          113,
+          136,
+          46,
+          121,
+          91,
+          24,
+          8,
+          79,
+          35,
+          49,
+          132,
+          17,
+          68,
+          129,
+          110,
+          54,
+          47,
+          112,
+          64,
+          21,
+          58,
+          97,
+          124,
+          43,
+          115,
+          98,
+          7,
+          100,
+          125,
+          75,
+          99,
+          4,
+          88
+        ],
+        [
+          10,
+          126,
+          5,
+          77,
+          74,
+          3,
+          99,
+          68,
+          90,
+          84,
+          41,
+          81,
+          116,
+          46,
+          95,
+          87,
+          16,
+          96,
+          92,
+          124,
+          63,
+          56,
+          118,
+          88,
+          86,
+          107,
+          66,
+          21,
+          8,
+          62,
+          83,
+          115,
+          129,
+          94,
+          23,
+          79,
+          91,
+          69,
+          29,
+          120,
+          55,
+          0,
+          125,
+          114,
+          39,
+          71,
+          127,
+          22,
+          101,
+          97,
+          134,
+          36,
+          112,
+          52,
+          27,
+          54,
+          65,
+          12,
+          102,
+          32,
+          51,
+          18,
+          113,
+          49,
+          11,
+          70,
+          67,
+          37,
+          131,
+          106,
+          42,
+          43,
+          122,
+          110,
+          7,
+          6,
+          38,
+          33,
+          35,
+          44,
+          19,
+          64,
+          119,
+          105,
+          89,
+          28,
+          48,
+          75,
+          117,
+          80,
+          78,
+          50,
+          108,
+          72,
+          53,
+          34,
+          60,
+          82,
+          76,
+          121,
+          98,
+          135,
+          109,
+          73,
+          26,
+          85,
+          9,
+          20,
+          59,
+          4,
+          30,
+          57,
+          40,
+          132,
+          31,
+          133,
+          24,
+          93,
+          136,
+          104,
+          17,
+          2,
+          13,
+          25,
+          47,
+          103,
+          14,
+          1
+        ],
+        [
+          67,
+          35,
+          68,
+          134,
+          91,
+          127,
+          103,
+          118,
+          105,
+          4,
+          61,
+          74,
+          85,
+          102,
+          3,
+          32,
+          129,
+          45,
+          119,
+          100,
+          113,
+          51,
+          11,
+          12,
+          71,
+          93,
+          136,
+          126,
+          25,
+          90,
+          94,
+          8,
+          92,
+          7,
+          110,
+          79,
+          19,
+          43,
+          117,
+          38,
+          15,
+          60,
+          98,
+          1,
+          76,
+          10,
+          14,
+          54,
+          30,
+          56,
+          132,
+          2,
+          21,
+          49,
+          88,
+          72,
+          112,
+          27,
+          58,
+          133,
+          24,
+          135,
+          29,
+          70,
+          83,
+          22,
+          34,
+          124,
+          111,
+          128,
+          41,
+          17,
+          18,
+          81,
+          13,
+          89,
+          31,
+          69,
+          62,
+          108,
+          80,
+          116,
+          16,
+          39,
+          59,
+          0,
+          40,
+          42,
+          86,
+          121,
+          57,
+          63,
+          5,
+          87,
+          37,
+          95,
+          106,
+          48,
+          9,
+          46,
+          97,
+          75,
+          53,
+          65,
+          26,
+          99,
+          52,
+          82,
+          66,
+          123,
+          33,
+          78,
+          84,
+          23,
+          73,
+          125,
+          109,
+          120,
+          107,
+          131,
+          6,
+          55,
+          96,
+          20,
+          130,
+          28,
+          115,
+          104
+        ],
+        [
+          72,
+          41,
+          9,
+          19,
+          38,
+          52,
+          58,
+          61,
+          27,
+          84,
+          24,
+          54,
+          127,
+          126,
+          134,
+          1,
+          132,
+          93,
+          49,
+          55,
+          33,
+          8,
+          79,
+          28,
+          59,
+          85,
+          103,
+          29,
+          12,
+          69,
+          121,
+          78,
+          25,
+          94,
+          17,
+          13,
+          15,
+          111,
+          70,
+          114,
+          35,
+          48,
+          136,
+          73,
+          18,
+          62,
+          30,
+          51,
+          125,
+          87,
+          91,
+          50,
+          82,
+          131,
+          22,
+          77,
+          10,
+          128,
+          31,
+          96,
+          67,
+          68,
+          99,
+          100,
+          86,
+          112,
+          42,
+          122,
+          44,
+          37,
+          75,
+          0,
+          6,
+          89,
+          43,
+          106,
+          95,
+          92,
+          39,
+          115,
+          120,
+          104,
+          71,
+          65,
+          64,
+          47,
+          90,
+          105,
+          76,
+          34,
+          123,
+          4,
+          60,
+          129,
+          80,
+          56,
+          81,
+          21,
+          36,
+          118,
+          66,
+          110,
+          130,
+          7,
+          2,
+          20,
+          88,
+          119,
+          83,
+          3,
+          117,
+          108,
+          11,
+          26,
+          113,
+          46,
+          53,
+          102,
+          135,
+          133,
+          101,
+          63,
+          32,
+          40,
+          23,
+          45,
+          107,
+          57
+        ],
+        [
+          76,
+          119,
+          51,
+          45,
+          107,
+          112,
+          27,
+          16,
+          40,
+          10,
+          55,
+          66,
+          92,
+          122,
+          62,
+          97,
+          71,
+          73,
+          3,
+          70,
+          89,
+          26,
+          136,
+          100,
+          115,
+          96,
+          2,
+          57,
+          5,
+          84,
+          33,
+          44,
+          58,
+          90,
+          9,
+          75,
+          123,
+          49,
+          132,
+          37,
+          102,
+          31,
+          20,
+          8,
+          104,
+          126,
+          34,
+          11,
+          131,
+          87,
+          129,
+          35,
+          133,
+          118,
+          88,
+          67,
+          106,
+          72,
+          13,
+          95,
+          6,
+          120,
+          17,
+          130,
+          116,
+          128,
+          127,
+          113,
+          110,
+          4,
+          124,
+          23,
+          60,
+          19,
+          36,
+          21,
+          29,
+          81,
+          111,
+          48,
+          105,
+          108,
+          79,
+          125,
+          65,
+          103,
+          41,
+          15,
+          80,
+          42,
+          12,
+          30,
+          24,
+          99,
+          7,
+          39,
+          94,
+          78,
+          14,
+          134,
+          43,
+          101,
+          121,
+          69,
+          77,
+          64,
+          18,
+          91,
+          25,
+          0,
+          22,
+          93,
+          98,
+          117,
+          46,
+          52,
+          32,
+          61,
+          38,
+          83,
+          82,
+          86,
+          28,
+          56,
+          114,
+          54,
+          59,
+          53
+        ]
+      ],
+      "seed": 2021,
+      "train_count": 137
+    },
+    {
+      "batch_size": 32,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "drop_last": true,
+      "orders": [
+        [
+          5,
+          126,
+          91,
+          131,
+          130,
+          116,
+          86,
+          37,
+          60,
+          88,
+          55,
+          45,
+          73,
+          125,
+          75,
+          26,
+          134,
+          70,
+          15,
+          16,
+          34,
+          36,
+          31,
+          42,
+          90,
+          44,
+          30,
+          114,
+          87,
+          85,
+          120,
+          35,
+          83,
+          64,
+          122,
+          98,
+          66,
+          46,
+          53,
+          61,
+          96,
+          110,
+          102,
+          72,
+          67,
+          69,
+          41,
+          32,
+          11,
+          1,
+          128,
+          89,
+          9,
+          65,
+          76,
+          133,
+          104,
+          49,
+          81,
+          33,
+          118,
+          52,
+          111,
+          6,
+          92,
+          95,
+          94,
+          38,
+          25,
+          127,
+          136,
+          108,
+          39,
+          115,
+          129,
+          40,
+          82,
+          0,
+          56,
+          51,
+          106,
+          29,
+          107,
+          113,
+          109,
+          62,
+          20,
+          23,
+          24,
+          78,
+          57,
+          48,
+          28,
+          43,
+          13,
+          119,
+          4,
+          2,
+          59,
+          135,
+          22,
+          112,
+          103,
+          68,
+          124,
+          79,
+          100,
+          80,
+          54,
+          77,
+          27,
+          14,
+          105,
+          123,
+          63,
+          132,
+          117,
+          101,
+          7,
+          18,
+          17,
+          8,
+          19,
+          84,
+          71,
+          99,
+          121,
+          12
+        ],
+        [
+          15,
+          135,
+          132,
+          37,
+          81,
+          119,
+          123,
+          126,
+          28,
+          134,
+          82,
+          85,
+          25,
+          54,
+          124,
+          59,
+          106,
+          29,
+          114,
+          121,
+          58,
+          51,
+          128,
+          99,
+          24,
+          72,
+          10,
+          21,
+          53,
+          112,
+          88,
+          20,
+          57,
+          68,
+          78,
+          49,
+          11,
+          94,
+          16,
+          60,
+          127,
+          55,
+          108,
+          44,
+          40,
+          125,
+          101,
+          0,
+          61,
+          122,
+          104,
+          9,
+          69,
+          35,
+          97,
+          103,
+          18,
+          7,
+          105,
+          31,
+          83,
+          67,
+          96,
+          41,
+          5,
+          115,
+          75,
+          17,
+          3,
+          133,
+          90,
+          129,
+          14,
+          56,
+          76,
+          73,
+          84,
+          107,
+          86,
+          100,
+          91,
+          27,
+          70,
+          118,
+          77,
+          52,
+          95,
+          74,
+          36,
+          110,
+          120,
+          47,
+          71,
+          22,
+          66,
+          64,
+          46,
+          131,
+          48,
+          93,
+          113,
+          4,
+          62,
+          1,
+          12,
+          43,
+          80,
+          79,
+          34,
+          65,
+          42,
+          109,
+          92,
+          117,
+          89,
+          102,
+          2,
+          13,
+          98,
+          130,
+          33,
+          87,
+          32,
+          45,
+          63,
+          6,
+          136,
+          39
+        ],
+        [
+          24,
+          128,
+          27,
+          8,
+          67,
+          97,
+          11,
+          40,
+          102,
+          41,
+          47,
+          136,
+          90,
+          1,
+          44,
+          49,
+          25,
+          38,
+          93,
+          122,
+          85,
+          31,
+          29,
+          42,
+          28,
+          78,
+          53,
+          110,
+          7,
+          86,
+          61,
+          14,
+          126,
+          26,
+          0,
+          71,
+          131,
+          23,
+          94,
+          92,
+          104,
+          55,
+          75,
+          30,
+          3,
+          132,
+          72,
+          50,
+          33,
+          51,
+          69,
+          95,
+          99,
+          120,
+          103,
+          79,
+          62,
+          56,
+          68,
+          88,
+          59,
+          133,
+          123,
+          65,
+          73,
+          70,
+          114,
+          116,
+          119,
+          4,
+          17,
+          108,
+          76,
+          32,
+          113,
+          107,
+          117,
+          15,
+          21,
+          127,
+          106,
+          36,
+          74,
+          135,
+          57,
+          48,
+          6,
+          124,
+          83,
+          13,
+          134,
+          34,
+          111,
+          98,
+          16,
+          45,
+          10,
+          63,
+          2,
+          100,
+          43,
+          82,
+          19,
+          12,
+          81,
+          105,
+          20,
+          115,
+          37,
+          39,
+          89,
+          66,
+          80,
+          91,
+          77,
+          118,
+          87,
+          46,
+          9,
+          52,
+          129,
+          121,
+          58,
+          64,
+          96,
+          130,
+          18,
+          35
+        ],
+        [
+          94,
+          30,
+          136,
+          119,
+          111,
+          50,
+          127,
+          58,
+          92,
+          9,
+          132,
+          37,
+          120,
+          18,
+          133,
+          38,
+          66,
+          128,
+          116,
+          40,
+          108,
+          79,
+          110,
+          126,
+          68,
+          70,
+          23,
+          52,
+          95,
+          2,
+          25,
+          53,
+          107,
+          130,
+          14,
+          114,
+          59,
+          12,
+          105,
+          71,
+          93,
+          49,
+          65,
+          78,
+          80,
+          1,
+          83,
+          11,
+          29,
+          61,
+          123,
+          74,
+          129,
+          26,
+          72,
+          56,
+          69,
+          33,
+          101,
+          109,
+          39,
+          17,
+          87,
+          57,
+          63,
+          55,
+          96,
+          45,
+          75,
+          112,
+          118,
+          21,
+          10,
+          81,
+          36,
+          88,
+          84,
+          13,
+          31,
+          15,
+          4,
+          89,
+          62,
+          91,
+          73,
+          24,
+          35,
+          121,
+          28,
+          54,
+          113,
+          115,
+          117,
+          64,
+          27,
+          100,
+          48,
+          19,
+          125,
+          16,
+          43,
+          103,
+          122,
+          67,
+          46,
+          5,
+          124,
+          106,
+          44,
+          131,
+          76,
+          51,
+          134,
+          82,
+          99,
+          8,
+          60,
+          47,
+          86,
+          77,
+          0,
+          7,
+          32,
+          34,
+          85,
+          6,
+          41,
+          98
+        ],
+        [
+          17,
+          135,
+          136,
+          55,
+          46,
+          74,
+          84,
+          12,
+          80,
+          37,
+          92,
+          125,
+          3,
+          99,
+          24,
+          85,
+          64,
+          28,
+          86,
+          101,
+          131,
+          63,
+          75,
+          126,
+          97,
+          79,
+          9,
+          29,
+          16,
+          42,
+          129,
+          40,
+          58,
+          132,
+          88,
+          78,
+          59,
+          124,
+          62,
+          89,
+          77,
+          56,
+          52,
+          5,
+          134,
+          90,
+          95,
+          116,
+          128,
+          72,
+          48,
+          66,
+          115,
+          45,
+          25,
+          18,
+          81,
+          57,
+          102,
+          65,
+          122,
+          123,
+          110,
+          6,
+          22,
+          41,
+          103,
+          91,
+          43,
+          44,
+          39,
+          2,
+          114,
+          94,
+          26,
+          112,
+          61,
+          87,
+          133,
+          54,
+          19,
+          15,
+          119,
+          30,
+          113,
+          13,
+          8,
+          35,
+          60,
+          100,
+          47,
+          23,
+          127,
+          82,
+          73,
+          120,
+          130,
+          11,
+          105,
+          33,
+          32,
+          31,
+          21,
+          83,
+          68,
+          14,
+          70,
+          0,
+          98,
+          106,
+          53,
+          10,
+          93,
+          50,
+          96,
+          34,
+          20,
+          7,
+          121,
+          111,
+          36,
+          67,
+          76,
+          107,
+          118,
+          51,
+          27,
+          109
+        ],
+        [
+          7,
+          101,
+          73,
+          132,
+          86,
+          104,
+          112,
+          90,
+          59,
+          19,
+          20,
+          0,
+          32,
+          48,
+          12,
+          66,
+          134,
+          61,
+          130,
+          51,
+          6,
+          57,
+          8,
+          79,
+          4,
+          121,
+          88,
+          122,
+          23,
+          64,
+          102,
+          63,
+          13,
+          83,
+          110,
+          97,
+          17,
+          40,
+          44,
+          46,
+          42,
+          81,
+          34,
+          120,
+          74,
+          125,
+          80,
+          108,
+          69,
+          129,
+          67,
+          15,
+          49,
+          119,
+          3,
+          50,
+          18,
+          87,
+          41,
+          106,
+          33,
+          105,
+          10,
+          131,
+          5,
+          1,
+          71,
+          107,
+          77,
+          38,
+          37,
+          135,
+          123,
+          56,
+          126,
+          113,
+          22,
+          45,
+          28,
+          91,
+          29,
+          92,
+          109,
+          11,
+          133,
+          2,
+          95,
+          128,
+          75,
+          76,
+          25,
+          55,
+          124,
+          60,
+          89,
+          117,
+          85,
+          43,
+          21,
+          54,
+          114,
+          47,
+          58,
+          39,
+          127,
+          14,
+          30,
+          111,
+          26,
+          94,
+          53,
+          93,
+          82,
+          100,
+          72,
+          16,
+          78,
+          136,
+          31,
+          96,
+          118,
+          27,
+          24,
+          84,
+          68,
+          115,
+          52,
+          70
+        ],
+        [
+          54,
+          127,
+          109,
+          45,
+          99,
+          131,
+          5,
+          57,
+          94,
+          36,
+          2,
+          65,
+          60,
+          56,
+          81,
+          33,
+          126,
+          78,
+          121,
+          119,
+          124,
+          92,
+          116,
+          71,
+          93,
+          32,
+          41,
+          10,
+          17,
+          135,
+          0,
+          84,
+          37,
+          123,
+          107,
+          63,
+          105,
+          35,
+          3,
+          1,
+          62,
+          46,
+          28,
+          23,
+          82,
+          134,
+          42,
+          108,
+          11,
+          31,
+          133,
+          21,
+          59,
+          13,
+          113,
+          40,
+          52,
+          47,
+          86,
+          64,
+          68,
+          128,
+          49,
+          7,
+          83,
+          61,
+          76,
+          136,
+          8,
+          80,
+          44,
+          110,
+          120,
+          29,
+          22,
+          34,
+          30,
+          77,
+          66,
+          88,
+          50,
+          75,
+          58,
+          55,
+          104,
+          122,
+          72,
+          95,
+          24,
+          117,
+          73,
+          16,
+          129,
+          74,
+          67,
+          19,
+          130,
+          12,
+          38,
+          90,
+          70,
+          100,
+          125,
+          79,
+          118,
+          14,
+          132,
+          51,
+          39,
+          27,
+          69,
+          53,
+          97,
+          26,
+          91,
+          15,
+          112,
+          98,
+          115,
+          6,
+          96,
+          20,
+          103,
+          43,
+          106,
+          87,
+          9,
+          101
+        ],
+        [
+          44,
+          48,
+          86,
+          116,
+          128,
+          102,
+          109,
+          41,
+          125,
+          38,
+          119,
+          76,
+          45,
+          6,
+          67,
+          122,
+          51,
+          65,
+          18,
+          36,
+          62,
+          95,
+          85,
+          66,
+          92,
+          11,
+          29,
+          42,
+          1,
+          13,
+          87,
+          31,
+          110,
+          89,
+          25,
+          77,
+          117,
+          123,
+          32,
+          101,
+          132,
+          21,
+          63,
+          106,
+          64,
+          47,
+          27,
+          98,
+          124,
+          68,
+          103,
+          93,
+          30,
+          69,
+          5,
+          78,
+          46,
+          34,
+          97,
+          17,
+          135,
+          43,
+          112,
+          35,
+          50,
+          23,
+          74,
+          19,
+          115,
+          8,
+          90,
+          9,
+          24,
+          71,
+          60,
+          14,
+          81,
+          126,
+          28,
+          100,
+          59,
+          83,
+          127,
+          118,
+          56,
+          88,
+          120,
+          108,
+          57,
+          80,
+          4,
+          105,
+          22,
+          70,
+          99,
+          16,
+          10,
+          54,
+          72,
+          130,
+          3,
+          94,
+          53,
+          26,
+          136,
+          39,
+          55,
+          113,
+          133,
+          52,
+          61,
+          79,
+          40,
+          15,
+          20,
+          82,
+          0,
+          7,
+          2,
+          104,
+          107,
+          73,
+          91,
+          129,
+          37,
+          131,
+          33,
+          84
+        ],
+        [
+          34,
+          19,
+          102,
+          108,
+          67,
+          68,
+          53,
+          1,
+          7,
+          60,
+          48,
+          43,
+          109,
+          103,
+          126,
+          90,
+          44,
+          85,
+          99,
+          6,
+          77,
+          52,
+          72,
+          124,
+          32,
+          74,
+          110,
+          46,
+          70,
+          116,
+          18,
+          59,
+          45,
+          83,
+          96,
+          40,
+          132,
+          66,
+          26,
+          24,
+          88,
+          129,
+          20,
+          49,
+          29,
+          120,
+          112,
+          131,
+          41,
+          63,
+          122,
+          61,
+          38,
+          128,
+          118,
+          27,
+          117,
+          111,
+          33,
+          87,
+          106,
+          84,
+          30,
+          21,
+          92,
+          95,
+          54,
+          50,
+          93,
+          37,
+          136,
+          2,
+          101,
+          71,
+          115,
+          94,
+          64,
+          75,
+          82,
+          5,
+          130,
+          107,
+          89,
+          97,
+          16,
+          119,
+          105,
+          15,
+          58,
+          65,
+          80,
+          100,
+          55,
+          31,
+          14,
+          8,
+          11,
+          0,
+          62,
+          69,
+          133,
+          121,
+          123,
+          51,
+          42,
+          78,
+          35,
+          22,
+          134,
+          127,
+          25,
+          39,
+          23,
+          125,
+          135,
+          79,
+          73,
+          114,
+          91,
+          81,
+          4,
+          17,
+          36,
+          9,
+          28,
+          98,
+          13,
+          76
+        ],
+        [
+          20,
+          93,
+          70,
+          25,
+          29,
+          110,
+          52,
+          34,
+          88,
+          83,
+          57,
+          130,
+          90,
+          59,
+          45,
+          96,
+          118,
+          48,
+          11,
+          9,
+          33,
+          24,
+          136,
+          132,
+          129,
+          26,
+          101,
+          85,
+          49,
+          8,
+          122,
+          64,
+          133,
+          13,
+          50,
+          92,
+          38,
+          73,
+          126,
+          12,
+          103,
+          117,
+          35,
+          58,
+          113,
+          102,
+          106,
+          100,
+          131,
+          47,
+          72,
+          10,
+          99,
+          124,
+          69,
+          32,
+          87,
+          86,
+          6,
+          81,
+          108,
+          46,
+          63,
+          14,
+          41,
+          19,
+          39,
+          125,
+          80,
+          97,
+          112,
+          121,
+          89,
+          21,
+          30,
+          91,
+          65,
+          60,
+          2,
+          114,
+          67,
+          76,
+          17,
+          31,
+          51,
+          23,
+          109,
+          95,
+          71,
+          27,
+          77,
+          3,
+          44,
+          98,
+          119,
+          54,
+          7,
+          78,
+          42,
+          107,
+          1,
+          66,
+          16,
+          75,
+          84,
+          53,
+          123,
+          37,
+          82,
+          40,
+          79,
+          43,
+          127,
+          4,
+          15,
+          111,
+          62,
+          22,
+          74,
+          18,
+          61,
+          28,
+          55,
+          94,
+          120,
+          105,
+          5,
+          56
+        ]
+      ],
+      "seed": 2022,
+      "train_count": 137
+    },
+    {
+      "batch_size": 32,
+      "config": {
+        "activation": "gelu",
+        "class_strategy": "projection",
+        "d_ff": 32,
+        "d_model": 16,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 7,
+        "factor": 1,
+        "freq": "h",
+        "n_heads": 4,
+        "output_attention": false,
+        "pred_len": 6,
+        "seq_len": 12,
+        "use_norm": true
+      },
+      "drop_last": true,
+      "orders": [
+        [
+          119,
+          42,
+          127,
+          60,
+          88,
+          9,
+          13,
+          43,
+          4,
+          63,
+          121,
+          25,
+          82,
+          114,
+          50,
+          48,
+          26,
+          49,
+          38,
+          86,
+          74,
+          111,
+          3,
+          76,
+          105,
+          94,
+          31,
+          18,
+          115,
+          58,
+          46,
+          22,
+          81,
+          117,
+          78,
+          104,
+          68,
+          106,
+          27,
+          87,
+          37,
+          95,
+          24,
+          126,
+          90,
+          107,
+          113,
+          73,
+          85,
+          80,
+          54,
+          12,
+          72,
+          133,
+          109,
+          17,
+          122,
+          29,
+          91,
+          99,
+          45,
+          132,
+          59,
+          11,
+          118,
+          97,
+          33,
+          23,
+          69,
+          53,
+          75,
+          6,
+          123,
+          128,
+          84,
+          79,
+          89,
+          65,
+          131,
+          51,
+          55,
+          7,
+          102,
+          21,
+          57,
+          0,
+          56,
+          129,
+          130,
+          125,
+          93,
+          61,
+          70,
+          98,
+          39,
+          20,
+          47,
+          40,
+          36,
+          64,
+          35,
+          77,
+          41,
+          112,
+          134,
+          116,
+          135,
+          101,
+          120,
+          16,
+          67,
+          30,
+          52,
+          19,
+          103,
+          96,
+          71,
+          14,
+          10,
+          34,
+          2,
+          83,
+          124,
+          92,
+          5,
+          66,
+          100,
+          44
+        ],
+        [
+          77,
+          117,
+          83,
+          60,
+          36,
+          43,
+          130,
+          118,
+          101,
+          57,
+          90,
+          55,
+          67,
+          21,
+          136,
+          72,
+          46,
+          126,
+          1,
+          73,
+          16,
+          62,
+          26,
+          75,
+          28,
+          61,
+          10,
+          74,
+          66,
+          22,
+          128,
+          64,
+          89,
+          85,
+          59,
+          71,
+          2,
+          110,
+          132,
+          123,
+          25,
+          133,
+          70,
+          68,
+          113,
+          95,
+          119,
+          78,
+          47,
+          54,
+          58,
+          33,
+          121,
+          104,
+          56,
+          12,
+          76,
+          63,
+          17,
+          20,
+          19,
+          106,
+          34,
+          115,
+          4,
+          7,
+          5,
+          0,
+          81,
+          13,
+          134,
+          87,
+          103,
+          29,
+          18,
+          53,
+          50,
+          114,
+          45,
+          6,
+          3,
+          102,
+          65,
+          93,
+          122,
+          99,
+          105,
+          120,
+          24,
+          38,
+          23,
+          9,
+          37,
+          109,
+          88,
+          107,
+          127,
+          35,
+          49,
+          124,
+          31,
+          111,
+          39,
+          15,
+          86,
+          82,
+          84,
+          91,
+          92,
+          135,
+          125,
+          69,
+          116,
+          100,
+          94,
+          8,
+          30,
+          44,
+          48,
+          11,
+          27,
+          108,
+          42,
+          112,
+          52,
+          40,
+          96,
+          79
+        ],
+        [
+          23,
+          92,
+          46,
+          41,
+          42,
+          48,
+          11,
+          110,
+          65,
+          17,
+          131,
+          16,
+          91,
+          28,
+          119,
+          13,
+          80,
+          47,
+          56,
+          3,
+          34,
+          87,
+          57,
+          108,
+          130,
+          104,
+          101,
+          49,
+          12,
+          114,
+          103,
+          26,
+          53,
+          98,
+          120,
+          133,
+          0,
+          20,
+          124,
+          100,
+          52,
+          83,
+          73,
+          40,
+          88,
+          35,
+          117,
+          68,
+          84,
+          135,
+          69,
+          111,
+          36,
+          24,
+          59,
+          15,
+          122,
+          55,
+          18,
+          93,
+          132,
+          29,
+          32,
+          14,
+          10,
+          39,
+          112,
+          76,
+          126,
+          8,
+          96,
+          81,
+          113,
+          25,
+          5,
+          78,
+          6,
+          123,
+          85,
+          115,
+          82,
+          9,
+          118,
+          60,
+          116,
+          50,
+          31,
+          125,
+          33,
+          63,
+          66,
+          19,
+          1,
+          54,
+          109,
+          4,
+          37,
+          102,
+          97,
+          106,
+          7,
+          70,
+          22,
+          128,
+          2,
+          129,
+          90,
+          95,
+          67,
+          21,
+          134,
+          38,
+          51,
+          86,
+          27,
+          75,
+          105,
+          127,
+          61,
+          74,
+          99,
+          94,
+          58,
+          77,
+          121,
+          107,
+          71,
+          136
+        ],
+        [
+          19,
+          98,
+          54,
+          128,
+          108,
+          86,
+          111,
+          87,
+          77,
+          59,
+          71,
+          35,
+          14,
+          88,
+          120,
+          57,
+          80,
+          61,
+          44,
+          39,
+          47,
+          114,
+          112,
+          135,
+          26,
+          2,
+          99,
+          10,
+          119,
+          132,
+          50,
+          25,
+          94,
+          32,
+          20,
+          1,
+          9,
+          28,
+          51,
+          81,
+          95,
+          43,
+          17,
+          53,
+          123,
+          100,
+          8,
+          24,
+          48,
+          62,
+          36,
+          40,
+          68,
+          3,
+          52,
+          133,
+          12,
+          11,
+          0,
+          82,
+          66,
+          126,
+          90,
+          45,
+          84,
+          117,
+          27,
+          56,
+          92,
+          104,
+          93,
+          121,
+          107,
+          21,
+          103,
+          136,
+          5,
+          130,
+          118,
+          46,
+          15,
+          16,
+          106,
+          96,
+          74,
+          60,
+          42,
+          63,
+          131,
+          83,
+          76,
+          113,
+          70,
+          115,
+          129,
+          6,
+          125,
+          7,
+          34,
+          97,
+          79,
+          33,
+          89,
+          49,
+          122,
+          134,
+          18,
+          67,
+          31,
+          38,
+          75,
+          127,
+          58,
+          22,
+          101,
+          116,
+          64,
+          4,
+          91,
+          109,
+          78,
+          102,
+          110,
+          41,
+          105,
+          55,
+          69,
+          37
+        ],
+        [
+          68,
+          122,
+          62,
+          61,
+          108,
+          60,
+          117,
+          128,
+          105,
+          46,
+          89,
+          12,
+          7,
+          77,
+          86,
+          114,
+          113,
+          27,
+          110,
+          1,
+          56,
+          0,
+          135,
+          58,
+          40,
+          104,
+          9,
+          19,
+          59,
+          49,
+          23,
+          126,
+          131,
+          48,
+          42,
+          99,
+          88,
+          22,
+          2,
+          30,
+          18,
+          13,
+          69,
+          129,
+          112,
+          64,
+          124,
+          96,
+          14,
+          102,
+          16,
+          50,
+          75,
+          133,
+          47,
+          65,
+          87,
+          98,
+          100,
+          106,
+          132,
+          134,
+          41,
+          127,
+          8,
+          31,
+          36,
+          28,
+          78,
+          111,
+          83,
+          6,
+          37,
+          115,
+          101,
+          26,
+          15,
+          44,
+          38,
+          116,
+          66,
+          123,
+          95,
+          118,
+          91,
+          120,
+          43,
+          125,
+          21,
+          17,
+          57,
+          130,
+          72,
+          94,
+          71,
+          107,
+          52,
+          51,
+          11,
+          85,
+          93,
+          35,
+          80,
+          82,
+          81,
+          136,
+          119,
+          84,
+          34,
+          33,
+          103,
+          5,
+          97,
+          10,
+          20,
+          24,
+          25,
+          55,
+          63,
+          92,
+          109,
+          121,
+          39,
+          90,
+          53,
+          54,
+          74,
+          45
+        ],
+        [
+          24,
+          94,
+          0,
+          22,
+          126,
+          38,
+          78,
+          60,
+          2,
+          113,
+          130,
+          3,
+          95,
+          23,
+          64,
+          123,
+          81,
+          102,
+          37,
+          7,
+          73,
+          30,
+          106,
+          46,
+          98,
+          14,
+          77,
+          52,
+          26,
+          103,
+          93,
+          1,
+          129,
+          128,
+          105,
+          11,
+          62,
+          127,
+          39,
+          58,
+          104,
+          67,
+          97,
+          55,
+          6,
+          108,
+          110,
+          76,
+          100,
+          51,
+          114,
+          71,
+          89,
+          36,
+          61,
+          120,
+          32,
+          87,
+          57,
+          119,
+          29,
+          33,
+          44,
+          5,
+          68,
+          9,
+          132,
+          135,
+          65,
+          45,
+          69,
+          96,
+          70,
+          31,
+          136,
+          66,
+          4,
+          122,
+          17,
+          85,
+          86,
+          116,
+          107,
+          40,
+          59,
+          20,
+          101,
+          63,
+          111,
+          121,
+          118,
+          16,
+          12,
+          43,
+          72,
+          34,
+          54,
+          90,
+          56,
+          84,
+          27,
+          48,
+          133,
+          125,
+          109,
+          75,
+          124,
+          53,
+          10,
+          13,
+          35,
+          15,
+          82,
+          131,
+          79,
+          99,
+          47,
+          115,
+          18,
+          92,
+          83,
+          117,
+          50,
+          91,
+          28,
+          8,
+          19,
+          74
+        ],
+        [
+          126,
+          121,
+          44,
+          135,
+          48,
+          15,
+          11,
+          4,
+          70,
+          67,
+          89,
+          47,
+          63,
+          133,
+          40,
+          128,
+          113,
+          27,
+          84,
+          123,
+          87,
+          45,
+          16,
+          17,
+          82,
+          131,
+          43,
+          61,
+          8,
+          83,
+          132,
+          136,
+          76,
+          7,
+          115,
+          129,
+          117,
+          22,
+          35,
+          34,
+          71,
+          55,
+          60,
+          52,
+          124,
+          56,
+          103,
+          88,
+          23,
+          54,
+          111,
+          50,
+          109,
+          80,
+          95,
+          100,
+          118,
+          79,
+          105,
+          104,
+          81,
+          98,
+          119,
+          96,
+          58,
+          12,
+          30,
+          122,
+          39,
+          93,
+          90,
+          72,
+          1,
+          66,
+          13,
+          65,
+          101,
+          59,
+          2,
+          0,
+          64,
+          94,
+          32,
+          37,
+          102,
+          53,
+          74,
+          46,
+          127,
+          14,
+          49,
+          26,
+          85,
+          10,
+          116,
+          112,
+          24,
+          106,
+          110,
+          120,
+          107,
+          75,
+          21,
+          73,
+          9,
+          28,
+          68,
+          25,
+          78,
+          77,
+          29,
+          86,
+          51,
+          38,
+          33,
+          97,
+          99,
+          5,
+          134,
+          6,
+          62,
+          20,
+          42,
+          36,
+          130,
+          31,
+          114,
+          3
+        ],
+        [
+          44,
+          16,
+          61,
+          72,
+          27,
+          26,
+          24,
+          62,
+          58,
+          130,
+          17,
+          129,
+          7,
+          95,
+          126,
+          42,
+          81,
+          5,
+          89,
+          40,
+          102,
+          33,
+          90,
+          43,
+          119,
+          83,
+          108,
+          92,
+          52,
+          85,
+          87,
+          127,
+          99,
+          71,
+          53,
+          13,
+          103,
+          104,
+          84,
+          1,
+          69,
+          74,
+          107,
+          50,
+          93,
+          135,
+          4,
+          115,
+          73,
+          80,
+          21,
+          134,
+          57,
+          97,
+          46,
+          31,
+          29,
+          59,
+          113,
+          124,
+          116,
+          0,
+          91,
+          32,
+          112,
+          6,
+          120,
+          96,
+          28,
+          63,
+          20,
+          121,
+          128,
+          34,
+          9,
+          123,
+          3,
+          106,
+          117,
+          132,
+          78,
+          51,
+          19,
+          18,
+          86,
+          82,
+          118,
+          131,
+          100,
+          114,
+          8,
+          14,
+          70,
+          67,
+          48,
+          38,
+          45,
+          10,
+          49,
+          35,
+          76,
+          23,
+          79,
+          2,
+          64,
+          98,
+          122,
+          101,
+          22,
+          25,
+          54,
+          105,
+          37,
+          11,
+          60,
+          36,
+          111,
+          88,
+          77,
+          66,
+          109,
+          47,
+          30,
+          55,
+          39,
+          12,
+          15,
+          136
+        ],
+        [
+          65,
+          112,
+          38,
+          101,
+          103,
+          46,
+          71,
+          64,
+          92,
+          131,
+          57,
+          104,
+          117,
+          86,
+          36,
+          116,
+          24,
+          39,
+          31,
+          10,
+          33,
+          118,
+          0,
+          15,
+          21,
+          37,
+          52,
+          17,
+          130,
+          90,
+          40,
+          107,
+          93,
+          78,
+          96,
+          69,
+          99,
+          12,
+          120,
+          127,
+          22,
+          94,
+          100,
+          63,
+          1,
+          13,
+          87,
+          4,
+          106,
+          98,
+          20,
+          51,
+          136,
+          124,
+          34,
+          25,
+          29,
+          70,
+          26,
+          28,
+          23,
+          123,
+          55,
+          44,
+          76,
+          125,
+          56,
+          59,
+          7,
+          62,
+          2,
+          135,
+          43,
+          102,
+          35,
+          50,
+          47,
+          89,
+          32,
+          45,
+          114,
+          14,
+          72,
+          58,
+          27,
+          110,
+          66,
+          3,
+          8,
+          67,
+          19,
+          18,
+          54,
+          111,
+          109,
+          81,
+          16,
+          68,
+          49,
+          60,
+          97,
+          133,
+          122,
+          91,
+          30,
+          77,
+          132,
+          119,
+          73,
+          42,
+          126,
+          41,
+          9,
+          5,
+          61,
+          105,
+          75,
+          115,
+          113,
+          128,
+          53,
+          83,
+          48,
+          85,
+          11,
+          82,
+          80,
+          129
+        ],
+        [
+          93,
+          53,
+          42,
+          43,
+          50,
+          121,
+          130,
+          9,
+          2,
+          135,
+          8,
+          57,
+          26,
+          114,
+          98,
+          31,
+          45,
+          81,
+          11,
+          64,
+          128,
+          80,
+          63,
+          84,
+          76,
+          60,
+          108,
+          107,
+          4,
+          91,
+          61,
+          52,
+          44,
+          49,
+          41,
+          112,
+          88,
+          20,
+          116,
+          39,
+          132,
+          75,
+          32,
+          10,
+          66,
+          27,
+          77,
+          47,
+          40,
+          134,
+          82,
+          133,
+          117,
+          131,
+          70,
+          124,
+          72,
+          136,
+          115,
+          127,
+          29,
+          36,
+          120,
+          118,
+          123,
+          30,
+          58,
+          34,
+          101,
+          6,
+          67,
+          113,
+          85,
+          110,
+          35,
+          22,
+          21,
+          54,
+          69,
+          71,
+          111,
+          65,
+          7,
+          56,
+          19,
+          3,
+          48,
+          18,
+          95,
+          37,
+          33,
+          125,
+          0,
+          100,
+          79,
+          74,
+          94,
+          126,
+          1,
+          12,
+          96,
+          78,
+          105,
+          55,
+          15,
+          99,
+          83,
+          92,
+          46,
+          62,
+          68,
+          106,
+          24,
+          102,
+          25,
+          51,
+          129,
+          89,
+          122,
+          28,
+          97,
+          13,
+          5,
+          16,
+          119,
+          59,
+          87,
+          17
+        ]
+      ],
+      "seed": 2023,
+      "train_count": 137
+    }
+  ],
+  "mapping_version": 1,
+  "source": "synthetic only; no dataset reads"
+}
