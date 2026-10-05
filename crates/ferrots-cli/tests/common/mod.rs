@@ -3,17 +3,20 @@ use std::{
     fs,
     path::PathBuf,
     process::{Command, Output},
+    sync::atomic::{AtomicU64, Ordering},
 };
+static FIXTURE_SEQUENCE: AtomicU64 = AtomicU64::new(0);
 pub fn fixture(model: ModelSpec) -> (PathBuf, Config) {
     let root = std::env::temp_dir().join(format!(
-        "ferrots-cli-{}-{}",
+        "ferrots-cli-{}-{}-{}",
         std::process::id(),
         std::time::SystemTime::now()
             .duration_since(std::time::UNIX_EPOCH)
             .unwrap()
-            .as_nanos()
+            .as_nanos(),
+        FIXTURE_SEQUENCE.fetch_add(1, Ordering::Relaxed)
     ));
-    fs::create_dir_all(&root).unwrap();
+    fs::create_dir(&root).unwrap();
     let mut text = "date,x,y\n".to_string();
     for i in 0..22 {
         text.push_str(&format!("2024-01-{:02} 00:00:00,{},{}\n", i + 1, i, i * 2));

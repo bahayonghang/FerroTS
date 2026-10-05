@@ -3,6 +3,31 @@ use ferrots_core::config::{DuplicatePolicy, MissingMode, ModelSpec};
 use std::{fs, io::Write};
 
 #[test]
+fn parallel_fixtures_have_distinct_directories() {
+    let barrier = std::sync::Barrier::new(32);
+    let roots = std::thread::scope(|scope| {
+        let threads: Vec<_> = (0..32)
+            .map(|_| {
+                scope.spawn(|| {
+                    barrier.wait();
+                    common::fixture(ModelSpec::LastValue).0
+                })
+            })
+            .collect();
+        threads
+            .into_iter()
+            .map(|thread| thread.join().unwrap())
+            .collect::<Vec<_>>()
+    });
+    let unique: std::collections::BTreeSet<_> = roots.iter().collect();
+    assert_eq!(
+        unique.len(),
+        roots.len(),
+        "fixture directories collide: {roots:?}"
+    );
+}
+
+#[test]
 fn single_element_constant_and_tail_batches_cover_every_window() {
     let devices = if cfg!(feature = "cuda") {
         vec!["cpu", "cuda:0"]
