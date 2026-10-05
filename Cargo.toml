@@ -29,7 +29,7 @@ thiserror = "2"
 rand = "0.9"
 rand_chacha = "0.9"
 serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+serde_json = { version = "1", features = ["float_roundtrip"] }
 safetensors = "=0.8.0"
 clap = { version = "4", features = ["derive"] }
 toml = "0.9.12"
@@ -37,3 +37,17 @@ csv = "1.4.0"
 chrono = { version = "0.4.45", default-features = false, features = ["std", "serde"] }
 sha2 = "0.10.9"
 flate2 = "1.1.10"
+
+# CUDA training still runs deterministic dropout and gradient checks on the host.
+# Optimize these hot paths in dev/test builds while retaining debug assertions.
+[profile.dev.package.ferrots-nn]
+opt-level = 3
+
+[profile.dev.package.ferrots-train]
+opt-level = 3
+
+[profile.dev.package.rand_chacha]
+opt-level = 3
+
+[profile.dev.package.ppv-lite86]
+opt-level = 3
