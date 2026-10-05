@@ -1,0 +1,47 @@
+# Pinned official iTransformer profile; only seed varies within this profile.
+schema_version = 1
+[data]
+protocol_id = "ett-lsf-v1"
+path = "data/ETT-small/ETTm2.csv"
+timestamp_column = "date"
+timestamp_format = "%Y-%m-%d %H:%M:%S"
+interval_seconds = 900
+input_columns = ["HUFL", "HULL", "MUFL", "MULL", "LUFL", "LULL", "OT"]
+target_columns = ["HUFL", "HULL", "MUFL", "MULL", "LUFL", "LULL", "OT"]
+time_features = "h"
+[data.split]
+kind = "rows"
+train_end = 34560
+validation_end = 46080
+test_end = 57600
+[window]
+lookback = 96
+horizon = 96
+gap = 0
+stride = 1
+[model]
+name = "itransformer"
+d_model = 128
+n_heads = 8
+d_ff = 128
+e_layers = 2
+dropout = 0.1
+activation = "gelu"
+use_norm = true
+[train]
+seed = 2021
+device = "cuda:0"
+dtype = "f32"
+batch_size = 32
+drop_last = true
+accumulation_steps = 1
+max_epochs = 10
+patience = 3
+learning_rate = 0.0001
+beta1 = 0.9
+beta2 = 0.999
+eps = 0.00000001
+weight_decay = 0.0
+lr_schedule = "type1"
+[output]
+root = "runs"

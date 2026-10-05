@@ -1,0 +1,63 @@
+# Approved cement-twin-v1 protocol; see docs/datasets/cement-yangquan.md section 2.2.
+schema_version = 1
+[data]
+protocol_id = "cement-twin-v1"
+path = "data/阳泉回转窑联合训练孪生样本/data_in.csv"
+timestamp_column = "DateTime"
+# Chrono %.f reads the decimal point and fractional second digits.
+timestamp_format = "%Y-%m-%dT%H:%M:%S%.f"
+interval_seconds = 60
+input_columns = ["窑喂料反馈", "窑头煤反馈", "高温风机反馈", "窑头负压反馈", "分解炉出口温度反馈", "C5下料温度反馈", "窑电流反馈", "二次风温反馈", "烟室温度反馈", "烟室NOX反馈", "入窑斗提电流2反馈", "三次风温均值", "分解炉内温度1反馈", "篦冷机一室压力反馈", "篦冷机二室压力反馈", "篦冷机三室压力反馈", "篦冷机八室压力反馈", "F9风机电流反馈"]
+target_columns = ["窑喂料反馈", "窑头煤反馈", "高温风机反馈", "窑头负压反馈", "分解炉出口温度反馈", "C5下料温度反馈", "窑电流反馈", "二次风温反馈", "烟室温度反馈", "烟室NOX反馈", "入窑斗提电流2反馈", "三次风温均值", "分解炉内温度1反馈", "篦冷机一室压力反馈", "篦冷机二室压力反馈", "篦冷机三室压力反馈", "篦冷机八室压力反馈", "F9风机电流反馈"]
+sort = "stable"
+duplicates = "keep_first"
+time_features = "t"
+[data.grid]
+min_samples = 3
+[data.running]
+column = "窑头煤反馈"
+op = "gt"
+threshold = 5.0
+min_duration_seconds = 1800
+max_missing_seconds = 300
+[data.missing]
+mode = "causal"
+max_stale_seconds = 600
+max_missing_seconds = 300
+complete_windows = true
+filled_targets_valid = true
+[data.split]
+kind = "segments"
+train = 0.7
+validation = 0.1
+[window]
+lookback = 96
+horizon = 60
+gap = 0
+stride = 1
+[model]
+name = "itransformer"
+d_model = 512
+n_heads = 8
+d_ff = 2048
+e_layers = 2
+dropout = 0.1
+activation = "gelu"
+use_norm = true
+[train]
+seed = 2021
+device = "cuda:0"
+dtype = "f32"
+batch_size = 32
+drop_last = false
+accumulation_steps = 1
+beta1 = 0.9
+beta2 = 0.999
+eps = 1e-8
+weight_decay = 0.0
+max_epochs = 10
+patience = 3
+learning_rate = 0.0001
+lr_schedule = "type1"
+[output]
+root = "runs"

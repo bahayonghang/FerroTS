@@ -1,0 +1,29 @@
+[data]
+protocol_id = "synthetic-example-v1"
+path = "tests/fixtures/p1/synthetic.csv"
+input_columns = ["x", "y"]
+target_columns = ["x", "y"]
+interval_seconds = 86400
+[data.split]
+kind = "rows"
+train_end = 12
+validation_end = 17
+test_end = 22
+[window]
+lookback = 2
+horizon = 2
+[model]
+name = "itransformer"
+d_model = 8
+n_heads = 2
+d_ff = 16
+e_layers = 2
+dropout = 0.1
+activation = "gelu"
+use_norm = true
+[train]
+device = "cuda:0"
+max_epochs = 3
+batch_size = 4
+[output]
+root = "runs/itransformer-synthetic"
