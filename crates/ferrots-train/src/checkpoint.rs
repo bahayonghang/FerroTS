@@ -257,6 +257,12 @@ pub fn load(path: impl AsRef<Path>, device: &Device) -> Result<Checkpoint> {
     let scaler: Scaler = serde_json::from_slice(&fs::read(directory.join("scaler.json"))?)?;
     scaler.validate_for(&config.data, &schema.input_columns)?;
     let model = ForecastModel::from_config(&config, device)?;
+    // model/model_version binds the buffer schema as well as parameter mappings.
+    // Stateful models require v2; v1 has never contained a buffer payload.
+    require(
+        manifest.format_version == 2 || config.model.name() != "informer",
+        "Informer requires a v2 checkpoint containing model buffers",
+    )?;
     let expected: BTreeMap<_, _> = model
         .weights()
         .iter()
@@ -284,6 +290,14 @@ pub fn load(path: impl AsRef<Path>, device: &Device) -> Result<Checkpoint> {
             "non-finite checkpoint parameter",
         )?;
     }
+    let buffers = if manifest.format_version == 2 {
+        candle_core::safetensors::load(directory.join("buffers.safetensors"), device)?
+            .into_iter()
+            .collect()
+    } else {
+        BTreeMap::new()
+    };
+    model.load_buffers(&buffers)?;
     model.load_weights(&weights.into_iter().collect())?;
     let result = Checkpoint {
         model: model.freeze_for_eval()?,
@@ -305,6 +319,10 @@ pub fn publish(run: &Path, selector: &str, snapshot: &Snapshot<'_>) -> Result<Pa
         "checkpoint selector must be best or last",
     )?;
     snapshot.config.validate_model_inputs()?;
+    require(
+        snapshot.config.model.name() != "informer" && snapshot.model.buffers()?.is_empty(),
+        "v1 inference bundles cannot store model buffers; Informer requires publish_training v2",
+    )?;
     snapshot
         .scaler
         .validate_for(&snapshot.config.data, &snapshot.config.data.input_columns)?;

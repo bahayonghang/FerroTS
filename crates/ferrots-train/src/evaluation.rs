@@ -11,6 +11,7 @@ use ferrots_data::{
     cache::{fingerprint, load_inference},
     csv_source::timestamp_text,
 };
+use ferrots_nn::model::ForwardContext;
 use flate2::{Compression, write::GzEncoder};
 use serde::{Deserialize, Serialize};
 use std::{
@@ -126,6 +127,9 @@ pub struct Evaluation {
     pub model: String,
     pub split: u8,
     pub seed: u64,
+    pub sampling_policy: String,
+    pub first_forward_id: u64,
+    pub batch_size: usize,
     pub data_sha256: String,
     pub checkpoint_sha256: String,
     pub metrics: MetricReport,
@@ -160,11 +164,22 @@ pub fn evaluate(
         .transpose()?;
     let mut access = SplitAccess::default();
     let c = data.target_indices.len();
-    for chunk in data.index.order(options.split).chunks(options.batch_size) {
+    // Separate validation (01), evaluation (10) and future prediction (11)
+    // in the high two bits. Evaluation also binds the split in bits 60..61.
+    let first_forward_id = (2 << 62) | ((options.split as u64) << 60);
+    for (batch_id, chunk) in data
+        .index
+        .order(options.split)
+        .chunks(options.batch_size)
+        .enumerate()
+    {
         let host = tracked_batch(data, options.split, chunk, &mut access)?;
         let batch = DeviceBatch::from_host(&host, device)?;
         let pred = select_targets(
-            &checkpoint.model.forward(&batch.input)?,
+            &checkpoint.model.forward_with_context(
+                &batch.input,
+                ForwardContext::evaluation_with_id(first_forward_id | batch_id as u64),
+            )?,
             &data.target_indices,
         )?;
         if pred.track_op() {
@@ -237,6 +252,9 @@ pub fn evaluate(
         model: checkpoint.config.model.name().into(),
         split: options.split,
         seed: checkpoint.config.train.seed,
+        sampling_policy: "evaluation-split-batch-v1".into(),
+        first_forward_id,
+        batch_size: options.batch_size,
         data_sha256: data.cache.source_sha256.clone(),
         checkpoint_sha256: fingerprint(checkpoint.directory.join("manifest.json"))?,
         metrics,
@@ -251,6 +269,10 @@ pub struct FuturePrediction {
     pub format_version: u32,
     pub run_id: String,
     pub data_sha256: String,
+    pub checkpoint_sha256: String,
+    pub seed: u64,
+    pub sampling_policy: String,
+    pub forward_id: u64,
     pub rows: u64,
     pub output: PathBuf,
 }
@@ -262,6 +284,11 @@ pub fn predict_future(
     output: &Path,
     columns: &[String],
 ) -> Result<FuturePrediction> {
+    if !checkpoint.model.is_frozen() {
+        return Err(TrainError::InvalidState(
+            "prediction requires an independent frozen model".into(),
+        ));
+    }
     let mut spec = checkpoint.config.data.clone();
     if let Some(input) = input {
         spec.path = input.into();
@@ -285,7 +312,16 @@ pub fn predict_future(
                 .expect("validated targets")
         })
         .collect();
-    let pred = select_targets(&checkpoint.model.forward(&batch.input)?, &indices)?
+    let forward_id = 3 << 62;
+    let prediction = checkpoint
+        .model
+        .forward_with_context(&batch.input, ForwardContext::evaluation_with_id(forward_id))?;
+    if prediction.track_op() {
+        return Err(TrainError::InvalidState(
+            "prediction output tracks a graph".into(),
+        ));
+    }
+    let pred = select_targets(&prediction, &indices)?
         .flatten_all()?
         .to_vec1::<f32>()?;
     let mut writer = PredictionWriter::new(output, &spec.target_columns, columns)?;
@@ -325,6 +361,10 @@ pub fn predict_future(
         format_version: 1,
         run_id: run_id.into(),
         data_sha256: cache.source_sha256,
+        checkpoint_sha256: fingerprint(checkpoint.directory.join("manifest.json"))?,
+        seed: checkpoint.config.train.seed,
+        sampling_policy: "future-fixed-v1".into(),
+        forward_id,
         rows: writer.finish()?,
         output: output.into(),
     })

@@ -1,0 +1,50 @@
+# Derived from pinned TSLib Informer ETTh1 profile; seeds vary without changing this profile.
+schema_version = 1
+[data]
+protocol_id = "ett-lsf-v1"
+path = "data/ETT-small/ETTh2.csv"
+timestamp_column = "date"
+timestamp_format = "%Y-%m-%d %H:%M:%S"
+interval_seconds = 3600
+input_columns = ["HUFL", "HULL", "MUFL", "MULL", "LUFL", "LULL", "OT"]
+target_columns = ["HUFL", "HULL", "MUFL", "MULL", "LUFL", "LULL", "OT"]
+time_features = "h"
+[data.split]
+kind = "rows"
+train_end = 8640
+validation_end = 11520
+test_end = 14400
+[window]
+lookback = 96
+horizon = 192
+gap = 0
+stride = 1
+[model]
+name = "informer"
+d_model = 512
+n_heads = 8
+d_ff = 2048
+e_layers = 2
+d_layers = 1
+factor = 3
+distil = true
+label_len = 48
+dropout = 0.1
+activation = "gelu"
+[train]
+seed = 2021
+device = "cuda:0"
+dtype = "f32"
+batch_size = 32
+drop_last = false
+accumulation_steps = 1
+max_epochs = 10
+patience = 3
+learning_rate = 0.0001
+beta1 = 0.9
+beta2 = 0.999
+eps = 0.00000001
+weight_decay = 0.0
+lr_schedule = "type1"
+[output]
+root = "runs"

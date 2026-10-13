@@ -130,3 +130,7 @@ POSSIBILITY OF SUCH DAMAGE.
 ## iTransformer
 
 The iTransformer architecture and parameter mapping follow thuml/iTransformer at commit c2426e68ca13f74aaec08045c5c724d8ad328124. Copyright (c) 2022 THUML @ Tsinghua University. The full MIT license is included in docs/models/itransformer.md. Synthetic reference fixtures are documented in tests/fixtures/p2/README.md.
+
+## Informer
+
+Informer architecture and sparse attention semantics follow thuml/Time-Series-Library at commit 4e938a1767106324dd753b2a44832bf870a0252e. Copyright (c) 2021 THUML @ Tsinghua University. The full MIT license is included in docs/models/informer.md. Synthetic CUDA reference fixtures and their provenance are documented in tests/fixtures/p3/README.md.

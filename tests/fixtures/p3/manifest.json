@@ -1,0 +1,1619 @@
+{
+  "boundary_policy": "B/head=1 and L=1 require separately documented shape-safe extension; not claimed as unmodified upstream cases",
+  "cases": [
+    {
+      "attention_shapes": {
+        "decoder.layers.0.cross_attention": {
+          "key": [
+            2,
+            2,
+            7,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            10,
+            4
+          ],
+          "samples": [
+            10,
+            4
+          ],
+          "score": [
+            2,
+            2,
+            6,
+            7
+          ],
+          "top_query": [
+            2,
+            2,
+            6
+          ]
+        },
+        "decoder.layers.0.self_attention": {
+          "key": [
+            2,
+            2,
+            10,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            10,
+            4
+          ],
+          "samples": [
+            10,
+            6
+          ],
+          "score": [
+            2,
+            2,
+            6,
+            10
+          ],
+          "top_query": [
+            2,
+            2,
+            6
+          ]
+        },
+        "encoder.attn_layers.0.attention": {
+          "key": [
+            2,
+            2,
+            12,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            12,
+            4
+          ],
+          "samples": [
+            12,
+            6
+          ],
+          "score": [
+            2,
+            2,
+            6,
+            12
+          ],
+          "top_query": [
+            2,
+            2,
+            6
+          ]
+        },
+        "encoder.attn_layers.1.attention": {
+          "key": [
+            2,
+            2,
+            7,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            7,
+            4
+          ],
+          "samples": [
+            7,
+            4
+          ],
+          "score": [
+            2,
+            2,
+            4,
+            7
+          ],
+          "top_query": [
+            2,
+            2,
+            4
+          ]
+        }
+      },
+      "batch": 2,
+      "buffers": {
+        "dec_embedding.position_embedding.pe": {
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            5000,
+            8
+          ]
+        },
+        "enc_embedding.position_embedding.pe": {
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            5000,
+            8
+          ]
+        },
+        "encoder.conv_layers.0.norm.num_batches_tracked": {
+          "dtype": "torch.uint32",
+          "shape": []
+        },
+        "encoder.conv_layers.0.norm.running_mean": {
+          "dtype": "torch.float32",
+          "shape": [
+            8
+          ]
+        },
+        "encoder.conv_layers.0.norm.running_var": {
+          "dtype": "torch.float32",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "config": {
+        "activation": "gelu",
+        "c_out": 3,
+        "d_ff": 16,
+        "d_layers": 1,
+        "d_model": 8,
+        "dec_in": 3,
+        "distil": true,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 3,
+        "factor": 2,
+        "freq": "h",
+        "label_len": 6,
+        "n_heads": 2,
+        "pred_len": 4,
+        "seq_len": 12,
+        "task_name": "long_term_forecast"
+      },
+      "mse": 1.2837810516357422,
+      "name": "standard_eval",
+      "parameters": {
+        "dec_embedding.temporal_embedding.embed.weight": [
+          8,
+          4
+        ],
+        "dec_embedding.value_embedding.tokenConv.weight": [
+          8,
+          3,
+          3
+        ],
+        "decoder.layers.0.conv1.bias": [
+          16
+        ],
+        "decoder.layers.0.conv1.weight": [
+          16,
+          8,
+          1
+        ],
+        "decoder.layers.0.conv2.bias": [
+          8
+        ],
+        "decoder.layers.0.conv2.weight": [
+          8,
+          16,
+          1
+        ],
+        "decoder.layers.0.cross_attention.key_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.cross_attention.out_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.cross_attention.query_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.cross_attention.value_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.norm1.bias": [
+          8
+        ],
+        "decoder.layers.0.norm1.weight": [
+          8
+        ],
+        "decoder.layers.0.norm2.bias": [
+          8
+        ],
+        "decoder.layers.0.norm2.weight": [
+          8
+        ],
+        "decoder.layers.0.norm3.bias": [
+          8
+        ],
+        "decoder.layers.0.norm3.weight": [
+          8
+        ],
+        "decoder.layers.0.self_attention.key_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.self_attention.out_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.self_attention.query_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.self_attention.value_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.norm.bias": [
+          8
+        ],
+        "decoder.norm.weight": [
+          8
+        ],
+        "decoder.projection.bias": [
+          3
+        ],
+        "decoder.projection.weight": [
+          3,
+          8
+        ],
+        "enc_embedding.temporal_embedding.embed.weight": [
+          8,
+          4
+        ],
+        "enc_embedding.value_embedding.tokenConv.weight": [
+          8,
+          3,
+          3
+        ],
+        "encoder.attn_layers.0.attention.key_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.attention.out_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.attention.query_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.attention.value_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.conv1.bias": [
+          16
+        ],
+        "encoder.attn_layers.0.conv1.weight": [
+          16,
+          8,
+          1
+        ],
+        "encoder.attn_layers.0.conv2.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.conv2.weight": [
+          8,
+          16,
+          1
+        ],
+        "encoder.attn_layers.0.norm1.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.norm1.weight": [
+          8
+        ],
+        "encoder.attn_layers.0.norm2.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.norm2.weight": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.key_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.attention.out_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.attention.query_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.attention.value_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.conv1.bias": [
+          16
+        ],
+        "encoder.attn_layers.1.conv1.weight": [
+          16,
+          8,
+          1
+        ],
+        "encoder.attn_layers.1.conv2.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.conv2.weight": [
+          8,
+          16,
+          1
+        ],
+        "encoder.attn_layers.1.norm1.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.norm1.weight": [
+          8
+        ],
+        "encoder.attn_layers.1.norm2.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.norm2.weight": [
+          8
+        ],
+        "encoder.conv_layers.0.downConv.bias": [
+          8
+        ],
+        "encoder.conv_layers.0.downConv.weight": [
+          8,
+          8,
+          3
+        ],
+        "encoder.conv_layers.0.norm.bias": [
+          8
+        ],
+        "encoder.conv_layers.0.norm.weight": [
+          8
+        ],
+        "encoder.norm.bias": [
+          8
+        ],
+        "encoder.norm.weight": [
+          8
+        ]
+      },
+      "probe": "MSE + sum(mean(key_projection_output ** 2))",
+      "samples_seed": 22021,
+      "seed": 2021,
+      "source": "unmodified upstream; only torch.randint result injected",
+      "traces": {
+        "dec_embedding": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.dropout": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.position_embedding": [
+          1,
+          10,
+          8
+        ],
+        "dec_embedding.temporal_embedding": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.temporal_embedding.embed": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.value_embedding": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.value_embedding.tokenConv": [
+          2,
+          8,
+          10
+        ],
+        "decoder": [
+          2,
+          10,
+          3
+        ],
+        "decoder.layers.0": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.conv1": [
+          2,
+          16,
+          10
+        ],
+        "decoder.layers.0.conv2": [
+          2,
+          8,
+          10
+        ],
+        "decoder.layers.0.cross_attention": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.cross_attention.inner_attention": [
+          2,
+          2,
+          10,
+          4
+        ],
+        "decoder.layers.0.cross_attention.key_projection": [
+          2,
+          7,
+          8
+        ],
+        "decoder.layers.0.cross_attention.out_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.cross_attention.query_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.cross_attention.value_projection": [
+          2,
+          7,
+          8
+        ],
+        "decoder.layers.0.dropout": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.norm1": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.norm2": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.norm3": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.inner_attention": [
+          2,
+          2,
+          10,
+          4
+        ],
+        "decoder.layers.0.self_attention.key_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.out_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.query_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.value_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.norm": [
+          2,
+          10,
+          8
+        ],
+        "decoder.projection": [
+          2,
+          10,
+          3
+        ],
+        "enc_embedding": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.dropout": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.position_embedding": [
+          1,
+          12,
+          8
+        ],
+        "enc_embedding.temporal_embedding": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.temporal_embedding.embed": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.value_embedding": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.value_embedding.tokenConv": [
+          2,
+          8,
+          12
+        ],
+        "encoder": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.0": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.inner_attention": [
+          2,
+          2,
+          12,
+          4
+        ],
+        "encoder.attn_layers.0.attention.key_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.out_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.query_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.value_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.conv1": [
+          2,
+          16,
+          12
+        ],
+        "encoder.attn_layers.0.conv2": [
+          2,
+          8,
+          12
+        ],
+        "encoder.attn_layers.0.dropout": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.norm1": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.norm2": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.1": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.inner_attention": [
+          2,
+          2,
+          7,
+          4
+        ],
+        "encoder.attn_layers.1.attention.key_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.out_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.query_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.value_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.conv1": [
+          2,
+          16,
+          7
+        ],
+        "encoder.attn_layers.1.conv2": [
+          2,
+          8,
+          7
+        ],
+        "encoder.attn_layers.1.dropout": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.norm1": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.norm2": [
+          2,
+          7,
+          8
+        ],
+        "encoder.conv_layers.0": [
+          2,
+          7,
+          8
+        ],
+        "encoder.conv_layers.0.activation": [
+          2,
+          8,
+          14
+        ],
+        "encoder.conv_layers.0.downConv": [
+          2,
+          8,
+          14
+        ],
+        "encoder.conv_layers.0.maxPool": [
+          2,
+          8,
+          7
+        ],
+        "encoder.conv_layers.0.norm": [
+          2,
+          8,
+          14
+        ],
+        "encoder.norm": [
+          2,
+          7,
+          8
+        ]
+      },
+      "train": false,
+      "upstream_context_layout": "BHLD contiguous then view(B,L,H*D); no transpose",
+      "zero_mse_gradient_parameters": []
+    },
+    {
+      "attention_shapes": {
+        "decoder.layers.0.cross_attention": {
+          "key": [
+            2,
+            2,
+            7,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            10,
+            4
+          ],
+          "samples": [
+            10,
+            4
+          ],
+          "score": [
+            2,
+            2,
+            6,
+            7
+          ],
+          "top_query": [
+            2,
+            2,
+            6
+          ]
+        },
+        "decoder.layers.0.self_attention": {
+          "key": [
+            2,
+            2,
+            10,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            10,
+            4
+          ],
+          "samples": [
+            10,
+            6
+          ],
+          "score": [
+            2,
+            2,
+            6,
+            10
+          ],
+          "top_query": [
+            2,
+            2,
+            6
+          ]
+        },
+        "encoder.attn_layers.0.attention": {
+          "key": [
+            2,
+            2,
+            12,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            12,
+            4
+          ],
+          "samples": [
+            12,
+            6
+          ],
+          "score": [
+            2,
+            2,
+            6,
+            12
+          ],
+          "top_query": [
+            2,
+            2,
+            6
+          ]
+        },
+        "encoder.attn_layers.1.attention": {
+          "key": [
+            2,
+            2,
+            7,
+            4
+          ],
+          "query": [
+            2,
+            2,
+            7,
+            4
+          ],
+          "samples": [
+            7,
+            4
+          ],
+          "score": [
+            2,
+            2,
+            4,
+            7
+          ],
+          "top_query": [
+            2,
+            2,
+            4
+          ]
+        }
+      },
+      "batch": 2,
+      "buffers": {
+        "dec_embedding.position_embedding.pe": {
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            5000,
+            8
+          ]
+        },
+        "enc_embedding.position_embedding.pe": {
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            5000,
+            8
+          ]
+        },
+        "encoder.conv_layers.0.norm.num_batches_tracked": {
+          "dtype": "torch.uint32",
+          "shape": []
+        },
+        "encoder.conv_layers.0.norm.running_mean": {
+          "dtype": "torch.float32",
+          "shape": [
+            8
+          ]
+        },
+        "encoder.conv_layers.0.norm.running_var": {
+          "dtype": "torch.float32",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "config": {
+        "activation": "gelu",
+        "c_out": 3,
+        "d_ff": 16,
+        "d_layers": 1,
+        "d_model": 8,
+        "dec_in": 3,
+        "distil": true,
+        "dropout": 0.0,
+        "e_layers": 2,
+        "embed": "timeF",
+        "enc_in": 3,
+        "factor": 2,
+        "freq": "h",
+        "label_len": 6,
+        "n_heads": 2,
+        "pred_len": 4,
+        "seq_len": 12,
+        "task_name": "long_term_forecast"
+      },
+      "mse": 1.3670613765716553,
+      "name": "standard_train",
+      "parameters": {
+        "dec_embedding.temporal_embedding.embed.weight": [
+          8,
+          4
+        ],
+        "dec_embedding.value_embedding.tokenConv.weight": [
+          8,
+          3,
+          3
+        ],
+        "decoder.layers.0.conv1.bias": [
+          16
+        ],
+        "decoder.layers.0.conv1.weight": [
+          16,
+          8,
+          1
+        ],
+        "decoder.layers.0.conv2.bias": [
+          8
+        ],
+        "decoder.layers.0.conv2.weight": [
+          8,
+          16,
+          1
+        ],
+        "decoder.layers.0.cross_attention.key_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.cross_attention.out_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.cross_attention.query_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.cross_attention.value_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.cross_attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.norm1.bias": [
+          8
+        ],
+        "decoder.layers.0.norm1.weight": [
+          8
+        ],
+        "decoder.layers.0.norm2.bias": [
+          8
+        ],
+        "decoder.layers.0.norm2.weight": [
+          8
+        ],
+        "decoder.layers.0.norm3.bias": [
+          8
+        ],
+        "decoder.layers.0.norm3.weight": [
+          8
+        ],
+        "decoder.layers.0.self_attention.key_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.self_attention.out_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.self_attention.query_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.layers.0.self_attention.value_projection.bias": [
+          8
+        ],
+        "decoder.layers.0.self_attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "decoder.norm.bias": [
+          8
+        ],
+        "decoder.norm.weight": [
+          8
+        ],
+        "decoder.projection.bias": [
+          3
+        ],
+        "decoder.projection.weight": [
+          3,
+          8
+        ],
+        "enc_embedding.temporal_embedding.embed.weight": [
+          8,
+          4
+        ],
+        "enc_embedding.value_embedding.tokenConv.weight": [
+          8,
+          3,
+          3
+        ],
+        "encoder.attn_layers.0.attention.key_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.attention.out_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.attention.query_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.attention.value_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.0.conv1.bias": [
+          16
+        ],
+        "encoder.attn_layers.0.conv1.weight": [
+          16,
+          8,
+          1
+        ],
+        "encoder.attn_layers.0.conv2.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.conv2.weight": [
+          8,
+          16,
+          1
+        ],
+        "encoder.attn_layers.0.norm1.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.norm1.weight": [
+          8
+        ],
+        "encoder.attn_layers.0.norm2.bias": [
+          8
+        ],
+        "encoder.attn_layers.0.norm2.weight": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.key_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.key_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.attention.out_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.out_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.attention.query_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.query_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.attention.value_projection.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.attention.value_projection.weight": [
+          8,
+          8
+        ],
+        "encoder.attn_layers.1.conv1.bias": [
+          16
+        ],
+        "encoder.attn_layers.1.conv1.weight": [
+          16,
+          8,
+          1
+        ],
+        "encoder.attn_layers.1.conv2.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.conv2.weight": [
+          8,
+          16,
+          1
+        ],
+        "encoder.attn_layers.1.norm1.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.norm1.weight": [
+          8
+        ],
+        "encoder.attn_layers.1.norm2.bias": [
+          8
+        ],
+        "encoder.attn_layers.1.norm2.weight": [
+          8
+        ],
+        "encoder.conv_layers.0.downConv.bias": [
+          8
+        ],
+        "encoder.conv_layers.0.downConv.weight": [
+          8,
+          8,
+          3
+        ],
+        "encoder.conv_layers.0.norm.bias": [
+          8
+        ],
+        "encoder.conv_layers.0.norm.weight": [
+          8
+        ],
+        "encoder.norm.bias": [
+          8
+        ],
+        "encoder.norm.weight": [
+          8
+        ]
+      },
+      "probe": "MSE + sum(mean(key_projection_output ** 2))",
+      "samples_seed": 22021,
+      "seed": 2021,
+      "source": "unmodified upstream; only torch.randint result injected",
+      "traces": {
+        "dec_embedding": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.dropout": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.position_embedding": [
+          1,
+          10,
+          8
+        ],
+        "dec_embedding.temporal_embedding": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.temporal_embedding.embed": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.value_embedding": [
+          2,
+          10,
+          8
+        ],
+        "dec_embedding.value_embedding.tokenConv": [
+          2,
+          8,
+          10
+        ],
+        "decoder": [
+          2,
+          10,
+          3
+        ],
+        "decoder.layers.0": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.conv1": [
+          2,
+          16,
+          10
+        ],
+        "decoder.layers.0.conv2": [
+          2,
+          8,
+          10
+        ],
+        "decoder.layers.0.cross_attention": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.cross_attention.inner_attention": [
+          2,
+          2,
+          10,
+          4
+        ],
+        "decoder.layers.0.cross_attention.key_projection": [
+          2,
+          7,
+          8
+        ],
+        "decoder.layers.0.cross_attention.out_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.cross_attention.query_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.cross_attention.value_projection": [
+          2,
+          7,
+          8
+        ],
+        "decoder.layers.0.dropout": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.norm1": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.norm2": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.norm3": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.inner_attention": [
+          2,
+          2,
+          10,
+          4
+        ],
+        "decoder.layers.0.self_attention.key_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.out_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.query_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.layers.0.self_attention.value_projection": [
+          2,
+          10,
+          8
+        ],
+        "decoder.norm": [
+          2,
+          10,
+          8
+        ],
+        "decoder.projection": [
+          2,
+          10,
+          3
+        ],
+        "enc_embedding": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.dropout": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.position_embedding": [
+          1,
+          12,
+          8
+        ],
+        "enc_embedding.temporal_embedding": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.temporal_embedding.embed": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.value_embedding": [
+          2,
+          12,
+          8
+        ],
+        "enc_embedding.value_embedding.tokenConv": [
+          2,
+          8,
+          12
+        ],
+        "encoder": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.0": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.inner_attention": [
+          2,
+          2,
+          12,
+          4
+        ],
+        "encoder.attn_layers.0.attention.key_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.out_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.query_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.attention.value_projection": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.conv1": [
+          2,
+          16,
+          12
+        ],
+        "encoder.attn_layers.0.conv2": [
+          2,
+          8,
+          12
+        ],
+        "encoder.attn_layers.0.dropout": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.norm1": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.0.norm2": [
+          2,
+          12,
+          8
+        ],
+        "encoder.attn_layers.1": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.inner_attention": [
+          2,
+          2,
+          7,
+          4
+        ],
+        "encoder.attn_layers.1.attention.key_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.out_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.query_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.attention.value_projection": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.conv1": [
+          2,
+          16,
+          7
+        ],
+        "encoder.attn_layers.1.conv2": [
+          2,
+          8,
+          7
+        ],
+        "encoder.attn_layers.1.dropout": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.norm1": [
+          2,
+          7,
+          8
+        ],
+        "encoder.attn_layers.1.norm2": [
+          2,
+          7,
+          8
+        ],
+        "encoder.conv_layers.0": [
+          2,
+          7,
+          8
+        ],
+        "encoder.conv_layers.0.activation": [
+          2,
+          8,
+          14
+        ],
+        "encoder.conv_layers.0.downConv": [
+          2,
+          8,
+          14
+        ],
+        "encoder.conv_layers.0.maxPool": [
+          2,
+          8,
+          7
+        ],
+        "encoder.conv_layers.0.norm": [
+          2,
+          8,
+          14
+        ],
+        "encoder.norm": [
+          2,
+          7,
+          8
+        ]
+      },
+      "train": true,
+      "upstream_context_layout": "BHLD contiguous then view(B,L,H*D); no transpose",
+      "zero_mse_gradient_parameters": []
+    }
+  ],
+  "files": {
+    "operators.safetensors": {
+      "bytes": 4024,
+      "sha256": "107deab7efe463a3842437d4a25cf4cb9ace851f58513876f97dafba00512738"
+    },
+    "standard_eval.safetensors": {
+      "bytes": 755084,
+      "sha256": "3717257c444fb44db4e769acc83f5e32bc03fc2bab0475f207129533ceb02645"
+    },
+    "standard_eval.samples.safetensors": {
+      "bytes": 1168,
+      "sha256": "d4c853f698eea887cc0f43c0c763eded124f37fc8bb97666bc8b724892ee3495"
+    },
+    "standard_train.safetensors": {
+      "bytes": 755084,
+      "sha256": "f9c14a23aff85e7e4e5ae0161c3af3cb50f17730a5bcbdaeecac3c2c211f231b"
+    },
+    "standard_train.samples.safetensors": {
+      "bytes": 1168,
+      "sha256": "d4c853f698eea887cc0f43c0c763eded124f37fc8bb97666bc8b724892ee3495"
+    }
+  },
+  "format_version": 1,
+  "generator_sha256": "87044b7c8ba1ba62ebc84b23d007fe003b8ad82dbff04a77ecfce3ac7cdc8662",
+  "identity": {
+    "capability": [
+      8,
+      9
+    ],
+    "cuda": "13.0",
+    "device": "cuda:1",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "license": "MIT; Copyright (c) 2021 THUML @ Tsinghua University",
+    "python": "3.12.12",
+    "sources": {
+      "LICENSE": "8a6caa178ea3f33ebff5d7bb5558628cf5b423305dc30d3630f86564c7db94a2",
+      "layers/Embed.py": "17e7c3577324c41a0da427a199c955b782fde905aabb1f7cbc3c4e15ebd4ae35",
+      "layers/SelfAttention_Family.py": "6f6592aed0753e342fc04c01db70528c2eb191eeb067cd5fd4c8d348fddcb794",
+      "layers/Transformer_EncDec.py": "7b26f4459735c341f161011f6bc24b9deb8ecc3bcf61e4f15431998272a44fb4",
+      "models/Informer.py": "95dee85f6c0642dbfeee7736d526f9e20a54b5f5871a7085343b6a8be3cf56d2",
+      "run.py": "db6dfa215520ba193fe7095380f9005949a958efa9526975410cb5d97afe3fc4",
+      "scripts/long_term_forecast/ETT_script/Informer_ETTh1.sh": "3b905ce5a9d310fd42e07a4281abc7c0c7a304f4b59380698f84b43e20f89d53",
+      "utils/masking.py": "02f453e52cfaec65e34132923add80e7132f188706680fa86d7bd884976e09ef"
+    },
+    "torch": "2.14.0+cu130",
+    "torch_sha": "08187d9e0fba026dc8217405802ab5381dc88d90",
+    "upstream_sha": "4e938a1767106324dd753b2a44832bf870a0252e"
+  },
+  "mapping_version": 1,
+  "source": "synthetic only; no dataset reads",
+  "tolerance": {
+    "atol": 1e-05,
+    "rtol": 0.0001
+  }
+}

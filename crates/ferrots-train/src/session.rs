@@ -95,6 +95,7 @@ pub struct RngState {
 pub struct SessionSnapshot {
     pub config_sha256: String,
     pub weights: BTreeMap<String, Tensor>,
+    pub buffers: BTreeMap<String, Tensor>,
     pub optimizer: OptimizerSnapshot,
     pub trainer: TrainingState,
     pub scheduler: SchedulerState,
@@ -420,6 +421,12 @@ impl<'a> TrainingSession<'a> {
                 .iter()
                 .map(|(n, w)| Ok((n.clone(), w.detach().copy()?)))
                 .collect::<Result<_>>()?,
+            buffers: self
+                .model
+                .buffers()?
+                .into_iter()
+                .map(|(n, buffer)| Ok((n, buffer.detach().copy()?)))
+                .collect::<Result<_>>()?,
             optimizer: self.optimizer.snapshot()?,
             trainer: self.state.clone(),
             scheduler: self.scheduler.clone(),
@@ -458,6 +465,7 @@ impl<'a> TrainingSession<'a> {
         result.rebuild_order(true)?;
         result.optimizer.restore_snapshot(&snapshot.optimizer)?;
         result.validate_state()?;
+        result.model.load_buffers(&snapshot.buffers)?;
         result.model.load_weights(&snapshot.weights)?;
         Ok(result)
     }

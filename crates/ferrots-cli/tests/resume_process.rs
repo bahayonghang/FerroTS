@@ -11,16 +11,41 @@ use std::{
 };
 type R = Result<(), Box<dyn std::error::Error>>;
 
-fn fixture(device: &str, accumulation: usize, empty: bool, ties: bool) -> (PathBuf, Config) {
-    let (root, mut c) = common::fixture(ModelSpec::Itransformer {
-        d_model: 8,
-        n_heads: 2,
-        d_ff: 16,
-        e_layers: 2,
-        dropout: 0.1,
-        activation: Activation::Gelu,
-        use_norm: true,
-    });
+fn fixture(
+    device: &str,
+    accumulation: usize,
+    empty: bool,
+    ties: bool,
+    informer: bool,
+) -> (PathBuf, Config) {
+    let model = if informer {
+        ModelSpec::Informer {
+            d_model: 8,
+            n_heads: 2,
+            d_ff: 16,
+            e_layers: 2,
+            d_layers: 1,
+            factor: if ties { 4 } else { 1 },
+            // Zero learning rate does not freeze BatchNorm running statistics.
+            // The strict-tie case therefore disables distillation; the eight
+            // continuation cases above keep BatchNorm and sparse sampling on.
+            distil: !ties,
+            label_len: if ties { 2 } else { 4 },
+            dropout: 0.1,
+            activation: Activation::Gelu,
+        }
+    } else {
+        ModelSpec::Itransformer {
+            d_model: 8,
+            n_heads: 2,
+            d_ff: 16,
+            e_layers: 2,
+            dropout: 0.1,
+            activation: Activation::Gelu,
+            use_norm: true,
+        }
+    };
+    let (root, mut c) = common::fixture(model);
     let mut csv = "date,x,y\n".to_owned();
     for i in 0..30 {
         let y = if empty && i < 16 && i % 4 == 3 {
@@ -42,11 +67,17 @@ fn fixture(device: &str, accumulation: usize, empty: bool, ties: bool) -> (PathB
         validation_end: 23,
         test_end: 30,
     };
-    c.window.lookback = if empty { 1 } else { 2 };
+    c.window.lookback = if informer && !ties {
+        if empty { 5 } else { 8 }
+    } else if empty {
+        1
+    } else {
+        2
+    };
     c.window.horizon = 1;
     c.window.stride = if empty { 2 } else { 1 };
     c.data.missing.mode = MissingMode::Causal;
-    c.data.missing.max_stale_seconds = 0;
+    c.data.missing.max_stale_seconds = if informer && empty { 2 * 86400 } else { 0 };
     c.train.device = device.into();
     c.train.accumulation_steps = accumulation;
     c.train.batch_size = if empty { 1 } else { 3 };
@@ -175,6 +206,23 @@ fn compare(
         max_error = max_error.max(tensor_error(&x.exp_avg, &y.exp_avg, tolerance)?);
         max_error = max_error.max(tensor_error(&x.exp_avg_sq, &y.exp_avg_sq, tolerance)?);
     }
+    let left_buffers = a.model.buffers()?;
+    let right_buffers = b.model.buffers()?;
+    assert_eq!(
+        left_buffers.keys().collect::<Vec<_>>(),
+        right_buffers.keys().collect::<Vec<_>>()
+    );
+    for (name, value) in &left_buffers {
+        if value.dtype() == DType::U32 {
+            assert_eq!(
+                value.flatten_all()?.to_vec1::<u32>()?,
+                right_buffers[name].flatten_all()?.to_vec1::<u32>()?,
+                "{name}"
+            );
+        } else {
+            max_error = max_error.max(tensor_error(value, &right_buffers[name], tolerance)?);
+        }
+    }
     let entries = if sa.next_entries().is_empty() {
         vec![da.index.order(1)[0]]
     } else {
@@ -245,6 +293,16 @@ fn compare(
 }
 #[test]
 fn dropout_training_matches_across_fresh_cli_processes() -> R {
+    recovery_cases(false)
+}
+
+#[cfg(feature = "cuda")]
+#[test]
+fn informer_dropout_sampling_and_batchnorm_match_across_fresh_cli_processes() -> R {
+    recovery_cases(true)
+}
+
+fn recovery_cases(informer: bool) -> R {
     let devices = if cfg!(feature = "cuda") {
         vec!["cuda:0"]
     } else {
@@ -256,7 +314,7 @@ fn dropout_training_matches_across_fresh_cli_processes() -> R {
         for accumulation in [1, 2] {
             for n in [3, 7] {
                 for empty in [false, true] {
-                    let (root, _) = fixture(name, accumulation, empty, false);
+                    let (root, _) = fixture(name, accumulation, empty, false, informer);
                     let continuous = train(&root, "continuous", Some(2 * n));
                     let paused = train(&root, "interrupted", Some(n));
                     assert_eq!(paused["optimizer_steps"], n);
@@ -284,7 +342,7 @@ fn dropout_training_matches_across_fresh_cli_processes() -> R {
                     cases.push(result);
                 }
             }
-            let (root, _) = fixture(name, accumulation, false, true);
+            let (root, _) = fixture(name, accumulation, false, true, informer);
             let continuous = train(&root, "continuous", None);
             let n = if accumulation == 1 { 11 } else { 7 };
             let paused = train(&root, "interrupted", Some(n));
@@ -304,7 +362,11 @@ fn dropout_training_matches_across_fresh_cli_processes() -> R {
             cases.push(result);
         }
     }
-    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../runs/p2-development");
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join(if informer {
+        "../../runs/p3-development"
+    } else {
+        "../../runs/p2-development"
+    });
     fs::create_dir_all(&root)?;
     let nonce = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)?
@@ -320,7 +382,7 @@ fn dropout_training_matches_across_fresh_cli_processes() -> R {
     fs::write(
         &path,
         serde_json::to_vec_pretty(
-            &json!({"format_version":1,"fresh_cli_processes":true,"dropout":0.1,"cases":cases}),
+            &json!({"format_version":1,"fresh_cli_processes":true,"model":if informer {"informer"} else {"itransformer"},"dropout":0.1,"cases":cases}),
         )?,
     )?;
     eprintln!("resume process report: {}", path.display());

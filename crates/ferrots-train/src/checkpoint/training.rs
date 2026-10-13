@@ -4,7 +4,7 @@ use crate::{
     NamedParams, ParamGroup, StatefulAdam,
     session::{Phase, RngState, SchedulerState, SessionSnapshot, TrainingSession, TrainingState},
 };
-use candle_core::{DeviceLocation, Tensor};
+use candle_core::DeviceLocation;
 use ferrots_data::batch::Dataset;
 use ferrots_nn::itransformer::DROPOUT_SITE_VERSION;
 
@@ -121,9 +121,6 @@ pub(super) fn read_state(checkpoint: &Checkpoint, device: &Device) -> Result<Ses
         environment == m.provenance.environment,
         "checkpoint environment mismatch",
     )?;
-    let buffers =
-        candle_core::safetensors::load(checkpoint.directory.join("buffers.safetensors"), device)?;
-    require(buffers.is_empty(), "unexpected persistent model buffers")?;
     let trainer: TrainingState = json(&checkpoint.directory, "trainer-state.json")?;
     let scheduler: SchedulerState = json(&checkpoint.directory, "scheduler-state.json")?;
     let rng: RngState = json(&checkpoint.directory, "rng-state.json")?;
@@ -214,6 +211,12 @@ pub(super) fn read_state(checkpoint: &Checkpoint, device: &Device) -> Result<Ses
             .weights()
             .iter()
             .map(|(n, t)| Ok((n.clone(), t.copy()?)))
+            .collect::<Result<_>>()?,
+        buffers: checkpoint
+            .model
+            .buffers()?
+            .into_iter()
+            .map(|(n, t)| Ok((n, t.detach().copy()?)))
             .collect::<Result<_>>()?,
         optimizer: optimizer.snapshot()?,
         trainer,
@@ -398,8 +401,12 @@ pub fn publish_training_with_hook(
         .collect();
     candle_core::safetensors::save(&weights, stage.join("model.safetensors"))?;
     session.optimizer.save(&stage)?;
-    let empty: HashMap<String, Tensor> = HashMap::new();
-    candle_core::safetensors::save(&empty, stage.join("buffers.safetensors"))?;
+    let buffers: HashMap<_, _> = snapshot
+        .buffers
+        .iter()
+        .map(|(name, value)| (name.clone(), value.clone()))
+        .collect();
+    candle_core::safetensors::save(&buffers, stage.join("buffers.safetensors"))?;
     let schema = DataSchema::from_config(config)?;
     for (name, bytes) in [
         (

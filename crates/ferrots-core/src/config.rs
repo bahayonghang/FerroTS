@@ -240,6 +240,15 @@ fn default_ff_width() -> usize {
 fn default_encoder_layers() -> usize {
     2
 }
+fn default_decoder_layers() -> usize {
+    1
+}
+fn default_factor() -> usize {
+    3
+}
+fn default_label_len() -> usize {
+    48
+}
 fn default_dropout() -> f64 {
     0.1
 }
@@ -289,6 +298,28 @@ pub enum ModelSpec {
         #[serde(default = "default_true")]
         use_norm: bool,
     },
+    Informer {
+        #[serde(default = "default_model_width")]
+        d_model: usize,
+        #[serde(default = "default_heads")]
+        n_heads: usize,
+        #[serde(default = "default_ff_width")]
+        d_ff: usize,
+        #[serde(default = "default_encoder_layers")]
+        e_layers: usize,
+        #[serde(default = "default_decoder_layers")]
+        d_layers: usize,
+        #[serde(default = "default_factor")]
+        factor: usize,
+        #[serde(default = "default_true")]
+        distil: bool,
+        #[serde(default = "default_label_len")]
+        label_len: usize,
+        #[serde(default = "default_dropout")]
+        dropout: f64,
+        #[serde(default)]
+        activation: Activation,
+    },
 }
 impl Default for ModelSpec {
     fn default() -> Self {
@@ -306,12 +337,16 @@ impl ModelSpec {
             Self::Linear { .. } => "linear",
             Self::Dlinear { .. } => "dlinear",
             Self::Itransformer { .. } => "itransformer",
+            Self::Informer { .. } => "informer",
         }
     }
     pub fn trainable(&self) -> bool {
         matches!(
             self,
-            Self::Linear { .. } | Self::Dlinear { .. } | Self::Itransformer { .. }
+            Self::Linear { .. }
+                | Self::Dlinear { .. }
+                | Self::Itransformer { .. }
+                | Self::Informer { .. }
         )
     }
 }
@@ -585,6 +620,41 @@ impl Config {
                 require(
                     indices.windows(2).all(|pair| pair[0] < pair[1]),
                     "iTransformer targets must preserve input column order",
+                )?;
+            }
+            ModelSpec::Informer {
+                d_model,
+                n_heads,
+                d_ff,
+                e_layers,
+                d_layers,
+                factor,
+                label_len,
+                dropout,
+                ..
+            } => {
+                require(
+                    d_model > 0
+                        && d_model.is_multiple_of(2)
+                        && n_heads > 0
+                        && d_model.is_multiple_of(n_heads)
+                        && d_ff > 0
+                        && e_layers > 0
+                        && d_layers > 0
+                        && factor > 0,
+                    "Informer requires positive dimensions, even d_model divisible by n_heads, and positive factor",
+                )?;
+                require(
+                    dropout.is_finite() && (0.0..1.0).contains(&dropout),
+                    "Informer dropout must be finite and in [0, 1)",
+                )?;
+                require(
+                    self.window.gap == 0 && label_len > 0 && label_len <= self.window.lookback,
+                    "Informer requires gap=0 and label_len in 1..=lookback",
+                )?;
+                require(
+                    d.future_known_columns.is_empty(),
+                    "Informer does not support future-known numeric inputs",
                 )?;
             }
             _ => {}

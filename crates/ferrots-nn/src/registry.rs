@@ -25,6 +25,72 @@ const LOCAL: ModelDescriptor = ModelDescriptor {
 };
 pub static MODELS: &[ModelDescriptor] = &[
     ModelDescriptor {
+        name: "informer",
+        source_repository: Some("https://github.com/thuml/Time-Series-Library"),
+        source_sha: Some(crate::informer::UPSTREAM_SHA),
+        source_files: &[
+            "models/Informer.py",
+            "layers/Embed.py",
+            "layers/Transformer_EncDec.py",
+            "layers/SelfAttention_Family.py",
+        ],
+        history_time: true,
+        reproduction_status: "preview",
+        parameters: &[
+            ParameterSchema {
+                name: "d_model",
+                value_type: "positive_even_integer",
+                default: "512",
+            },
+            ParameterSchema {
+                name: "n_heads",
+                value_type: "positive_integer_dividing_d_model",
+                default: "8",
+            },
+            ParameterSchema {
+                name: "d_ff",
+                value_type: "positive_integer",
+                default: "2048",
+            },
+            ParameterSchema {
+                name: "e_layers",
+                value_type: "positive_integer",
+                default: "2",
+            },
+            ParameterSchema {
+                name: "d_layers",
+                value_type: "positive_integer",
+                default: "1",
+            },
+            ParameterSchema {
+                name: "factor",
+                value_type: "positive_integer",
+                default: "3",
+            },
+            ParameterSchema {
+                name: "distil",
+                value_type: "boolean",
+                default: "true",
+            },
+            ParameterSchema {
+                name: "label_len",
+                value_type: "positive_integer_at_most_lookback",
+                default: "48",
+            },
+            ParameterSchema {
+                name: "dropout",
+                value_type: "finite_probability_below_one",
+                default: "0.1",
+            },
+            ParameterSchema {
+                name: "activation",
+                value_type: "gelu_or_relu",
+                default: "gelu",
+            },
+        ],
+        ..LOCAL
+    },
+    ModelDescriptor {
         name: "itransformer",
         source_repository: Some("https://github.com/thuml/iTransformer"),
         source_sha: Some(crate::itransformer::UPSTREAM_SHA),

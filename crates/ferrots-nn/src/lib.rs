@@ -2,6 +2,8 @@
 
 mod device;
 pub mod infer_ops;
+pub mod informer;
+pub mod informer_ops;
 pub mod itransformer;
 pub use device::resolve_device;
 pub mod baselines;

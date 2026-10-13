@@ -200,3 +200,37 @@ fn default_tail_policy_preserves_p1_serialized_identity() {
         );
     }
 }
+
+#[test]
+fn informer_configuration_rejects_invalid_decoder_and_dimensions() {
+    let source = format!("{BASE}\n[model]\nname='informer'\n");
+    let c = Config::from_toml(&source, Overrides::default()).unwrap();
+    assert_eq!(c.model.name(), "informer");
+    assert!(c.model.trainable());
+    let encoded = toml::to_string(&c).unwrap();
+    assert_eq!(
+        toml::to_string(&Config::from_toml(&encoded, Overrides::default()).unwrap()).unwrap(),
+        encoded
+    );
+    for suffix in [
+        "d_model=15\nn_heads=3",
+        "n_heads=0",
+        "d_ff=0",
+        "e_layers=0",
+        "d_layers=0",
+        "factor=0",
+        "label_len=0",
+        "label_len=97",
+        "dropout=1.0",
+        "use_norm=true",
+        "[window]\ngap=1",
+    ] {
+        assert!(
+            Config::from_toml(&format!("{source}{suffix}\n"), Overrides::default()).is_err(),
+            "{suffix}"
+        );
+    }
+    let mut c = c;
+    c.data.future_known_columns = vec!["known".into()];
+    assert!(c.validate().is_err());
+}

@@ -9,7 +9,7 @@ use ferrots_data::{
     batch::{Dataset, HostBatch},
     cache::write_synced,
 };
-use ferrots_nn::model::{ForecastModel, ModelInput};
+use ferrots_nn::model::{ForecastModel, ForwardContext, ModelInput};
 use serde::{Deserialize, Serialize};
 use std::{
     fs,
@@ -66,7 +66,7 @@ pub fn select_targets(prediction: &Tensor, indices: &[usize]) -> Result<Tensor> 
         return Ok(prediction.clone());
     }
     let indices: Vec<u32> = indices.iter().map(|&j| j as u32).collect();
-    Ok(prediction.index_select(
+    Ok(prediction.contiguous()?.index_select(
         &Tensor::from_slice(&indices, indices.len(), prediction.device())?,
         2,
     )?)
@@ -110,9 +110,15 @@ pub fn validation_loss(
     let mut sum = 0f64;
     let mut count = 0u64;
     for chunk in data.index.order(1).chunks(config.train.batch_size) {
+        // Persisted validation access counts include every preceding epoch, so
+        // continuation reconstructs this stream without advancing training IDs.
+        let context = ForwardContext::evaluation_with_id((1 << 62) | access.batches[1] as u64);
         let host = tracked_batch(data, 1, chunk, access)?;
         let batch = DeviceBatch::from_host(&host, device)?;
-        let pred = select_targets(&model.forward(&batch.input)?, &data.target_indices)?;
+        let pred = select_targets(
+            &model.forward_with_context(&batch.input, context)?,
+            &data.target_indices,
+        )?;
         if pred.track_op() {
             return Err(TrainError::InvalidState(
                 "validation output tracks a graph".into(),

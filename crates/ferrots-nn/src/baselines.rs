@@ -59,8 +59,11 @@ impl Baseline {
         if channels == 0 || window.lookback == 0 || window.horizon == 0 {
             candle_core::bail!("empty model dimensions");
         }
-        if matches!(spec, ModelSpec::Itransformer { .. }) {
-            candle_core::bail!("iTransformer requires the common model constructor");
+        if matches!(
+            spec,
+            ModelSpec::Itransformer { .. } | ModelSpec::Informer { .. }
+        ) {
+            candle_core::bail!("transformer models require the common model constructor");
         }
         if let ModelSpec::SeasonalNaive { period } = spec
             && (*period == 0 || *period > window.lookback)
@@ -221,7 +224,9 @@ impl Baseline {
             candle_core::bail!("model input shape/dtype mismatch");
         }
         match self.spec {
-            ModelSpec::Itransformer { .. } => candle_core::bail!("iTransformer is not a baseline"),
+            ModelSpec::Itransformer { .. } | ModelSpec::Informer { .. } => {
+                candle_core::bail!("transformer model is not a baseline")
+            }
             ModelSpec::LastValue => x
                 .narrow(1, l - 1, 1)?
                 .broadcast_as((b, self.window.horizon, c))?
