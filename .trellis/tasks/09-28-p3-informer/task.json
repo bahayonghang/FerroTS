@@ -28,7 +28,7 @@
     ".trellis/spec/backend/informer-training.md",
     "docs/models/informer.md"
   ],
-  "notes": "Budget approved by user on 2026-10-13. P3 formal runner and reports implemented; freeze a fresh suite then run ETT96, original D4, cement9, recompute and final quality. Formal entries 0/105; Informer preview; P2 CPU/device clauses remain open.",
+  "notes": "Approved fresh P3 suite runs/p3-acceptance/20261013-linux-cuda is frozen. Initial quality passed Rust120/Python72. Executor PID2117817 runs data gate then ETT96/D4/cement9/recompute/final quality. Launch-time formal entries 0/105; live status is in suite entries and executor.json. Informer remains preview and P2 clauses remain open.",
   "meta": {
     "development_checks": {
       "rust_cuda_passed": 120,
@@ -37,11 +37,16 @@
       "ignored": 0,
       "cuda_clippy": "passed"
     },
-    "formal_entries": 0,
     "formal_total": 105,
     "budget": "runs/p3-development/20261013-smoke-v1/budget.json",
     "evidence": ".trellis/tasks/09-28-p3-informer/research/implementation-evidence.md",
-    "next_step": "Freeze and start fresh two-GPU P3 acceptance suite",
-    "budget_approved": "2026-10-13: 用户回复批准"
+    "next_step": "Monitor fresh ETT96; original D4 must pass before cement9",
+    "budget_approved": "2026-10-13: 用户回复批准",
+    "formal_entries_at_launch": 0,
+    "formal_suite": "runs/p3-acceptance/20261013-linux-cuda",
+    "executor_pid": 2117817,
+    "launch_receipt": "runs/p3-acceptance/20261013-linux-cuda/launch-attempt-2.json",
+    "suite_sha256": "e5d80b42038f870cf6014392456878cc13d03b642a343b8670d5cd3448dccfec",
+    "formal_runner_commit": "747e0c5"
   }
 }

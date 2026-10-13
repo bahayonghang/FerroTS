@@ -4,7 +4,7 @@
 
 The user approved sequential implementation on 2026-10-13. P3 is in_progress on dev; P2's outstanding CPU/device clauses remain open and its prior receipts are unchanged. The original implementation delegation was interrupted by account usage limits; the main session integrated and verified the written work, with an independent check agent reviewing the resulting code.
 
-Current formal P3 matrix: 0/105 entries. Development diagnostics and synthetic references do not count toward this matrix. The user approved the measured budget on 2026-10-13. Remaining work includes complete ETT/reference training, D4, cement9, independent private recomputation and final acceptance.
+Formal P3 matrix at development handoff: 0/105 entries. Live execution progress is subsequently recorded under the frozen suite entries and executor status. Development diagnostics and synthetic references do not count toward this matrix. The user approved the measured budget on 2026-10-13. Remaining work includes complete ETT/reference training, D4, cement9, independent private recomputation and final acceptance.
 
 ## Implemented mechanisms
 
@@ -64,3 +64,12 @@ The user explicitly approved the reported budget after reviewing the development
 Each suite freezes a private binary copy, current runtime source, all model profiles, reference/validation tools, Python/Rust tests, all fixtures, upstream SHA, package environment and data fingerprints. File and command hashes bind accepted entries; failed command attempts and rejected candidate entries remain retained. A nonblocking Linux flock prevents another executor from sharing the suite. Two sequential workers each own one CUDA device. A failed cell stops further dispatch after the other GPU completes its current cell. ETT96 must meet the original D4 threshold before cement9. The executor checks full private coverage and independent recomputation before final CUDA quality; a passing execution still requires the main independent evidence review and remains preview until that completes.
 
 Independent review checked real diagnostic config/output schemas and found the duplicate-executor, failure-dispatch and missing-validation-input freeze gaps. All three were fixed before suite creation. P2 frozen tools remain unmodified; only generic execution/receipt/epoch-check functions are imported. No formal training was started during implementation of these tools.
+
+
+## Frozen suite and launch
+
+Suite runs/p3-acceptance/20261013-linux-cuda is frozen from commit 1aae46be9bc6ff25bf2e607e32aea90b2be8df4f. Suite SHA256 e5d80b42038f870cf6014392456878cc13d03b642a343b8670d5cd3448dccfec; runtime source remains e84a8431f81ba3deea32c3baa688eb5dc8485598db6a757489d0dd1f5fd42bde. Its suite-owned binary and 130 validation inputs are fingerprinted. Initial suite quality passed Rust120/Python72, CUDA Clippy, format, doctor, actual cuda:9 rejection, task validation, privacy and diff checks.
+
+Active executor PID2117817, process start ticks176533124, launched at 2026-10-13T11:56:43.674597+00:00 with the virtualenv Python path. launch-attempt-2.json and executor-attempt-2.log are the current launch/log. An earlier launcher resolved the virtualenv Python symlink to the base interpreter; its owned process group was terminated during initial quality, before formal training. Original launch/log, executor-before-launcher-fix.json and launcher-correction.json remain retained. No frozen tool or runtime changed during this launcher correction.
+
+At launch there were 0 accepted formal entries. The executor performs data audits, ETT96, unchanged D4, cement9, independent recomputation and final quality in order. This launch record does not claim that those pending stages completed. Do not start another executor or modify frozen inputs while it runs. Independent final evidence review and task/report reconciliation remain required even if final.json later passes.
