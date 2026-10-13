@@ -1,6 +1,6 @@
 # iTransformer
 
-Status: CUDA numerical, fresh-process resume, full historical ETT/D4 and current quality gates passed. A user-requested training stop and scoped CUDA performance repair completed on 2026-09-30. Formal acceptance for the repaired binary remains pending because the runtime identity changed. Cement, independent recomputation and final acceptance remain pending. Earlier CPU evidence is retained. Validation remains CUDA-first.
+Status: the Linux CUDA formal matrix passed on 2026-10-12. Suite `runs/p2-acceptance/20261012-linux-cuda` has 105 runs, D4 32/32, cement 9/9, and an independent recomputation of 18,574,560 rows with 6/6 metrics. Runtime source `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`. Linux binary `43fd7365d289e01d3c0ff14882a8b54f7facdf79795af3905d05931bba9fe596`. Host: Ubuntu 24.04, two RTX 4090 GPUs, CUDA toolkit 12.9. The registry status for this source is `p2_cuda_formal_pass`. The full CPU control was not run. This suite does not record an RTX 5090 Laptop result. Earlier Windows suites remain historical.
 
 Source: thuml/iTransformer, commit c2426e68ca13f74aaec08045c5c724d8ad328124. The implementation follows model/iTransformer.py, layers/Embed.py, layers/Transformer_EncDec.py and layers/SelfAttention_Family.py. Production execution uses Rust and Candle 0.11.0; Python is confined to reference and validation tools.
 
@@ -18,7 +18,7 @@ V2 checkpoints contain twelve files and restore only at an empty gradient-accumu
 
 Forward and true MSE gradients use atol=1e-5, rtol=1e-4. The approved AC3 optimizer gate supplies the same official true MSE gradients to both Adam implementations and compares all parameters, moments and steps at atol=1e-6, rtol=0. Independent-backward update differences remain diagnostics, including the measured near-zero key-bias gradient effect.
 
-The fixed formal CUDA matrix has 48 official ETT, 48 Rust ETT and 9 Rust cement runs with seeds 2021/2022/2023. D4 uses population standard deviations and the original two-sided bound. Full reproduction remains pending until the complete matrix passes. The original full CPU control is unexecuted under the later CUDA-first instruction; a short CPU diagnostic cannot substitute for that control.
+The fixed formal CUDA matrix has 48 official ETT, 48 Rust ETT and 9 Rust cement runs with seeds 2021/2022/2023. D4 uses population standard deviations and the original two-sided bound. That matrix passed on the Linux suite named above. The original full CPU control is unexecuted under the later CUDA-first instruction; a short CPU diagnostic cannot substitute for that control.
 
 ## Frozen experiment profiles
 
@@ -41,13 +41,13 @@ Evidence: runs/p2-development/gpu-performance-repair-20260930/profile-comparison
 
 ## Measured coverage
 
-Snapshot: 2026-09-30 02:54 America/Chicago.
+Snapshot: 2026-10-12, after executor PID 450356 exited.
 
-Suite: runs/p2-acceptance/20260929-cuda-v3. Audited parent: runs/p2-acceptance/20260929-cuda-v2. Runtime source SHA256: d14b82559d78f124a073e5fe3f6fb9f2c5b80c0847d4acba080643b7ce2fde81. The scoped correction changes validation tooling only; all 96 ETT entries are byte-identical imports.
+Suite: runs/p2-acceptance/20261012-linux-cuda. Runtime source SHA256: fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055. Linux binary SHA256: 43fd7365d289e01d3c0ff14882a8b54f7facdf79795af3905d05931bba9fe596. GPU: NVIDIA GeForce RTX 4090. Historical run directories were not loaded. The P1 cement numbers in the report are the committed CUDA table, seed 2021, n=1.
 
-Verified completed entries: official CUDA ETT 48/48; Rust CUDA ETT 48/48; cement 0/9. Both parent and successor D4 passed 32/32. CUDA numerical cases 9/9 and fresh-process recovery cases 10/10 passed. Current successor quality has Rust 102 and Python 52 tests passed, with zero failures or ignored tests. Cement is active. Full independent recomputation, final quality and final acceptance remain pending.
+Verified completed entries: official CUDA ETT 48/48; Rust CUDA ETT 48/48; cement 9/9. D4 passed 32/32 with ddof=0 and zero failing comparisons. CUDA numerical cases passed 9/9. Fresh-process recovery passed 10/10 on cuda:0. Independent recomputation passed 18,574,560 rows and 6/6 metrics; the largest absolute difference is 1.2505552149377763e-12. Quality passed Rust 102 and Python 55, with zero failures and zero ignored tests. Performance evidence covers all 105 training runs. ETT used cuda:0. Cement used batch 32; six runs used cuda:0 and three used cuda:1.
 
-The frozen runtime registry retains reproduction_status=pending. A registry source change requires handling the new execution identity before receipt reuse. The original full CPU control remains unexecuted. Evidence: runs/p2-development/tooling-transition-20260929-2129/ett-transition-checkpoint-20260930-025430-462084.json; .trellis/tasks/09-28-p2-itransformer/research/acceptance.md.
+The registry value for this source is `p2_cuda_formal_pass`. The 2026-09-30 suite `runs/p2-acceptance/20260929-cuda-v3` remains historical evidence for source d14b82559d78f124a073e5fe3f6fb9f2c5b80c0847d4acba080643b7ce2fde81 and does not satisfy this identity. The original full CPU control remains unexecuted. Evidence: runs/p2-acceptance/20261012-linux-cuda/final.json and .trellis/tasks/09-28-p2-itransformer/research/acceptance.md.
 
 ## License
 

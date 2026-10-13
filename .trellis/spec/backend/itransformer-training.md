@@ -89,6 +89,8 @@ Original-unit metrics store variables in a dictionary keyed by the exact configu
 
 A user-approved validation-tool correction can preserve unaffected training through an explicit versioned evidence transition. Audit the complete parent matrix with its original validator before installing the correction. Bind the parent suite, validator snapshot, entry inventory, receipt paths and hashes, prerequisite gates and audit. Require unchanged runtime, binary, configuration, reference and data identities. Retain original receipts and copy imported gate and entry bytes exactly. Reject unlisted, changed or nested evidence. Run current quality, affected gates and final acceptance in the successor suite.
 
+The measured Linux formal matrix is `runs/p2-acceptance/20261012-linux-cuda`, recorded on Ubuntu 24.04 with two RTX 4090 GPUs. It passed 105 CUDA runs, D4 32/32 and the 18,574,560-row recomputation for runtime source `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`. ETT stayed on cuda:0. Cement stayed at batch 32; six runs used cuda:0 and three used cuda:1. That device split is part of the result identity. The result does not cover the unexecuted full CPU control or a completed RTX 5090 Laptop matrix. Do not reuse these receipts after the runtime source, Linux binary, or cement device assignment changes.
+
 ## 7. Wrong vs Correct
 
 Wrong: deriving dropout identity from optimizer updates repeats a mask across accumulated microbatches.
