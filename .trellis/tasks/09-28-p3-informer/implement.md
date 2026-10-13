@@ -1,8 +1,8 @@
 # Informer 实施计划
 
-状态 in_progress。用户已于 2026-10-13 授权按顺序实施；开发门已通过，正式矩阵预算待审批。证据见 research/implementation-evidence.md。
+状态 in_progress。用户已于 2026-10-13 授权按顺序实施；开发门已通过，正式矩阵预算已于 2026-10-13 获用户批准。证据见 research/implementation-evidence.md。
 
-1. [ ] 冻结TSLib来源/许可、官方profile、fixture manifest、AC、CUDA预算和磁盘估算。
+1. [x] 冻结TSLib来源/许可、官方profile、fixture manifest、AC、CUDA预算和磁盘估算。
 2. [x] 实现PrefixSum、采样score、top-query、ReplaceRows及蒸馏算子；CUDA前后向夹具、边界、scan峰值和shape门通过（AC1–AC3）。
 3. [x] 接入配置/静态派发、embedding、encoder/decoder、历史尾部+未来零值；全参数真实损失梯度与标签隔离检查（AC1、AC6）。
 4. [x] 命名BatchNorm buffer及采样身份贯穿snapshot、manifest、save/load、resume、freeze、预测，检查损坏buffer和验证隔离（AC4、AC5）。
@@ -31,4 +31,4 @@ git diff --check
 
 ## 当前执行边界
 
-步骤1的来源、许可、profile、fixture及验收条件已落实；预算与磁盘估算已实测整理，正式预算审批尚未完成，因此步骤1、6保持未勾选。步骤6的复杂度和CUDA短训练已通过。步骤7–9尚未执行：正式0/105，Informer保持preview，不启动WaveForM。
+步骤1已完成；用户已批准约80 GPU小时训练量（另加评价、保存、导出开销）和约186 GiB磁盘规划。步骤6的复杂度、短训练和预算审批已完成，待冻结新suite后勾选。正式0/105，Informer保持preview；ETT/D4通过后才进入水泥矩阵，后续WaveForM继续等待。

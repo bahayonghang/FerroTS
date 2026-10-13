@@ -28,11 +28,11 @@
     ".trellis/spec/backend/informer-training.md",
     "docs/models/informer.md"
   ],
-  "notes": "Development gates AC1-AC6 passed on CUDA. Formal P3 runs 0/105. Measured budget awaits approval under implement.md step 6. P2 outstanding CPU/device clauses remain open; Informer remains preview.",
+  "notes": "Budget approved by user on 2026-10-13. P3 formal runner and reports implemented; freeze a fresh suite then run ETT96, original D4, cement9, recompute and final quality. Formal entries 0/105; Informer preview; P2 CPU/device clauses remain open.",
   "meta": {
     "development_checks": {
       "rust_cuda_passed": 120,
-      "python_passed": 61,
+      "python_passed": 72,
       "failed": 0,
       "ignored": 0,
       "cuda_clippy": "passed"
@@ -41,6 +41,7 @@
     "formal_total": 105,
     "budget": "runs/p3-development/20261013-smoke-v1/budget.json",
     "evidence": ".trellis/tasks/09-28-p3-informer/research/implementation-evidence.md",
-    "next_step": "Approve formal budget, then freeze a new suite and implement formal receipt/D4/recompute orchestration"
+    "next_step": "Freeze and start fresh two-GPU P3 acceptance suite",
+    "budget_approved": "2026-10-13: 用户回复批准"
   }
 }

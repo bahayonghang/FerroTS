@@ -4,7 +4,7 @@
 
 The user approved sequential implementation on 2026-10-13. P3 is in_progress on dev; P2's outstanding CPU/device clauses remain open and its prior receipts are unchanged. The original implementation delegation was interrupted by account usage limits; the main session integrated and verified the written work, with an independent check agent reviewing the resulting code.
 
-Current formal P3 matrix: 0/105 entries. Development diagnostics and synthetic references do not count toward this matrix. Remaining work includes formal budget approval, complete ETT/reference training, D4, cement9, independent private recomputation and final acceptance.
+Current formal P3 matrix: 0/105 entries. Development diagnostics and synthetic references do not count toward this matrix. The user approved the measured budget on 2026-10-13. Remaining work includes complete ETT/reference training, D4, cement9, independent private recomputation and final acceptance.
 
 ## Implemented mechanisms
 
@@ -33,7 +33,7 @@ An unselected exp branch in ELU produced NaN backward when BatchNorm affine bias
 
 The pinned TSLib contains only an ETTh1 Informer script. Other ETT profiles are explicitly derived; its data_factory keeps tail batches. P3 configs use drop_last=false, avoiding the separate iTransformer upstream's drop_last=true policy. source-profiles.json records source/license/profile/loader fingerprints.
 
-## Measured diagnostics and pending budget approval
+## Measured diagnostics and approved budget
 
 The bounded diagnostic command is tools/validation/p3_smoke.py. It completes synthetic training, pauses three real-data Rust runs after 32 updates, and runs one official ETTh1 epoch. Its output is diagnostic only; the 105-command manifest is prepared for review, not executed. All bounded diagnostics completed normally; budget.json and planned-matrix.json are under runs/p3-development/20261013-smoke-v1/.
 
@@ -55,3 +55,12 @@ Disk estimate: a measured full-size Rust generation is 156484134 bytes. Current 
 Formatting and CUDA doctor training smoke also passed (doctor-cuda.json). Formal orchestration, immutable suite freeze, per-run acceptance receipts, 32-item D4, cement9/108-cell reports, full private recomputation and final quality/review remain required. The proposed 105-command manifest is reviewable input, not a complete formal acceptance runner.
 
 Independent final narrow review passed for the corrected observer, source paths, 105-command coverage, diagnostic/formal boundary, budget arithmetic and disk estimate. Development implementation commit: 5f0d74d0c853bb0ebf4f1cc765863eb6fa25e825. The development checks bind the runtime source digest e84a8431f81ba3deea32c3baa688eb5dc8485598db6a757489d0dd1f5fd42bde; formal execution must freeze a new suite/binary identity after approval.
+
+
+## Formal execution preparation
+
+The user explicitly approved the reported budget after reviewing the development commits. tools/validation/p3_acceptance.py now owns freeze/run/verify; p3_reports.py computes the unchanged 32 D4 checks, 108 private cells with published P1/P2 references, and 105 performance records. New tool regressions bring the Python suite to 72 passed. No runtime Rust change was made; existing CUDA120/Clippy/fixture evidence retains its exact runtime source digest.
+
+Each suite freezes a private binary copy, current runtime source, all model profiles, reference/validation tools, Python/Rust tests, all fixtures, upstream SHA, package environment and data fingerprints. File and command hashes bind accepted entries; failed command attempts and rejected candidate entries remain retained. A nonblocking Linux flock prevents another executor from sharing the suite. Two sequential workers each own one CUDA device. A failed cell stops further dispatch after the other GPU completes its current cell. ETT96 must meet the original D4 threshold before cement9. The executor checks full private coverage and independent recomputation before final CUDA quality; a passing execution still requires the main independent evidence review and remains preview until that completes.
+
+Independent review checked real diagnostic config/output schemas and found the duplicate-executor, failure-dispatch and missing-validation-input freeze gaps. All three were fixed before suite creation. P2 frozen tools remain unmodified; only generic execution/receipt/epoch-check functions are imported. No formal training was started during implementation of these tools.
