@@ -1,6 +1,6 @@
 # P3 Informer 复现
 
-父任务：`09-28-ferrots-implementation`。开发分支 `dev`，状态 `planning`。
+父任务：`09-28-ferrots-implementation`。开发分支 `dev`，状态 `in_progress`。
 
 ## Goal
 
@@ -27,12 +27,12 @@
 
 ## Acceptance Criteria
 
-- [ ] P3-AC1：CUDA 上新增算子、逐层输出和非退化真实损失梯度与固定权重/采样索引的官方夹具在 atol=1e-5、rtol=1e-4 内；检查预期参数梯度。top-k并列、B/head=1与L=1单独测试，不对离散索引作数值梯度比较。
-- [ ] P3-AC2：PrefixSum 在 n=1,000,000、FP32 时前向+反向峰值显存增量≤输入字节数4倍；口径见设计，输出实测峰值，不用低频全卡采样替代。
-- [ ] P3-AC3：L={96,192,384,768,1536} 时记录 encoder 与 decoder self/cross 的 score/mask shape、峰值和耗时；断言无完整Lq×Lk score/mask，采样路径不复制Q/K/V到主机。
-- [ ] P3-AC4：CUDA 独立进程连续2N步与N步→保存→恢复→N步，在dropout、稀疏采样、BatchNorm开启时，权重、Adam矩、浮点buffer和预测在atol=1e-6、rtol=0内；整数buffer、计数、随机状态精确一致。
-- [ ] P3-AC5：freeze/evaluate不改变训练权重、BatchNorm buffer或训练随机状态；缺失/额外/错shape buffer检查点整体拒绝。历史空buffer模型的现有检查点测试保持通过，不新增迁移层。
-- [ ] P3-AC6：decoder未来数值全零；保持ModelInput不变而更换监督标签，固定采样身份预测不变。训练、评价、CLI预测均输出[B,H,C]，B=1和尾批可用。
+- [x] P3-AC1：CUDA 上新增算子、逐层输出和非退化真实损失梯度与固定权重/采样索引的官方夹具在 atol=1e-5、rtol=1e-4 内；检查预期参数梯度。top-k并列、B/head=1与L=1单独测试，不对离散索引作数值梯度比较。
+- [x] P3-AC2：PrefixSum 在 n=1,000,000、FP32 时前向+反向峰值显存增量≤输入字节数4倍；口径见设计，输出实测峰值，不用低频全卡采样替代。
+- [x] P3-AC3：L={96,192,384,768,1536} 时记录 encoder 与 decoder self/cross 的 score/mask shape、峰值和耗时；断言无完整Lq×Lk score/mask，采样路径不复制Q/K/V到主机。
+- [x] P3-AC4：CUDA 独立进程连续2N步与N步→保存→恢复→N步，在dropout、稀疏采样、BatchNorm开启时，权重、Adam矩、浮点buffer和预测在atol=1e-6、rtol=0内；整数buffer、计数、随机状态精确一致。
+- [x] P3-AC5：freeze/evaluate不改变训练权重、BatchNorm buffer或训练随机状态；缺失/额外/错shape buffer检查点整体拒绝。历史空buffer模型的现有检查点测试保持通过，不新增迁移层。
+- [x] P3-AC6：decoder未来数值全零；保持ModelInput不变而更换监督标签，固定采样身份预测不变。训练、评价、CLI预测均输出[B,H,C]，B=1和尾批可用。
 - [ ] P3-AC7：官方48与Rust48的ETT完整覆盖、正常退出和身份检查通过，32项MSE/MAE均满足父任务D4；ddof=0，不放宽门槛。
 - [ ] P3-AC8：水泥9/9完成，18变量×3H×MAE/RMSE共108格均值/总体标准差，与P1/P2并列；H60/seed2021三变量18,574,560行预测独立复算6项误差均<1e-6。
 - [ ] P3-AC9：105条性能记录、运行来源和正常退出可核验；模型卡、CLI、registry、配置和检查点身份一致。

@@ -18,6 +18,7 @@ This directory contains guidelines for backend development. Fill in each file wi
 | [Data Pipeline](./data-pipeline.md) | P1 CSV, preprocessing, scaler, cache, windows and input contracts | Implemented |
 | [Training Loop](./training-loop.md) | P1 baseline RNG, masked training, inference bundles and acceptance | Implemented |
 | [iTransformer and Resume](./itransformer-training.md) | P2 model mapping, training state, v2 resume and acceptance contracts | Linux CUDA matrix passed on two RTX 4090s; full CPU control and RTX 5090 Laptop matrix remain open |
+| [Informer and Buffers](./informer-training.md) | P3 sparse operators, persistent model buffers and evaluation sampling | Preview; CUDA development checks passed, formal matrix pending |
 | [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
 | [Database Guidelines](./database-guidelines.md) | ORM patterns, queries, migrations | To fill |
 | [Error Handling](./error-handling.md) | Error types, handling strategies | To fill |
@@ -52,3 +53,5 @@ The goal is to help AI assistants and new team members understand how YOUR proje
 ---
 
 **Language**: All documentation should be written in **English**.
+
+For Informer, sparse CUDA operators or stateful model buffers, also read [Informer and Buffers](./informer-training.md).

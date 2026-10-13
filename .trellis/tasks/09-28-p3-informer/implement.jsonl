@@ -7,3 +7,5 @@
 {"file": "docs/datasets/cement-yangquan.md", "reason": "Private stable-segment protocol"}
 {"file": ".trellis/tasks/09-28-p3-informer/design.md", "reason": "Design and acceptance mechanisms"}
 {"file": ".trellis/tasks/09-28-p3-informer/implement.md", "reason": "Ordered validation and review gates"}
+{"file": ".trellis/spec/backend/informer-training.md", "reason": "Informer sparse operators, buffers and sampling contracts"}
+{"file": ".trellis/tasks/09-28-p3-informer/research/implementation-evidence.md", "reason": "Verified development evidence and pending formal budget"}
