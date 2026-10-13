@@ -1,0 +1,30 @@
+{
+  "id": "waveform",
+  "name": "waveform",
+  "title": "WaveForM 图增强小波预测复现",
+  "description": "冻结 WaveForM 官方来源与协议，验证可导 Haar/图传播 CUDA 算子，在 ETT、Weather 和水泥孪生样本上完成可追溯对照",
+  "status": "planning",
+  "dev_type": null,
+  "scope": null,
+  "package": null,
+  "priority": "P2",
+  "creator": "lyh",
+  "assignee": "lyh",
+  "createdAt": "2026-10-13",
+  "completedAt": null,
+  "branch": "dev",
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "09-28-ferrots-implementation",
+  "relatedFiles": [
+    ".trellis/tasks/10-13-waveform/prd.md",
+    ".trellis/tasks/10-13-waveform/design.md",
+    ".trellis/tasks/10-13-waveform/implement.md"
+  ],
+  "notes": "Planning only; no implementation or training started. Review prd.md, design.md and implement.md before task.py start.",
+  "meta": {}
+}

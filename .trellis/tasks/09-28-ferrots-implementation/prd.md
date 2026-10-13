@@ -39,6 +39,7 @@
 - D4 复现数值门槛：同一台机器、同一切分下运行官方 PyTorch 代码 3 个种子；Rust 实现 3 个种子的均值落在官方均值 ± max(2 倍官方标准差, 2% 相对误差) 内。适用于 P1 DLinear、P2 iTransformer、P3 Informer 的 ETT 实验。
 - D5 验收数据集：P1–P3 的 D4 门槛只用 ETT 四个数据集判定；Weather、Exchange、ECL、Traffic、ILI 在 P4 统一运行并报告，不设门槛。
 - D6 停窑处理：`cement-twin` 只使用稳定运行段。`窑头煤反馈 > 5` 且持续 ≥ 30 min 记为运行段；历史与目标窗口必须完全落在运行段内；开停窑过渡与停窑时段不参与训练与评价。
+- D7 后续模型：用户于 2026-10-13 要求在 `dev` 规划 Informer、WaveForM 等模型。Informer 复用 P3；WaveForM 独立为 `10-13-waveform`，其 Weather 对齐是模型首轮子集，其他五数据集完整比较仍归 P4。PatchTST、TSMixer/TimeMixer、TCN 为候选，不作为本轮全部实施承诺。路线、依赖与实施审批边界见本任务 `design.md`、`implement.md`。
 
 ## 子任务映射
 
@@ -48,8 +49,9 @@
 | `09-28-datasets-protocol` | 新增 | 数据清单与校验和、数据卡、切分与指标协议、私有数据检查 | 无（可与 P0 并行） | 公共数据集、`cement-twin` |
 | `09-28-p1-data-train-loop` | P1 | 数据管线、网格聚合与运行段、时间特征、窗口、scaler、掩码损失、基线、基本检查点、CLI | P0、datasets-protocol | 公共数据集、`cement-twin` |
 | `09-28-p2-itransformer` | P2 | iTransformer 复现、权重映射、完整恢复状态 | P1 | 公共数据集、`cement-twin` |
-| `09-28-p3-informer` | P3 | Informer 复现与专用算子 | P2 | 公共数据集、`cement-twin` |
-| `09-28-p4-experiment-platform` | P4 | 回测、比较、搜索、报告、更多模型 | P3 | 公共数据集、`cement-twin` |
+| `09-28-p3-informer` | P3 | Informer 复现与专用算子 | P2 已交付运行时；剩余验收单列 | 公共数据集、`cement-twin` |
+| `10-13-waveform` | 用户追加 | WaveForM 来源与协议冻结、可导小波/图算子、模型及正式实验 | P2 已交付运行时；独立研究后通过启动评审 | ETT、Weather、`cement-twin` |
+| `09-28-p4-experiment-platform` | P4 | 回测、比较、搜索、报告、更多模型 | 比较使用 P1/P2；各模型矩阵分别满足前置 | 公共数据集、`cement-twin` |
 | `09-28-p5-precision-serving` | P5 | 低精度、融合算子训练路径、HTTP 服务 | 第一版发布 | 公共数据集、`cement-twin` |
 
 父子结构不表达依赖；各子任务的前置顺序写在各自 `prd.md` 中。
@@ -82,7 +84,7 @@ P1–P3 门槛验收：ETT 四个（D5）。P4 报告：`weather`、`exchange`�
 
 ## Acceptance Criteria
 
-- [ ] 7 个子任务全部归档；或未完成子任务在本文件中标注延期原因与当前状态。
+- [ ] 子任务映射中的任务全部归档；或未完成子任务在本文件中标注延期原因与当前状态。
 - [ ] 第一版发布范围（计划书第 15 节）内的功能全部通过对应子任务验收；P3 未通过时，发布说明标注 Informer 为 preview。
 - [ ] 汇总结果表存在于 `docs/results/`，至少包含：ETT 四个数据集 × 预测长度 {96,192,336,720} × {DLinear, iTransformer, Informer} 的标准化空间 MSE/MAE（3 个种子均值 ± 标准差，并列官方 PyTorch 结果与 D4 判定）；`cement-twin` × H ∈ {15,30,60} × 同三个模型的分变量原始单位 MAE/RMSE；P4 运行的 5 个非 ETT 数据集结果（附公开参考数值）。
 - [ ] `git ls-files` 输出中无 `data/`、`runs/` 路径，无由私有数据派生的文件。

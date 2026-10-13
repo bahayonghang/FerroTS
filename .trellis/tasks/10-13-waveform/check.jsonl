@@ -1,0 +1,11 @@
+{"file": "AGENTS.md", "reason": "CUDA-first validation and project scope"}
+{"file": ".trellis/spec/backend/training-foundation.md", "reason": "Device and differentiable operator contracts"}
+{"file": ".trellis/spec/backend/data-pipeline.md", "reason": "Dataset/window/scaler and no-label-leak contract"}
+{"file": ".trellis/spec/backend/training-loop.md", "reason": "Training evaluation and artifact contract"}
+{"file": ".trellis/spec/backend/itransformer-training.md", "reason": "Static dispatch checkpoint resume and current CUDA boundary"}
+{"file": ".trellis/tasks/10-13-waveform/research/sources.md", "reason": "Primary sources license and operator risks"}
+{"file": "docs/datasets/ett.md", "reason": "ETT experiment protocol"}
+{"file": "docs/datasets/custom-lsf.md", "reason": "Weather protocol"}
+{"file": "docs/datasets/cement-yangquan.md", "reason": "Private stable-segment protocol"}
+{"file": ".trellis/tasks/10-13-waveform/design.md", "reason": "Design and acceptance mechanisms"}
+{"file": ".trellis/tasks/10-13-waveform/implement.md", "reason": "Ordered validation and review gates"}

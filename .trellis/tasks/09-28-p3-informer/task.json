@@ -12,7 +12,7 @@
   "assignee": "lyh",
   "createdAt": "2026-09-28",
   "completedAt": null,
-  "branch": null,
+  "branch": "dev",
   "base_branch": "main",
   "worktree_path": null,
   "commit": null,
@@ -20,7 +20,11 @@
   "subtasks": [],
   "children": [],
   "parent": "09-28-ferrots-implementation",
-  "relatedFiles": [],
-  "notes": "",
+  "relatedFiles": [
+    ".trellis/tasks/09-28-p3-informer/prd.md",
+    ".trellis/tasks/09-28-p3-informer/design.md",
+    ".trellis/tasks/09-28-p3-informer/implement.md"
+  ],
+  "notes": "Planning only; no implementation or training started. Review prd.md, design.md and implement.md before task.py start.",
   "meta": {}
 }

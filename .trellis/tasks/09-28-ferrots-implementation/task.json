@@ -12,7 +12,7 @@
   "assignee": "lyh",
   "createdAt": "2026-09-28",
   "completedAt": null,
-  "branch": null,
+  "branch": "dev",
   "base_branch": "main",
   "worktree_path": null,
   "commit": null,
@@ -25,10 +25,11 @@
     "09-28-p2-itransformer",
     "09-28-p3-informer",
     "09-28-p4-experiment-platform",
-    "09-28-p5-precision-serving"
+    "09-28-p5-precision-serving",
+    "10-13-waveform"
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "",
+  "notes": "P0, datasets protocol and P1 archived. P2 Linux CUDA matrix complete; remaining CPU/device clauses open. P3 Informer, WaveForM and P4 plans prepared; all remain planning. P5 deferred until first release. Main contains merge 5b937b0; dev owns subsequent planning.",
   "meta": {}
 }

@@ -1,0 +1,9 @@
+{"file": "AGENTS.md", "reason": "CUDA-first validation and project scope"}
+{"file": ".trellis/spec/backend/training-foundation.md", "reason": "Device and differentiable operator contracts"}
+{"file": ".trellis/spec/backend/data-pipeline.md", "reason": "Dataset/window/scaler and no-label-leak contract"}
+{"file": ".trellis/spec/backend/training-loop.md", "reason": "Training evaluation and artifact contract"}
+{"file": ".trellis/spec/backend/itransformer-training.md", "reason": "Static dispatch checkpoint resume and current CUDA boundary"}
+{"file": "docs/datasets/README.md", "reason": "Existing data protocols"}
+{"file": ".trellis/tasks/09-28-p2-itransformer/research/acceptance.md", "reason": "Verified P2 evidence and unclosed clauses"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/design.md", "reason": "Design and acceptance mechanisms"}
+{"file": ".trellis/tasks/09-28-ferrots-implementation/implement.md", "reason": "Ordered validation and review gates"}
