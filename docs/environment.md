@@ -108,3 +108,19 @@ bash tools/check_private_data.sh
 ```
 
 The fixture generator uses synthetic CPU FP32 tensors, seed 137, and torch foreach=False/fused=False. Its metadata includes parameter groups and actual package versions. The two checked-in safetensors files total 20,608 bytes. No private data or runs are included.
+
+## Additional measured host: Ubuntu, two RTX 4090s
+
+Measured on 2026-10-11 and used for the P2 Linux suite on 2026-10-12. This does not replace the Windows RTX 5090 Laptop record above.
+
+| Component | Observed value |
+| --- | --- |
+| OS | Ubuntu 24.04.4 LTS, kernel 6.17.0-22-generic |
+| GPU | 2x NVIDIA GeForce RTX 4090 |
+| Display driver | 595.71.05 |
+| CUDA Toolkit | 12.9 at `/usr/local/cuda-12.9` |
+| rustc | 1.98.0, target `x86_64-unknown-linux-gnu` |
+| Cargo target | `target/linux-cuda`; static CRT flags were not set |
+| Reference torch | 2.14.0+cu130, git `08187d9e0fba026dc8217405802ab5381dc88d90` |
+
+The P2 suite `runs/p2-acceptance/20261012-linux-cuda` passed on this host. Detail is in `.trellis/tasks/09-28-p2-itransformer/research/linux-env-20261011.md` and `research/acceptance.md`.

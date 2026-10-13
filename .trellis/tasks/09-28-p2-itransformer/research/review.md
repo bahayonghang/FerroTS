@@ -1,6 +1,31 @@
 # P2 inline review checkpoint
 
-Date: 2026-09-29. Status: formal acceptance in progress; final sign-off pending. Review stayed in the main session.
+## Linux final review: 2026-10-12
+
+The review stayed in the main session after `final.json` passed. No sub-agent was dispatched. The suite is `runs/p2-acceptance/20261012-linux-cuda`. Runtime source `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055` matches `suite.json` and `final.json`. The Linux binary hash is `43fd7365d289e01d3c0ff14882a8b54f7facdf79795af3905d05931bba9fe596`.
+
+| Requirement | Result |
+| --- | --- |
+| R1-R4, AC1-AC3 | Kept. Quality log shows `cpu_all_parameters_gradients_probes_and_adam` and `cuda_all_parameters_gradients_probes_and_adam` passed. The dedicated numerics gate passed 9 CUDA cases at acceptance version 2. |
+| R5-R6, AC4, AC5 | CUDA fresh-process recovery passed 10/10 on cuda:0. AC4's CPU bitwise clause was not rerun for this source. AC5 remains covered by the existing corruption tests in the 102 passing workspace tests. |
+| R7 | Registry `reproduction_status` for `itransformer` is `p2_cuda_formal_pass` on this source. The model card now names this suite. |
+| R8, AC6-AC8 | ETT 48/48 and D4 32/32 passed on cuda:0. Cement 9/9 and 108 report rows passed. Performance has 105 rows. The full CPU control is still open. Three cement runs used cuda:1, so the original cuda:0-only sentence is not met literally. |
+| X1 | `data/` and `runs/` stay ignored. Reports contain statistics and configured column names, not raw private rows. |
+| X2 | Public ETT and cement-twin are both in the 105-run matrix. |
+| X3 | Upstream iTransformer remains `c2426e68ca13f74aaec08045c5c724d8ad328124`. Torch git and Candle pin are recorded. |
+| X4 | The reproduction name remains `itransformer`. Cement protocol changes are in the cement configs, not the ETT defaults. |
+| X5 | Measured host is Ubuntu 24.04 with two RTX 4090 GPUs, driver 595.71.05, CUDA toolkit 12.9, Rust 1.98.0. This does not satisfy the parent RTX 5090 Laptop sentence. |
+| X6 | Entries bind resolved config, data fingerprint, source, seed, binary and device. `final` rechecked those identities. |
+
+Cross-layer flow is unchanged: configuration and data bindings enter `ForecastModel`, `TrainingSession` owns the training identity, the checkpoint coordinator publishes one generation, and the CLI writes a separate continuation. The acceptance runner checks artifacts. The Linux continuation only changes where cement runs are placed: `cuda:0` or `cuda:1`, still one run per device at a time, batch 32. It does not change the model, optimizer, seeds, windows or thresholds.
+
+The published cement report names the three `cuda:1` runs. That sentence was corrected in the markdown after generation. `p2_acceptance.py` was not edited again, because `quality.json` hashes it and `final` already accepted that hash.
+
+No new blocking code defect was found. The task stays `in_progress` because the CPU control and the RTX 5090 Laptop clause remain open. No archive or push.
+
+## Earlier checkpoint: 2026-09-29
+
+Status at that date: formal acceptance in progress; final sign-off pending. Review stayed in the main session.
 
 ## Verified identity and existing gates
 

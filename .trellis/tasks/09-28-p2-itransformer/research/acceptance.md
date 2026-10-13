@@ -1,5 +1,35 @@
 # P2 CUDA acceptance status
 
+## Linux formal suite: 2026-10-12
+
+Suite `runs/p2-acceptance/20261012-linux-cuda` finished. Executor PID 450356 is gone, and no training process remains. `final.json` passed.
+
+| Check | Passed | Failed | Ignored | Boundary |
+| --- | ---: | ---: | ---: | --- |
+| Quality workspace tests | 102 | 0 | 0 | Sum of `test result` lines, including CPU and CUDA numerical tests on this source |
+| Quality Python tests | 55 | 0 | 0 | `Ran 55 tests` and `OK` |
+| CUDA numerical cases | 9 | 0 | 0 | Dedicated gate is CUDA only; `device=cuda`, acceptance version 2 |
+| CUDA fresh-process recovery | 10 | 0 | 0 | All cases `cuda:0`, dropout 0.1 |
+| Official CUDA ETT | 48 | 0 | 0 | cuda GPU index 0, normal exits, full test arrays |
+| Rust CUDA ETT | 48 | 0 | 0 | cuda:0, batch 32 |
+| D4 comparisons | 32 | 0 | 0 | ddof=0, original two-sided bound |
+| Cement runs | 9 | 0 | 0 | All 18 variables; six runs cuda:0, three runs cuda:1; batch 32 |
+| Cement report rows | 108 | 0 | 0 | 3 horizons × 18 variables × MAE/RMSE |
+| Independent recomputation | 6 | 0 | 0 | 18,574,560 rows; largest absolute difference 1.2505552149377763e-12 |
+| Performance rows | 105 | 0 | 0 | 48 official + 57 Rust, one row per completed training run |
+
+Runtime source SHA256: `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`. Linux binary SHA256: `43fd7365d289e01d3c0ff14882a8b54f7facdf79795af3905d05931bba9fe596`. Host GPU: NVIDIA GeForce RTX 4090. P1 run directories were not loaded; the cement report uses the committed P1 CUDA table, seed 2021, n=1.
+
+The earlier H30 seed 2021 directory `rust-cement-itransformer-cuda-h30-s2021-20261012-033048-460448` has no entry and is not counted. The counted H30 seed 2021 entry is the later completed run.
+
+Not passed, and not counted as passed:
+
+- Step 15 full CPU control. The CUDA-first instruction left it unexecuted. The CPU numerical test in the quality log is not that control.
+- Parent X5 sentence that GPU acceptance runs on the RTX 5090 Laptop. Windows v5 did not finish and was not resumed here.
+- R8's original wording that every cement run uses cuda:0. Three completed cement runs used cuda:1.
+
+Evidence: `runs/p2-acceptance/20261012-linux-cuda/final.json`, `quality.json`, `recompute.json`, and `runs/p2-development/20261012-linux/executor-dual.log`.
+
 ## First cement epoch: 2026-09-30 05:44 America/Chicago
 
 The active CUDA H15/seed2021 run completed epoch 1: 299,819 training windows, 9,370 optimizer steps, zero skipped empty batches, train MSE 0.10933995531677243 and validation MSE 0.10041589545685217. Training took 9,299.952 seconds and validation took 7.171 seconds; the combined epoch time was 9,307.124 seconds (155.1 minutes). Checkpoint timing was 10.181 seconds. Steady throughput was 32.239 windows/s. Best and last checkpoint directories are present. These observations cover one epoch of an unfinished run; they do not establish final checkpoint validity or add a completed formal entry. Cement remains 0/9; executor PID67188 and training PID25580 remain active. The full matrix, independent recomputation, final quality and final acceptance remain pending. Evidence: runs/p2-development/tooling-transition-20260929-2129/cement-first-epoch-20260930-054416-417122.json.

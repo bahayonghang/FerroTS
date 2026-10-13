@@ -17,7 +17,7 @@ This directory contains guidelines for backend development. Fill in each file wi
 | [Training Foundation](./training-foundation.md) | P0 device, tensor, optimizer, checkpoint and doctor contracts | Implemented |
 | [Data Pipeline](./data-pipeline.md) | P1 CSV, preprocessing, scaler, cache, windows and input contracts | Implemented |
 | [Training Loop](./training-loop.md) | P1 baseline RNG, masked training, inference bundles and acceptance | Implemented |
-| [iTransformer and Resume](./itransformer-training.md) | P2 model mapping, training state, v2 resume and acceptance contracts | Implemented; formal acceptance pending |
+| [iTransformer and Resume](./itransformer-training.md) | P2 model mapping, training state, v2 resume and acceptance contracts | Linux CUDA matrix passed on two RTX 4090s; full CPU control and RTX 5090 Laptop matrix remain open |
 | [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
 | [Database Guidelines](./database-guidelines.md) | ORM patterns, queries, migrations | To fill |
 | [Error Handling](./error-handling.md) | Error types, handling strategies | To fill |

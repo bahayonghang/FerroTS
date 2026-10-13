@@ -34,14 +34,14 @@
 
 ## Acceptance Criteria
 
-- [ ] P2-AC1：固定权重与输入下，嵌入、每层注意力输出、FFN 输出、归一化输出、最终输出与官方夹具的差异在 atol=1e-5、rtol=1e-4 以内（CPU 与 CUDA）。
-- [ ] P2-AC2：全部可训练参数的梯度与夹具差异在同一容差以内；测试列出每个参数并断言梯度存在且不全为 0（使用非退化输入；连接性夹具定义见 Technical Notes）。
-- [ ] P2-AC3：保留全参数真实 MSE 梯度门；用同一份官方真实 MSE 梯度输入两端 Adam，比较全部参数、一二阶矩和 step，atol=1e-6、rtol=0。各后端独立反向后更新的全参数差异单独记录为诊断，不作为 AC3 通过条件。2026-09-29 用户明确批准，证据见 research/numerical-gate-diagnosis.md 第 5 节。
-- [ ] P2-AC4：恢复测试（Dropout 开启）：连续 2N 步与“N 步 → 保存 → resume → N 步”的参数在 CPU 上逐位相同，在 CUDA 上差异在 atol=1e-6 以内。
-- [ ] P2-AC5：损坏检查点（缺文件、校验和不符、变量顺序变化）加载时报错。
-- [ ] P2-AC6：ETT 16 组配置的标准化 MSE/MAE 满足父任务 D4 门槛（基准：本机运行官方 iTransformer 3 个种子），共32项双侧判定。使用总体标准差ddof=0，完整精度比较，原门槛不变。
-- [ ] P2-AC7：`cement-twin-v1` 结果与 P1 基线并列报告（全部18变量原始单位 MAE/RMSE，P2三个种子均值 ± 总体标准差；既有P1单种子标明n=1，标准差不适用）。
-- [ ] P2-AC8：记录每组实验的吞吐（样本/秒）、峰值显存、每 epoch 耗时；标明显存计数来源、采样周期及测量边界，不设性能门槛。
+- [x] P2-AC1：固定权重与输入下，嵌入、每层注意力输出、FFN 输出、归一化输出、最终输出与官方夹具的差异在 atol=1e-5、rtol=1e-4 以内（CPU 与 CUDA）。2026-10-12 Linux quality 日志中 CPU 与 CUDA 全参数测试均通过；正式数值门 9 例为 CUDA。
+- [x] P2-AC2：全部可训练参数的梯度与夹具差异在同一容差以内；测试列出每个参数并断言梯度存在且不全为 0（使用非退化输入；连接性夹具定义见 Technical Notes）。
+- [x] P2-AC3：保留全参数真实 MSE 梯度门；用同一份官方真实 MSE 梯度输入两端 Adam，比较全部参数、一二阶矩和 step，atol=1e-6、rtol=0。各后端独立反向后更新的全参数差异单独记录为诊断，不作为 AC3 通过条件。2026-09-29 用户明确批准，证据见 research/numerical-gate-diagnosis.md 第 5 节。
+- [ ] P2-AC4：恢复测试（Dropout 开启）：连续 2N 步与“N 步 → 保存 → resume → N 步”的参数在 CPU 上逐位相同，在 CUDA 上差异在 atol=1e-6 以内。CUDA 10/10 已在本套件通过；本 runtime source 的 CPU 逐位条款未重跑。
+- [x] P2-AC5：损坏检查点（缺文件、校验和不符、变量顺序变化）加载时报错。
+- [x] P2-AC6：ETT 16 组配置的标准化 MSE/MAE 满足父任务 D4 门槛（基准：本机运行官方 iTransformer 3 个种子），共32项双侧判定。使用总体标准差ddof=0，完整精度比较，原门槛不变。Linux 套件 32/32。
+- [x] P2-AC7：`cement-twin-v1` 结果与 P1 基线并列报告（全部18变量原始单位 MAE/RMSE，P2三个种子均值 ± 总体标准差；既有P1单种子标明n=1，标准差不适用）。P1 数字来自已提交表，n=1。
+- [x] P2-AC8：记录每组实验的吞吐（样本/秒）、峰值显存、每 epoch 耗时；标明显存计数来源、采样周期及测量边界，不设性能门槛。105 行均在 `docs/results/p2-itransformer-performance.md`。
 
 ## Out of Scope
 

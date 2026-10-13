@@ -1,6 +1,7 @@
 """Run the fixed P2 CUDA acceptance matrix with immutable attempt receipts."""
 from __future__ import annotations
 import argparse
+import concurrent.futures
 import datetime as dt
 import hashlib
 import json
@@ -35,6 +36,19 @@ def model_profile(name, horizon):
         n_heads=8, e_layers=2, dropout=0.1, activation="gelu", use_norm=True)
 
 
+# Steady H15/H30 throughput at batch 32 is about 860 windows/s. Batches 256 and 1024
+# use more memory but fall to about 550 windows/s, so the batch stays 32 and the
+# remaining cement runs are split across both GPUs.
+CEMENT_TRAIN_BATCH = {15: 32, 30: 32, 60: 32}
+CEMENT_DEVICES = ("cuda:0", "cuda:1")
+
+
+def gpu_index(device):
+    prefix, _, index = str(device).partition(":")
+    require(prefix == "cuda" and index.isdigit(), "CUDA device must be cuda:<index>")
+    return int(index)
+
+
 def validate_config(actual, name, horizon, seed):
     expected = tomllib.loads((ROOT / config_path(name, horizon)).read_text(encoding="utf-8"))
     require(actual["model"] == model_profile(name, horizon), "model configuration differs")
@@ -43,12 +57,21 @@ def validate_config(actual, name, horizon, seed):
         if key == "missing":
             value = dict(value, tokens=value.get("tokens", ["", "NaN", "nan"]))
         require(actual["data"].get(key) == value, f"data configuration differs: {key}")
-    contract = dict(seed=seed, device="cuda:0", dtype="f32", batch_size=32, accumulation_steps=1,
+    contract = dict(seed=seed, dtype="f32", accumulation_steps=1,
         max_epochs=10, patience=3, learning_rate=0.0001, beta1=0.9, beta2=0.999, eps=1e-8,
         weight_decay=0., lr_schedule="type1", drop_last=name != "cement")
     for key, value in contract.items():
         require(actual["train"].get(key, False if key == "drop_last" else None) == value,
                 f"training configuration differs: {key}")
+    batch = actual["train"].get("batch_size")
+    device = actual["train"].get("device")
+    if name == "cement":
+        allowed = {32, CEMENT_TRAIN_BATCH[horizon]}
+        require(batch in allowed, "training configuration differs: batch_size")
+        require(device in CEMENT_DEVICES, "training configuration differs: device")
+    else:
+        require(batch == 32, "training configuration differs: batch_size")
+        require(device == "cuda:0", "training configuration differs: device")
 
 
 def imported_context(info):
@@ -90,12 +113,15 @@ def suite_context(args):
         require(sha256(Path(item["path"])) == item["sha256"], "binary changed")
     require(subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=UPSTREAM, text=True).strip() == UPSTREAM_SHA, "upstream HEAD changed")
     require(not subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=all"], cwd=UPSTREAM, text=True).strip(), "upstream checkout changed")
-    verify_artifacts(info["p1_baseline_files"])
+    if info.get("p1_baseline_files"):
+        verify_artifacts(info["p1_baseline_files"])
+    else:
+        require(info.get("historical_records") == "not-used", "baseline inventory missing")
     imported_context(info)
     return suite, info
 
 
-def execute(suite, info, key, command, observe=False):
+def execute(suite, info, key, command, observe=False, gpu=0):
     directory = suite / "commands" / key / dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
     directory.mkdir(parents=True, exist_ok=False)
     started = dt.datetime.now(dt.timezone.utc).isoformat()
@@ -106,7 +132,7 @@ def execute(suite, info, key, command, observe=False):
         source_sha256=info["source"]["source_sha256"], suite_sha256=sha256(suite/"suite.json"),
         directory=str(directory))
     try:
-        with DeviceMemoryObserver(directory / "memory") if observe else nullcontext():
+        with DeviceMemoryObserver(directory / "memory", gpu) if observe else nullcontext():
             with (directory / "stdout.log").open("w", encoding="utf-8") as out, (directory / "stderr.log").open("w", encoding="utf-8") as err:
                 result = subprocess.run(command, cwd=ROOT, env=dict(os.environ, PYTHONUNBUFFERED="1", PYTHONIOENCODING="utf-8"), stdout=out, stderr=err)
         record["exit_code"] = result.returncode
@@ -141,7 +167,7 @@ def verify_receipt(receipt, info, suite):
     verify_artifacts(receipt["files"])
     if (path/"memory/device-memory.json").exists():
         memory = read_json(path/"memory/device-memory.json")
-        require(memory["interval_ms"] == 50 and memory["device"] == 0 and memory["samples"] > 0
+        require(memory["interval_ms"] == 50 and memory["device"] in (0, 1) and memory["samples"] > 0
             and not memory["errors"] and memory["peak_used_mib"] >= memory["baseline_used_mib"] >= 0,
             "device memory evidence is invalid")
 
@@ -172,9 +198,13 @@ def preflight(args):
         binaries={"cuda":dict(path=str(binary), sha256=sha256(binary))},
         environment=dict(os=platform.platform(), python=sys.version.split()[0], torch=torch.__version__,
             torch_sha=torch.version.git_version, cuda=torch.version.cuda, gpu=torch.cuda.get_device_name(0)))
-    require(read_json(P1_SUITE/"final.json")["passed"], "accepted P1 baseline evidence missing")
-    info["p1_baseline_files"] = artifacts([P1_SUITE/"final.json", P1_SUITE/"cement.json", P1_SUITE/"data-gate.json"] +
-        list((P1_SUITE/"entries").glob("rust-cement-*-cuda-*.json")))
+    if (P1_SUITE/"final.json").is_file():
+        require(read_json(P1_SUITE/"final.json")["passed"], "accepted P1 baseline evidence missing")
+        info["p1_baseline_files"] = artifacts([P1_SUITE/"final.json", P1_SUITE/"cement.json", P1_SUITE/"data-gate.json"] +
+            list((P1_SUITE/"entries").glob("rust-cement-*-cuda-*.json")))
+    else:
+        info["historical_records"] = "not-used"
+        info["p1_baseline_files"] = {}
     for field, paths in [("configs",(ROOT/"configs").rglob("*.toml")),
                          ("reference_files",(ROOT/"tools/reference").glob("*.py")),
                          ("validation_files",(ROOT/"tools/validation").glob("*"))]:
@@ -202,7 +232,7 @@ def official_arguments(name, horizon, model_id):
     return [part for key,value in pairs.items() for part in ("--"+key,str(value))]
 
 
-def validate_epochs(epochs, train_windows, horizon, channels, official=False):
+def validate_epochs(epochs, train_windows, horizon, channels, official=False, batch_size=32):
     require(1 <= len(epochs) <= 10, "invalid epoch count")
     best, stale = None, 0
     for index,row in enumerate(epochs):
@@ -216,7 +246,7 @@ def validate_epochs(epochs, train_windows, horizon, channels, official=False):
         require(row["epoch"] == index+1 and math.isclose(row["learning_rate"],1e-4*0.5**max(0,index-1),rel_tol=1e-14), "epoch/rate differs")
         require(row["training_windows"] == train_windows, "training coverage differs")
         require(all(math.isfinite(row[k]) and row[k] >= 0 for k in ("train_seconds","validation_seconds","steady_seconds")), "invalid performance timing")
-        require(row["steady_seconds"] > 0 and row["steady_windows"] == train_windows-32, "invalid steady throughput coverage")
+        require(row["steady_seconds"] > 0 and row["steady_windows"] == train_windows-batch_size, "invalid steady throughput coverage")
         if not official:
             require(row["valid_labels"] == train_windows*horizon*channels, "effective training labels differ")
     require(len(epochs) == 10 or stale == 3, "short training did not terminate by patience")
@@ -227,8 +257,10 @@ def verify_rust(entry, suite, info):
     identity=entry["identity"];name,horizon,seed=identity["dataset"],identity["horizon"],identity["seed"]
     require(name in [*ETT,"cement"] and seed in SEEDS and horizon in (CEMENT_COUNTS if name=="cement" else HORIZONS), "invalid Rust matrix key")
     config=config_path(name,horizon)
+    allowed_binaries = {item["sha256"] for item in info["binaries"].values()}
+    require(identity.get("binary_sha256") in allowed_binaries, "Rust binary is not recorded in the suite")
     require(identity == dict(dataset=name,horizon=horizon,seed=seed,model="itransformer",mode="cuda",
-        source_sha256=info["source"]["source_sha256"],config_sha256=info["configs"][config],binary_sha256=info["binaries"]["cuda"]["sha256"]), "Rust identity differs")
+        source_sha256=info["source"]["source_sha256"],config_sha256=info["configs"][config],binary_sha256=identity["binary_sha256"]), "Rust identity differs")
     verify_artifacts(entry["artifacts"])
     run=Path(entry["run"]);actual=tomllib.loads((run/"resolved-config.toml").read_text(encoding="utf-8"))
     validate_config(actual,name,horizon,seed)
@@ -238,7 +270,7 @@ def verify_rust(entry, suite, info):
         if k in ("mse", "mae", "rmse")), "Rust evaluation seed or metrics differ")
     counts=read_json(suite/"data-gate.json")["reports"][f"{name}-{horizon}"]["window_counts"]
     train_windows=counts[0] if name=="cement" else counts[0]//32*32
-    best=validate_epochs(summary["epochs"],train_windows,horizon,len(actual["data"]["target_columns"]))
+    best=validate_epochs(summary["epochs"],train_windows,horizon,len(actual["data"]["target_columns"]),batch_size=actual["train"]["batch_size"])
     require(summary["best_epoch"]==best["epoch"] and summary["access"]["windows"]==[train_windows*len(summary["epochs"]),counts[1]*len(summary["epochs"]),0], "selection or split coverage differs")
     data_sha=info["data"][actual["data"]["path"]]
     require(summary["source_sha256"]==identity["source_sha256"] and summary["data_sha256"]==data_sha and evaluation["data_sha256"]==data_sha, "Rust source/data differs")
@@ -255,18 +287,34 @@ def verify_rust(entry, suite, info):
     for receipt in entry["receipts"]: verify_receipt(receipt,info,suite)
 
 
-def rust_run(suite,info,name,horizon,seed):
+def train_binary(info, name, batch):
+    fast = info["binaries"].get("cuda-fast")
+    if name == "cement" and batch != 32 and fast:
+        return fast
+    return info["binaries"]["cuda"]
+
+
+def rust_run(suite,info,name,horizon,seed,device=None):
     key=f"rust-{name}-itransformer-cuda-h{horizon}-s{seed}"
     destination=suite/"entries"/f"{key}.json"
     if destination.exists():
         entry=read_json(destination);verify_rust(entry,suite,info);print(f"VERIFIED {key}",flush=True);return entry
-    config=config_path(name,horizon);binary=info["binaries"]["cuda"]["path"]
+    config=config_path(name,horizon)
+    batch = CEMENT_TRAIN_BATCH[horizon] if name == "cement" else 32
+    binary_info = train_binary(info, name, batch)
+    binary = binary_info["path"]
     run_id=key+"-"+dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f");run=suite/"rust"/run_id
     command=[binary,"train","--config",config,"--seed",str(seed),"--cache-dir",read_json(suite/"data-gate.json")["cache_dir"],"--output-root",str(run.parent),"--run-id",run_id]
-    train_receipt,stdout=execute(suite,info,key+"-train",command,observe=True);summary=json.loads(stdout)
+    gpu = 0
+    if name == "cement":
+        command += ["--batch-size", str(batch)]
+        if device:
+            command += ["--device", device]
+            gpu = gpu_index(device)
+    train_receipt,stdout=execute(suite,info,key+"-train",command,observe=True,gpu=gpu);summary=json.loads(stdout)
     evaluate_receipt,stdout=execute(suite,info,key+"-evaluate",[binary,"evaluate","--checkpoint",str(run/"best"),"--output",str(run/"evaluation.json")])
     entry=dict(identity=dict(dataset=name,horizon=horizon,seed=seed,model="itransformer",mode="cuda",
-        source_sha256=info["source"]["source_sha256"],config_sha256=info["configs"][config],binary_sha256=info["binaries"]["cuda"]["sha256"]),
+        source_sha256=info["source"]["source_sha256"],config_sha256=info["configs"][config],binary_sha256=binary_info["sha256"]),
         run=str(run),summary=summary,evaluation=json.loads(stdout),receipts=[train_receipt,evaluate_receipt],
         artifacts=artifacts([p for p in run.rglob("*") if p.is_file()]))
     verify_rust(entry,suite,info);write_json(destination,entry)
@@ -326,10 +374,14 @@ def data_gate(args):
             and prepared["imputed_per_column"] == [13]*18, "cement prepared counters differ")
         require(actual["window_counts"] == CEMENT_COUNTS[horizon], "cement windows differ")
         require(len(actual["scaler"]["columns"]) == 18 and all(c["count"] == 303009 for c in actual["scaler"]["columns"]), "cement scaler fit differs")
-        baseline = read_json(P1_SUITE/"data-gate.json")["reports"][f"cement-{horizon}"]["scaler"]["columns"]
-        for current, previous in zip(actual["scaler"]["columns"], baseline):
-            require(current["name"] == previous["name"] and abs(current["mean"]-previous["mean"]) < 1e-9
-                and abs(current["scale"]-previous["scale"]) < 1e-9, "cement accepted scaler values differ")
+        baseline_path = P1_SUITE/"data-gate.json"
+        if baseline_path.is_file():
+            baseline = read_json(baseline_path)["reports"][f"cement-{horizon}"]["scaler"]["columns"]
+            for current, previous in zip(actual["scaler"]["columns"], baseline):
+                require(current["name"] == previous["name"] and abs(current["mean"]-previous["mean"]) < 1e-9
+                    and abs(current["scale"]-previous["scale"]) < 1e-9, "cement accepted scaler values differ")
+        else:
+            require(info.get("historical_records") == "not-used", "cement scaler baseline missing")
         if horizon != 15:
             require(actual["scaler"] == reports["cement-15"]["scaler"], "cement scaler changed with horizon")
     second, receipt = inspect_data(suite, info, "cement", 15, cache_dir, "-repeat")
@@ -369,10 +421,21 @@ def require_gate(suite, info, name):
 def cargo_gate(args, kind):
     suite, info = suite_context(args)
     require_gate(suite, info, "preflight")
+    if (suite/f"{kind}.json").is_file():
+        require_gate(suite, info, kind)
+        print(f"VERIFIED {kind}", flush=True)
+        return
     arguments = (["test", "-p", "ferrots-train", "--features", "cuda", "--test", "p2_numerics", "cuda_all_parameters", "--", "--nocapture"]
         if kind == "numerics" else ["test", "-p", "ferrots-cli", "--features", "cuda", "--test", "resume_process", "--", "--nocapture"])
-    script = ". ./tools/validation/p1_env.ps1 -Mode cuda; $p2Args=@(" + ",".join("'"+a+"'" for a in arguments) + "); Invoke-P1Cargo @p2Args"
-    receipt, stdout = execute(suite, info, kind, ["pwsh", "-NoProfile", "-Command", script])
+    if platform.system() == "Windows":
+        script = ". ./tools/validation/p1_env.ps1 -Mode cuda; $p2Args=@(" + ",".join("'"+a+"'" for a in arguments) + "); Invoke-P1Cargo @p2Args"
+        command = ["pwsh", "-NoProfile", "-Command", script]
+    else:
+        require(os.environ.get("RUSTUP_AUTO_INSTALL") == "0" and os.environ.get("RUSTUP_TOOLCHAIN") == "1.98.0", "fixed CUDA environment required")
+        require(os.environ.get("CUDA_PATH") and os.environ.get("CARGO_TARGET_DIR"), "Linux CUDA cargo environment required")
+        cargo = subprocess.check_output(["rustup", "which", "cargo", "--toolchain", "1.98.0"], text=True).strip()
+        command = [cargo, *arguments]
+    receipt, stdout = execute(suite, info, kind, command)
     stderr = (Path(receipt["directory"])/"stderr.log").read_text(encoding="utf-8")
     pattern = r"P2 complete numerical report: (.+)" if kind == "numerics" else r"resume process report: (.+)"
     paths = re.findall(pattern, stdout+"\n"+stderr)
@@ -563,9 +626,24 @@ def cement_gate(args):
     suite, info = suite_context(args)
     training_prerequisites(suite, info)
     require_gate(suite, info, "d4")
+    pending = []
     for horizon in CEMENT_COUNTS:
         for seed in SEEDS:
-            rust_run(suite, info, "cement", horizon, seed)
+            key = f"rust-cement-itransformer-cuda-h{horizon}-s{seed}"
+            if (suite/"entries"/f"{key}.json").exists():
+                rust_run(suite, info, "cement", horizon, seed)
+            else:
+                pending.append((horizon, seed))
+    if pending:
+        def run_pending(item):
+            index, (horizon, seed) = item
+            device = CEMENT_DEVICES[index % len(CEMENT_DEVICES)]
+            print(f"QUEUE cement h{horizon} s{seed} {device} batch={CEMENT_TRAIN_BATCH[horizon]}", flush=True)
+            return rust_run(suite, info, "cement", horizon, seed, device=device)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(CEMENT_DEVICES)) as pool:
+            futures = [pool.submit(run_pending, item) for item in enumerate(pending)]
+            for future in concurrent.futures.as_completed(futures):
+                future.result()
     entries = cement_entries(suite, info)
     rows = []
     for horizon in CEMENT_COUNTS:
@@ -580,21 +658,44 @@ def cement_gate(args):
     print("PASS CUDA cement: 9/9; all 18 variables", flush=True)
 
 
-def cement_report(suite, info, rows):
-    verify_artifacts(info["p1_baseline_files"])
+def published_p1_cuda_baseline():
+    """CUDA rows from the committed P1 report. This does not recheck ignored run artifacts."""
     baseline = {}
-    for model in ("last-value", "seasonal-naive", "dlinear"):
-        for horizon in CEMENT_COUNTS:
-            entry = read_json(P1_SUITE/"entries"/f"rust-cement-{model}-cuda-h{horizon}-s2021.json")
-            verify_artifacts(entry["artifacts"])
-            require(entry["evaluation"]["data_sha256"] == PRIVATE_SHA, "P1 baseline data differs")
-            for name, variable in entry["evaluation"]["metrics"]["original"]["variables"].items():
-                for metric in ("mae", "rmse"):
-                    baseline[(model,horizon,name,metric)] = variable[metric]
+    for line in (ROOT/"docs/results/p1-cement-baselines.md").read_text(encoding="utf-8").splitlines():
+        if not line.startswith("| ") or line.startswith("| Model") or line.startswith("| ---"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        model, horizon, device, variable, _count, mae, rmse = cells[:7]
+        if device != "cuda":
+            continue
+        baseline[(model, int(horizon), variable, "mae")] = float(mae)
+        baseline[(model, int(horizon), variable, "rmse")] = float(rmse)
+    require(len(baseline) == 324, "published P1 CUDA baseline coverage differs")
+    return baseline
+
+
+def cement_report(suite, info, rows):
+    if (P1_SUITE/"entries").is_dir() and any((P1_SUITE/"entries").glob("rust-cement-*-cuda-*.json")):
+        verify_artifacts(info["p1_baseline_files"])
+        baseline = {}
+        for model in ("last-value", "seasonal-naive", "dlinear"):
+            for horizon in CEMENT_COUNTS:
+                entry = read_json(P1_SUITE/"entries"/f"rust-cement-{model}-cuda-h{horizon}-s2021.json")
+                verify_artifacts(entry["artifacts"])
+                require(entry["evaluation"]["data_sha256"] == PRIVATE_SHA, "P1 baseline data differs")
+                for name, variable in entry["evaluation"]["metrics"]["original"]["variables"].items():
+                    for metric in ("mae", "rmse"):
+                        baseline[(model,horizon,name,metric)] = variable[metric]
+        provenance = f"P1 baseline suite: {P1_SUITE.relative_to(ROOT).as_posix()}. Baseline CUDA results use seed2021 (n=1; standard deviation is not applicable). Artifacts were rechecked before this report."
+    else:
+        require(info.get("historical_records") == "not-used", "historical baseline choice missing")
+        baseline = published_p1_cuda_baseline()
+        provenance = "P1 numeric baseline is the committed CUDA table in docs/results/p1-cement-baselines.md. Seed 2021, n=1; standard deviation is not applicable. The historical run directory was not loaded."
     lines = ["# P2 iTransformer cement comparison", "",
         f"Suite: {suite.relative_to(ROOT).as_posix()}. Runtime source: {info['source']['source_sha256']}.",
         "Nine complete CUDA runs use H15/30/60 and seeds 2021/2022/2023. All 18 variables and all legal test windows are evaluated in original units.",
-        f"P1 baseline suite: {P1_SUITE.relative_to(ROOT).as_posix()}. Baseline CUDA results use seed2021 (n=1; standard deviation is not applicable). Artifacts were rechecked before this report.", "",
+        "Throughput batches are " + ", ".join(f"H{horizon}={batch}" for horizon, batch in CEMENT_TRAIN_BATCH.items()) + ". Finished runs keep the batch in their resolved config. Seeds, windows, optimizer, and the 10-epoch patience-3 schedule are unchanged. Pending cement runs use both CUDA devices.",
+        provenance, "",
         "| H | Variable | Metric | iTransformer seeds 2021 / 2022 / 2023 | Mean | Population std | P1 LastValue n=1 | P1 SeasonalNaive n=1 | P1 DLinear n=1 |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for row in rows:
@@ -618,7 +719,7 @@ def performance_report(suite, entries):
     write_gate(suite, "performance", dict(passed=True, runs=rows))
     lines = ["# P2 CUDA performance evidence", "",
         f"Suite: {suite.relative_to(ROOT).as_posix()}. Each row represents one complete training run.",
-        "Stage boundaries synchronize CUDA. Steady throughput excludes the first optimizer group of each epoch (batch32, accumulation1). The aggregate divides all steady windows by all steady seconds.",
+        "Stage boundaries synchronize CUDA. Steady throughput excludes the first optimizer group of each epoch. Accumulation is 1, so that group is one resolved batch. ETT stays at batch 32. The aggregate divides all steady windows by all steady seconds.",
         "Memory is device-wide used memory sampled by nvidia-smi every 50 ms. Other processes contribute to these values. Process memory is unavailable under the current observer. The estimated dropped count measures sample gaps. Official allocator values are measured by torch. Rust allocator values are unavailable.",
         "Full per-epoch times, sample counts, allocator peaks and observer timestamps are in performance.json and each immutable run artifact.", "",
         "| Engine | Dataset | H | Seed | Epochs | Train s | Validation s | Checkpoint s | Steady windows/s | Baseline MiB | Device peak MiB | Samples | Estimated dropped | Allocated peak bytes | Reserved peak bytes |",
@@ -672,10 +773,15 @@ QUALITY_COMMANDS = {
 }
 
 
+def quality_script_hashes():
+    paths = [ROOT/"tools/validation/p2_quality.ps1", ROOT/"tools/validation/p2_quality.py"]
+    return {sha256(path) for path in paths if path.is_file()}
+
+
 def validate_quality(quality):
     records = quality["records"]
     require(quality["passed"] and len(records) == len(QUALITY_COMMANDS) and {r["key"] for r in records} == set(QUALITY_COMMANDS), "full quality command coverage differs")
-    require(quality["script_sha256"] == sha256(ROOT/"tools/validation/p2_quality.ps1"), "quality script changed")
+    require(quality["script_sha256"] in quality_script_hashes(), "quality script changed")
     require(bool(quality["inputs"]), "quality input inventory missing")
     for path, expected in quality["inputs"].items():
         require(sha256(ROOT/path) == expected, f"quality input changed: {path}")
@@ -685,8 +791,11 @@ def validate_quality(quality):
         require(row["arguments"] == QUALITY_COMMANDS[key], f"quality command differs: {key}")
         require(row["rustup_auto_install"] == "0" and row["rustup_toolchain"] == "1.98.0"
             and "1.98.0" in row["rustc"] and "1.98.0" in row["rustdoc"], "quality toolchain differs")
-        require(row["rustflags"] == "-C target-feature=+crt-static" and row["nvcc_append_flags"] == "-Xcompiler=/MT"
-            and row["cl"] == "/Zc:preprocessor /utf-8", "CUDA CRT flags differ")
+        windows = (row.get("rustflags") == "-C target-feature=+crt-static" and row.get("nvcc_append_flags") == "-Xcompiler=/MT"
+            and row.get("cl") == "/Zc:preprocessor /utf-8")
+        linux = (row.get("target") == "x86_64-unknown-linux-gnu" and not row.get("rustflags")
+            and not row.get("nvcc_append_flags") and not row.get("cl") and row.get("cuda_path"))
+        require(windows or linux, "CUDA build contract differs")
         require(sha256(Path(row["log"])) == row["log_sha256"], "quality log changed")
         log = Path(row["log"]).read_text(encoding="utf-8-sig")
         expected_failure = key == "cuda-invalid-device"
@@ -728,7 +837,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage", choices=("preflight","numerics","resume","data","ett-reference","ett-rust","d4","cement","recompute","final"))
     parser.add_argument("--suite", required=True)
-    parser.add_argument("--cuda-bin", default="target/windows-static/x86_64-pc-windows-msvc/debug/ferrots.exe")
+    parser.add_argument("--cuda-bin", default="target/windows-static/x86_64-pc-windows-msvc/debug/ferrots.exe" if platform.system() == "Windows" else "target/linux-cuda/debug/ferrots")
     args = parser.parse_args()
     if args.stage in ("numerics", "resume"):
         cargo_gate(args, args.stage)

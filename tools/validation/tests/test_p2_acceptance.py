@@ -109,6 +109,33 @@ class AcceptanceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 acceptance.verify_artifacts(files)
 
+    def test_cement_can_use_the_second_gpu_without_changing_ett(self):
+        self.assertEqual(set(acceptance.CEMENT_TRAIN_BATCH.values()), {32})
+        cement = tomllib.loads((acceptance.ROOT/acceptance.config_path("cement", 60)).read_text(encoding="utf-8"))
+        cement["data"]["missing"].setdefault("tokens", ["", "NaN", "nan"])
+        cement["train"]["device"] = "cuda:1"
+        acceptance.validate_config(cement, "cement", 60, 2021)
+        cement["train"]["batch_size"] = 1024
+        with self.assertRaises(ValueError):
+            acceptance.validate_config(cement, "cement", 60, 2021)
+        ett = tomllib.loads((acceptance.ROOT/acceptance.config_path("ETTh1", 96)).read_text(encoding="utf-8"))
+        ett["train"]["device"] = "cuda:1"
+        with self.assertRaises(ValueError):
+            acceptance.validate_config(ett, "ETTh1", 96, 2021)
+
+    def test_steady_coverage_uses_the_resolved_batch(self):
+        rows = [epoch(i, 1./i) for i in range(1, 11)]
+        for row in rows:
+            row["steady_windows"] = 80
+        self.assertEqual(acceptance.validate_epochs(rows, 96, 96, 7, batch_size=16)["epoch"], 10)
+        with self.assertRaises(ValueError):
+            acceptance.validate_epochs(rows, 96, 96, 7)
+
+    def test_published_p1_table_covers_cuda_baselines(self):
+        baseline = acceptance.published_p1_cuda_baseline()
+        self.assertEqual(len(baseline), 324)
+        self.assertEqual(baseline[("last-value", 15, "窑喂料反馈", "mae")], 1.054294337)
+
     def test_quality_requires_full_cuda_commands(self):
         entries = [dict(key=k) for k in acceptance.QUALITY_COMMANDS]
         for bad in ([],entries[:-1],entries[1:]+[entries[1]]):

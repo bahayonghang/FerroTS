@@ -146,18 +146,18 @@ Python统一使用 `uv run --frozen --project tools/reference python ...`。日�
 
 ## 18. 水泥完整矩阵与独立复算
 
-- [ ] cuda:0，H15/30/60×seed2021/2022/2023，共9次完整训练/evaluate；每次验证全部18变量、原始单位与全测试窗口。
-- [ ] 报告三个种子的均值±总体标准差，并列P1已验收基线；P1单种子标n=1/std不适用，不能构造假标准差。
-- [ ] H60/seed2021导出指定三变量的全部103,192 origins×60步×3变量=18,574,560行CSV.gz；不采样。
-- [ ] 独立Python流式复算6项MAE/RMSE，绝对差<1e-6；产物保留在runs/。报告只含统计量。
+- [x] H15/30/60×seed2021/2022/2023，共9次完整训练/evaluate；每次验证全部18变量、原始单位与全测试窗口。batch 均为 32。H15 三组、H30 seed 2021/2023、H60 seed 2022 在 cuda:0；H30 seed 2022、H60 seed 2021/2023 在 cuda:1。原“全部 cuda:0”条款因此未按字面满足，设备以各 run 的 resolved config 为准。
+- [x] 报告三个种子的均值±总体标准差，并列P1已验收基线；P1单种子标n=1/std不适用，不能构造假标准差。基线取已提交的 `docs/results/p1-cement-baselines.md`，本机未加载 P1 run 目录。
+- [x] H60/seed2021导出指定三变量的全部103,192 origins×60步×3变量=18,574,560行CSV.gz；不采样。
+- [x] 独立Python流式复算6项MAE/RMSE，绝对差最大 1.2505552149377763e-12，低于 1e-6；产物保留在runs/。报告只含统计量。
 
 ## 19. 最终质量门与内联trellis-check
 
-- [ ] 按已批准的CUDA优先策略运行完整fmt/CUDA build/Clippy/workspace tests、Python全部测试、真实doctor两项、Trellis验证、隐私和diff检查；测试失败/忽略均为0。基线测试数CPU65/CUDA71/Python9不得因删除测试下降，新用例另计。
-- [ ] 最终suite重新读取全部105次CUDA训练项（完整CPU对照保持未执行）、32个D4判定、9次cement的18变量、全行独立复算、数值门和恢复门；验证每份receipt/source/binary/config/manifest hash及集合完整性。
-- [ ] 按 `trellis-check` 内联审查P2-R1至R8、AC1至AC8、X1至X6及跨层流；写research/acceptance.md与review.md，记录实际通过/失败/忽略数和任何未测边界。
-- [ ] 更新backend model/resume规范、模型卡/能力状态及环境记录，只把已实测组合记为支持；不要改P1历史验收结论。
-- [ ] 全部门通过后才允许进入本地提交。失败保留事实，不宣告P2完成。
+- [x] Linux quality：fmt、CUDA build、Clippy `-D warnings`、workspace tests 102 passed / 0 failed / 0 ignored、Python 55 passed / 0 failed、cuda:0 doctor 通过、cuda:9 预期失败、task.py validate、隐私检查和 diff check。证据 `runs/p2-acceptance/20261012-linux-cuda/quality.json`。计数不低于原基线，没有删测试。
+- [x] `final.json` 重新读取 105 次 CUDA 训练、D4 32/32、9 次 cement 的 18 变量、18,574,560 行独立复算、数值门和恢复门，并复核 quality 输入哈希。完整 CPU 对照保持未执行。
+- [x] 主会话内联审查 P2-R1 至 R8、AC1 至 AC8、X1 至 X6 及跨层流。结论写在 research/acceptance.md 与 research/review.md。
+- [x] 已更新 backend iTransformer 规格、模型卡和 Linux 环境记录。只把本机实测组合记为这次正式结果。P1 历史验收结论未改。
+- [x] CUDA 正式门已通过，但第 15 步 CPU 对照和父任务 RTX 5090 Laptop 条款仍未完成，因此不宣告 P2 任务完成，也不归档。
 
 ## 20. 本地交付与后续收尾
 
@@ -331,3 +331,25 @@ The user asked to check the current Trellis task and continue implementation. Li
 execute-v5.ps1 was relaunched unchanged (SHA256 b30f7ad2a2e42e8276bf8790a2e514b7235a79ffc1672878ec88e96194c42ed6) through Windows CIM. Executor PID47012, created 2026-10-05T08:39:49.0917910Z, parent WmiPrvSE.exe PID9020. Records: runs/p2-development/p2-v5-20261003/executor-20261005-033949-8301611. Receipt: runs/p2-development/p2-v5-20261003/relaunch-20261005.json. The earlier relaunch.json was not overwritten.
 
 Preflight, initial quality, data, numerics and resume were skipped on existing result files. ett-reference verified official ETT 48/48 without retraining and passed at 08:40:31Z. ett-rust then verified the 27 existing Rust entries and started rust-ETTm1-itransformer-cuda-h192-s2021-train. Remaining after that entry: 20 Rust ETT runs, then D4, cement 9, recompute, final quality and final acceptance. No commit, archive or push.
+
+## Linux host check: 2026-10-11
+
+The repository is now on Ubuntu 24.04 with two RTX 4090 GPUs, driver 595.71.05, and CUDA toolkit 12.9. Rust 1.98.0 was already installed. The frozen reference environment and pinned upstream checkouts were synchronized here. A separate Linux CUDA target, `target/linux-cuda`, built with dynamic CUDA and without the Windows static CRT flags. Doctor `cuda:0` passed and `cuda:9` failed with `CUDA_ERROR_INVALID_DEVICE`. fmt, CUDA Clippy `-D warnings`, and the CUDA workspace tests passed: 101 passed, 0 failed, 0 ignored. Runtime source remains `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`. The Linux binary SHA256 is `43fd7365d289e01d3c0ff14882a8b54f7facdf79795af3905d05931bba9fe596`. Evidence: `research/linux-env-20261011.md`.
+
+`runs/` is not on this machine, so Windows v5 cannot be resumed. The acceptance cargo gates still require PowerShell and the Windows CUDA environment helper, and the quality check requires the Windows CRT flags. This host is not the same acceptance identity. The frozen reference environment finished installing at 2026-10-12 03:36 UTC: torch 2.14.0+cu130, git 08187d9e0fba026dc8217405802ab5381dc88d90, CUDA available on RTX 4090. Python unittest then passed 52 tests with 0 failures.
+
+## Cement throughput: 2026-10-12
+
+H15 seeds 2021, 2022, and 2023 completed at batch 32. Steady throughput was about 860 windows/s, with GPU 0 near 1 GiB and about 40% utilization. Release probes at batch 256 and 1024 raised device memory (about 13 GiB at the high end) but fell to about 540–550 windows/s, so the cement batch stays 32. The unfinished H30 seed 2021 train had no entry and was stopped; its directory remains under the suite `rust/` tree and is not counted.
+
+The validator now accepts cement on `cuda:0` or `cuda:1` while ETT stays on `cuda:0` and batch 32. Pending H30 and H60 runs use both GPUs, two at a time. Executor PID 450356, parent 1, log `runs/p2-development/20261012-linux/executor-dual.log`. It rechecks completed gates, then trains the six missing cement runs. No commit, archive, or push.
+
+## Fresh Linux suite: 2026-10-11 23:08 America/Chicago
+
+The user directed a new run record, without loading the old experiment directories. Suite `runs/p2-acceptance/20261012-linux-cuda` was created on this host. `historical_records` is `not-used`. Runtime source remains `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`. Linux binary SHA256 is `43fd7365d289e01d3c0ff14882a8b54f7facdf79795af3905d05931bba9fe596`. Seeds, horizons, thresholds, and the 105-run matrix are unchanged. Executor PID 3269182, parent 1, log `runs/p2-development/20261012-linux/executor.log`. Preflight and the Linux quality gate passed before the data gate. No commit, archive, or push.
+
+## Linux suite complete: 2026-10-12
+
+Executor PID 450356 exited after the dual-GPU cement continuation. Log: `runs/p2-development/20261012-linux/executor-dual.log`. `final.json` passed: official CUDA ETT 48, Rust CUDA ETT 48, cement 9, D4 32/32, independent recomputation 18,574,560 rows and 6/6 metrics. The largest absolute recomputation difference is 1.2505552149377763e-12. Quality recorded Rust 102 and Python 55, with zero failed and zero ignored tests. No training process remained.
+
+Cement batch stayed 32. Six runs used cuda:0 and three used cuda:1, as listed in step 18. ETT remained on cuda:0 and GPU index 0. The unfinished earlier H30 seed 2021 directory has no entry and is not counted. Step 15, the full CPU control, remains open. This host does not satisfy the parent RTX 5090 Laptop acceptance sentence. The task stays in_progress. No archive or push.
