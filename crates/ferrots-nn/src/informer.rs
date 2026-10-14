@@ -91,6 +91,21 @@ impl InformerSamplingSchedule {
     }
 }
 
+/// PyTorch 2.14 `NormalFill16` for float: eight `(u1, u2)` pairs from one block.
+fn box_muller16(data: &mut [f32], std: f32) {
+    let mut out = [0f32; 16];
+    let two_pi = 2.0 * std::f32::consts::PI;
+    for j in 0..8 {
+        let u1 = 1.0 - data[j];
+        let u2 = data[j + 8];
+        let radius = (-2.0 * u1.ln()).sqrt();
+        let theta = two_pi * u2;
+        out[j] = radius * theta.cos() * std;
+        out[j + 8] = radius * theta.sin() * std;
+    }
+    data[..16].copy_from_slice(&out);
+}
+
 fn push_site(sites: &mut Vec<(u64, usize)>, queries: usize, keys: usize, factor: usize) {
     let sample_k = prob_sample_count(factor, keys);
     sites.push((keys as u64, queries.saturating_mul(sample_k)));
@@ -288,17 +303,40 @@ impl Informer {
             .map(|_| self.initialization_rng.uniform(-bound, bound))
             .collect();
         if normal {
-            // Kaiming normal (default a=0). Shared official weights are used for exact fixtures;
-            // this independent normal stream is not claimed to match torch RNG bitwise.
-            let std = (2.0 / fan as f64).sqrt();
-            for pair in values.chunks_mut(2) {
-                let u = self.initialization_rng.uniform(f32::MIN_POSITIVE, 1.0) as f64;
-                let theta =
-                    self.initialization_rng.uniform(0.0, 1.0) as f64 * std::f64::consts::TAU;
-                let radius = (-2.0 * u.ln()).sqrt() * std;
-                pair[0] = (radius * theta.cos()) as f32;
-                if pair.len() == 2 {
-                    pair[1] = (radius * theta.sin()) as f32;
+            // The uniform fill above is Conv1d::reset_parameters. TSLib then calls
+            // kaiming_normal_(fan_in, leaky_relu, a=0). PyTorch 2.14 overwrites a
+            // contiguous float tensor of at least 16 values with uniform(0, 1) and
+            // applies Box–Muller in blocks of 16. A non-multiple of 16 redraws the
+            // last block. This keeps the same uniform count as that path, so the
+            // generator state after tokenConv still matches the official stream.
+            let std = (2.0 / fan as f64).sqrt() as f32;
+            let n = values.len();
+            if n >= 16 {
+                for value in &mut values {
+                    *value = self.initialization_rng.uniform(0.0, 1.0);
+                }
+                let mut start = 0;
+                while start + 16 <= n {
+                    box_muller16(&mut values[start..start + 16], std);
+                    start += 16;
+                }
+                if !n.is_multiple_of(16) {
+                    let tail = n - 16;
+                    for value in &mut values[tail..] {
+                        *value = self.initialization_rng.uniform(0.0, 1.0);
+                    }
+                    box_muller16(&mut values[tail..], std);
+                }
+            } else {
+                for pair in values.chunks_mut(2) {
+                    let u = self.initialization_rng.uniform(f32::MIN_POSITIVE, 1.0) as f64;
+                    let theta =
+                        self.initialization_rng.uniform(0.0, 1.0) as f64 * std::f64::consts::TAU;
+                    let radius = (-2.0 * u.ln()).sqrt() * std as f64;
+                    pair[0] = (radius * theta.cos()) as f32;
+                    if pair.len() == 2 {
+                        pair[1] = (radius * theta.sin()) as f32;
+                    }
                 }
             }
         }
