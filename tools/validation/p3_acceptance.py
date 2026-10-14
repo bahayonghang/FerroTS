@@ -26,6 +26,16 @@ from p2_quality import require_environment
 from p3_smoke import ETT, HORIZONS, SEEDS, official_arguments
 
 UPSTREAM = ROOT / "tools/reference/.cache/Time-Series-Library"
+# 2026-10-13 required 186 GiB free for the first suite. The 2026-10-14 approval
+# keeps that suite and starts a second one. Measured free space was about 140 GiB,
+# and the finished ETT portion was 51G. Freeze now requires 100 GiB free. Each
+# later cell still stops below 5 GiB free and does not delete retained artifacts.
+RERUN_FREE_BYTES = 100 * 2**30
+RERUN_APPROVAL = dict(
+    date="2026-10-14",
+    decision="用户批准",
+    budget="second suite beside retained 20261013-linux-cuda; prior attempt measured 51G and about 11h47m for 96/105; cement unmeasured; freeze floor 100 GiB; rust parent 95ea51d",
+)
 
 
 def config_path(name, horizon):
@@ -98,7 +108,7 @@ def freeze(suite, binary):
     paths += [p for p in (ROOT / "tests/fixtures").rglob("*") if p.is_file()]
     paths += [ROOT / "docs/results/p1-cement-baselines.md", ROOT / "docs/results/p2-itransformer-cement.md",
               ROOT / "tools/reference/uv.lock", ROOT / "tools/reference/pyproject.toml"]
-    require(shutil.disk_usage(ROOT).free > 186 * 2**30, "approved disk allowance is unavailable")
+    require(shutil.disk_usage(ROOT).free > RERUN_FREE_BYTES, "approved disk allowance is unavailable")
     suite.mkdir(parents=True, exist_ok=False)
     # Preserve a suite-owned binary so subsequent builds cannot silently replace it.
     frozen = suite / "bin/ferrots"
@@ -106,7 +116,7 @@ def freeze(suite, binary):
     shutil.copy2(binary, frozen)
     info = dict(format_version=1, model="informer", upstream_sha=TSLIB_SHA, source=source,
         formal_runs=105, ddof=0, seeds=list(SEEDS), horizons=list(HORIZONS), devices=["cuda:0", "cuda:1"],
-        approval=dict(date="2026-10-13", decision="用户批准", budget="approximately 80 GPU training hours plus overhead; approximately 186 GiB"),
+        approval=RERUN_APPROVAL,
         inputs=artifacts(paths), data=data, binary_files=artifacts([frozen]), binary=str(frozen),
         environment=dict(os=platform.platform(), python=sys.version, torch=torch.__version__, torch_sha=torch.version.git_version,
             cuda=torch.version.cuda, gpus=[torch.cuda.get_device_name(i) for i in range(2)]),

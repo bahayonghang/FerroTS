@@ -16,6 +16,15 @@ import p3_acceptance as p3
 
 
 class InformerAcceptanceTests(unittest.TestCase):
+    def test_rerun_disk_floor_keeps_the_retained_suite(self):
+        self.assertEqual(p3.RERUN_FREE_BYTES, 100 * 2**30)
+        self.assertGreater(p3.RERUN_FREE_BYTES, 60 * 2**30)
+        self.assertLess(p3.RERUN_FREE_BYTES, 186 * 2**30)
+        self.assertEqual(p3.RERUN_APPROVAL["date"], "2026-10-14")
+        self.assertEqual(p3.RERUN_APPROVAL["decision"], "用户批准")
+        self.assertIn("20261013-linux-cuda", p3.RERUN_APPROVAL["budget"])
+        self.assertIn("95ea51d", p3.RERUN_APPROVAL["budget"])
+
     def test_resolved_profiles_allow_only_seed_and_device_overrides(self):
         for dataset, horizon in [("ETTh1", 96), ("ETTm1", 720), ("cement", 60)]:
             actual = tomllib.loads((ROOT / p3.config_path(dataset, horizon)).read_text())
