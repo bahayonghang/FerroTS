@@ -117,13 +117,53 @@ impl ReferenceRng {
     /// Reference train and val each consume base_seed + sampler_seed; test consumes
     /// base_seed only. Advancing that stream never accesses validation/test data.
     pub fn training_permutation(&self, length: usize, epoch: u64) -> Vec<usize> {
+        self.training_permutation_after_randint(length, epoch, 0, 0, 0, &[])
+    }
+
+    /// One CPU `torch.randint(high, count)` from PyTorch 2.14.0.
+    /// `high < 2^28` consumes one MT19937 word per element; larger `high` consumes two.
+    /// The values are discarded. ProbSparse keeps its own index stream.
+    pub fn consume_torch_randint(&mut self, high: u64, count: usize) {
+        let words = if high < 1 << 28 { 1 } else { 2 };
+        for _ in 0..count.saturating_mul(words) {
+            let _ = self.next_u32();
+        }
+    }
+
+    /// Train permutation after `epoch` complete loader cycles.
+    ///
+    /// Each earlier cycle is train base+sampler, one `sites` group per train batch,
+    /// val base+sampler, one group per val batch, test base, then one group per test
+    /// batch. An empty `sites` list is the five-draw schedule.
+    pub fn training_permutation_after_randint(
+        &self,
+        length: usize,
+        epoch: u64,
+        train_batches: usize,
+        val_batches: usize,
+        test_batches: usize,
+        sites: &[(u64, usize)],
+    ) -> Vec<usize> {
         let mut global = self.clone();
         for _ in 0..epoch {
-            for _ in 0..5 {
-                global.seed_draw();
-            }
+            global.seed_draw();
+            global.seed_draw();
+            consume_sites(&mut global, train_batches, sites);
+            global.seed_draw();
+            global.seed_draw();
+            consume_sites(&mut global, val_batches, sites);
+            global.seed_draw();
+            consume_sites(&mut global, test_batches, sites);
         }
         global.seed_draw();
         Self::new(global.seed_draw()).permutation(length)
+    }
+}
+
+fn consume_sites(rng: &mut ReferenceRng, batches: usize, sites: &[(u64, usize)]) {
+    for _ in 0..batches {
+        for &(high, count) in sites {
+            rng.consume_torch_randint(high, count);
+        }
     }
 }

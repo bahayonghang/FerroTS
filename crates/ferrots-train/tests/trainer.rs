@@ -74,6 +74,30 @@ fn example(
     Ok((c, data, p))
 }
 #[test]
+fn replaced_training_order_is_the_next_batch() -> R {
+    let (mut config, data, _) = example(
+        ModelSpec::Dlinear {
+            individual: false,
+            moving_avg: 25,
+        },
+        None,
+    )?;
+    config.train.device = "cpu".into();
+    let device = Device::Cpu;
+    let mut session = ferrots_train::session::TrainingSession::new(&config, &data, &device)?;
+    let mut order = data.index.training_order(session.model.sampling_rng(), 0);
+    let width = config.train.batch_size.min(order.len());
+    assert_eq!(&order[..width], session.next_entries());
+    order.reverse();
+    session.replace_training_order(order.clone())?;
+    assert_eq!(&order[..width], session.next_entries());
+    let mut bad = order.clone();
+    bad.pop();
+    assert!(session.replace_training_order(bad).is_err());
+    Ok(())
+}
+
+#[test]
 fn fit_retains_tail_freezes_validation_and_never_iterates_test() -> R {
     let mut devices = vec![Device::Cpu];
     if cfg!(feature = "cuda") {

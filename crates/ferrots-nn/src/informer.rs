@@ -16,6 +16,86 @@ pub const UPSTREAM_SHA: &str = "4e938a1767106324dd753b2a44832bf870a0252e";
 pub const MAPPING_VERSION: u32 = 1;
 pub const SAMPLING_SITE_VERSION: u32 = 1;
 
+/// Geometry of the CPU `torch.randint` calls in one official Informer forward.
+/// Index values stay on the isolated ProbSparse stream. Only their word count
+/// is applied to the loader RNG, because that is what moves the next epoch's
+/// train permutation. Validation and test counts follow TSLib: both loaders are
+/// iterated after every train epoch, and neither drops the tail batch.
+#[derive(Clone, Copy)]
+pub struct InformerSamplingSchedule {
+    pub lookback: usize,
+    pub label_len: usize,
+    pub horizon: usize,
+    pub factor: usize,
+    pub e_layers: usize,
+    pub d_layers: usize,
+    pub distil: bool,
+    pub batch_size: usize,
+    pub train_windows: usize,
+    pub val_windows: usize,
+    pub test_windows: usize,
+    pub train_drop_last: bool,
+}
+
+fn prob_sample_count(factor: usize, length: usize) -> usize {
+    (factor * (length as f64).ln().ceil() as usize)
+        .max(1)
+        .min(length)
+}
+
+/// Conv1d kernel 3 with circular padding 2, then MaxPool1d kernel 3, stride 2, padding 1.
+fn distilled_encoder_length(length: usize) -> usize {
+    (length + 2).div_ceil(2)
+}
+
+fn loader_batches(windows: usize, batch_size: usize, drop_last: bool) -> usize {
+    if batch_size == 0 {
+        return 0;
+    }
+    if drop_last {
+        windows / batch_size
+    } else {
+        windows.div_ceil(batch_size)
+    }
+}
+
+impl InformerSamplingSchedule {
+    pub fn randint_sites(&self) -> Vec<(u64, usize)> {
+        let mut sites = Vec::new();
+        let mut length = self.lookback;
+        for layer in 0..self.e_layers {
+            push_site(&mut sites, length, length, self.factor);
+            if self.distil && layer + 1 < self.e_layers {
+                length = distilled_encoder_length(length);
+            }
+        }
+        let decoder = self.label_len.saturating_add(self.horizon);
+        for _ in 0..self.d_layers {
+            push_site(&mut sites, decoder, decoder, self.factor);
+            push_site(&mut sites, decoder, length, self.factor);
+        }
+        sites
+    }
+
+    /// Positions into the training-window list. Epoch is zero-based.
+    pub fn permutation(&self, after_init: &ReferenceRng, epoch: u64) -> Vec<usize> {
+        let sites = self.randint_sites();
+        after_init.training_permutation_after_randint(
+            self.train_windows,
+            epoch,
+            loader_batches(self.train_windows, self.batch_size, self.train_drop_last),
+            loader_batches(self.val_windows, self.batch_size, false),
+            loader_batches(self.test_windows, self.batch_size, false),
+            &sites,
+        )
+    }
+}
+
+fn push_site(sites: &mut Vec<(u64, usize)>, queries: usize, keys: usize, factor: usize) {
+    let sample_k = prob_sample_count(factor, keys);
+    sites.push((keys as u64, queries.saturating_mul(sample_k)));
+}
+
 pub struct Informer {
     pub spec: ModelSpec,
     pub window: WindowSpec,
@@ -451,8 +531,8 @@ impl Informer {
             );
         }
         let (q, k, v) = (&projected[0], &projected[1], &projected[2]);
-        let sample_k = (factor * (lk as f64).ln().ceil() as usize).max(1).min(lk);
-        let top = (factor * (lq as f64).ln().ceil() as usize).max(1).min(lq);
+        let sample_k = prob_sample_count(factor, lk);
+        let top = prob_sample_count(factor, lq);
         let indices = if let Some(samples) = samples {
             let ids = samples.get(prefix).ok_or_else(|| {
                 candle_core::Error::Msg(format!("missing sample indices: {prefix}"))

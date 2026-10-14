@@ -57,3 +57,29 @@ fn versioned_rng_roundtrip_rejects_invalid_states() {
     value["extra"] = 1.into();
     assert!(serde_json::from_value::<ReferenceRngState>(value).is_err());
 }
+
+#[test]
+fn torch_randint_word_count_and_empty_sites_keep_five_draws() {
+    // torch 2.14.0+cu130, git 08187d9e. manual_seed(2022), randint, then one int64 random_().
+    let cases = [
+        (96_u64, 4_usize, 2_091_559_949_382_189_041_u64),
+        (1 << 28, 4, 3_420_166_536_313_309_202),
+        ((1 << 28) - 1, 3, 243_636_865_075_689_137),
+        (1 << 28, 3, 921_857_968_566_694_839),
+    ];
+    for (high, count, expected) in cases {
+        let mut rng = ReferenceRng::new(2022);
+        rng.consume_torch_randint(high, count);
+        assert_eq!(rng.seed_draw(), expected, "high={high} count={count}");
+    }
+    let base = ReferenceRng::new(2022);
+    for epoch in 0..6 {
+        assert_eq!(
+            base.training_permutation(137, epoch),
+            base.training_permutation_after_randint(137, epoch, 9, 4, 3, &[])
+        );
+    }
+    let plain = base.training_permutation(32, 1);
+    let shifted = base.training_permutation_after_randint(32, 1, 1, 0, 0, &[(7, 3)]);
+    assert_ne!(plain, shifted);
+}

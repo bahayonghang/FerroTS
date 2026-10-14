@@ -12,12 +12,13 @@ use crate::{
 };
 use candle_core::{Device, Tensor};
 use ferrots_core::{
-    config::{Config, Schedule},
+    config::{Config, ModelSpec, Schedule},
     reference_rng::{ReferenceRng, ReferenceRngState},
 };
 use ferrots_data::{batch::Dataset, cache::hash_bytes};
 use ferrots_nn::{
     Mode,
+    informer::InformerSamplingSchedule,
     itransformer::DROPOUT_SITE_VERSION,
     model::{ForecastModel, ForwardContext},
 };
@@ -199,10 +200,36 @@ impl<'a> TrainingSession<'a> {
         Ok(result)
     }
     fn rebuild_order(&mut self, verify: bool) -> Result<()> {
-        let mut order = self
-            .data
-            .index
-            .training_order(&self.sampler, self.state.epoch as u64 - 1);
+        let epoch = self.state.epoch as u64 - 1;
+        let entries = self.data.index.order(0);
+        let positions = if let ModelSpec::Informer {
+            factor,
+            e_layers,
+            d_layers,
+            distil,
+            label_len,
+            ..
+        } = self.model.spec()
+        {
+            InformerSamplingSchedule {
+                lookback: self.model.window().lookback,
+                label_len: *label_len,
+                horizon: self.model.window().horizon,
+                factor: *factor,
+                e_layers: *e_layers,
+                d_layers: *d_layers,
+                distil: *distil,
+                batch_size: self.config.train.batch_size,
+                train_windows: entries.len(),
+                val_windows: self.data.index.counts[1],
+                test_windows: self.data.index.counts[2],
+                train_drop_last: self.config.train.drop_last,
+            }
+            .permutation(&self.sampler, epoch)
+        } else {
+            self.sampler.training_permutation(entries.len(), epoch)
+        };
+        let mut order: Vec<usize> = positions.into_iter().map(|index| entries[index]).collect();
         if self.config.train.drop_last {
             order.truncate(
                 order.len() / self.config.train.batch_size * self.config.train.batch_size,
@@ -221,6 +248,32 @@ impl<'a> TrainingSession<'a> {
             )?;
         }
         self.state.order_sha256 = digest;
+        self.order = order;
+        Ok(())
+    }
+    /// Swaps the not-yet-started epoch order. `Trainer::fit` never calls this.
+    pub fn replace_training_order(&mut self, order: Vec<usize>) -> Result<()> {
+        require(
+            self.state.phase == Phase::Train && self.state.next_batch_offset == 0,
+            "training order can only be replaced at an epoch boundary",
+        )?;
+        require(
+            order.len() == self.order.len(),
+            "training order length mismatch",
+        )?;
+        let mut expected = self.order.clone();
+        let mut actual = order.clone();
+        expected.sort_unstable();
+        actual.sort_unstable();
+        require(
+            expected == actual,
+            "training order is not the same set of windows",
+        )?;
+        let bytes: Vec<u8> = order
+            .iter()
+            .flat_map(|&n| (n as u64).to_le_bytes())
+            .collect();
+        self.state.order_sha256 = hash_bytes(&bytes);
         self.order = order;
         Ok(())
     }
