@@ -30,3 +30,4 @@ max_epochs = 3
 batch_size = 4
 [output]
 root = "runs/informer-synthetic"
+checkpoint_history = "final"

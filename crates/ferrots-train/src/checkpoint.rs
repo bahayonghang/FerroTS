@@ -10,7 +10,7 @@ use ferrots_data::{
 use ferrots_nn::{baselines::UPSTREAM_SHA, model::ForecastModel};
 use serde::{Deserialize, Serialize};
 use std::{
-    collections::{BTreeMap, HashMap},
+    collections::{BTreeMap, BTreeSet, HashMap},
     fs,
     path::{Path, PathBuf},
     time::{SystemTime, UNIX_EPOCH},
@@ -428,4 +428,90 @@ pub fn publish(run: &Path, selector: &str, snapshot: &Snapshot<'_>) -> Result<Pa
     write_synced(&pending, &serde_json::to_vec(&reference)?)?;
     fs::rename(pending, selector_dir.join(format!("{sequence:020}.json")))?;
     Ok(destination)
+}
+fn generation_name_ok(name: &str) -> bool {
+    name.starts_with("generation-") && name.chars().all(|c| c.is_ascii_alphanumeric() || c == '-')
+}
+fn latest_generation(selector_dir: &Path) -> Result<Option<String>> {
+    let Some((_, latest)) = references(selector_dir)?.into_iter().next_back() else {
+        return Ok(None);
+    };
+    let reference: Reference = serde_json::from_slice(&fs::read(latest)?)?;
+    require(
+        reference.version == 1 && generation_name_ok(&reference.generation),
+        "invalid checkpoint reference",
+    )?;
+    Ok(Some(reference.generation))
+}
+/// Point `selector` at an existing generation without writing another bundle.
+pub fn alias_reference(run: &Path, selector: &str, directory: &Path) -> Result<()> {
+    require(
+        matches!(selector, "best" | "last"),
+        "checkpoint selector must be best or last",
+    )?;
+    require(
+        directory.join("manifest.json").is_file(),
+        "alias target is not a checkpoint generation",
+    )?;
+    let nonce = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .map_err(|_| TrainError::InvalidState("system clock before epoch".into()))?
+        .as_nanos();
+    training::publish_reference(run, selector, directory, nonce, &mut |_| Ok(()))?;
+    Ok(())
+}
+/// Delete generation directories not named by the latest best or last reference.
+///
+/// The kept bundles' own best and parent generation names stay. Reference JSON
+/// files stay append-only; load still uses only the latest reference.
+pub fn prune_unreferenced_generations(run: &Path) -> Result<()> {
+    let checkpoints = run.join("checkpoints");
+    if !checkpoints.is_dir() {
+        return Ok(());
+    }
+    let mut keep = BTreeSet::new();
+    for selector in ["best", "last"] {
+        if let Some(name) = latest_generation(&run.join(selector))? {
+            keep.insert(name);
+        }
+    }
+    for name in keep.iter().cloned().collect::<Vec<_>>() {
+        let directory = checkpoints.join(&name);
+        let manifest_path = directory.join("manifest.json");
+        if !manifest_path.is_file() {
+            continue;
+        }
+        let manifest: serde_json::Value = serde_json::from_slice(&fs::read(manifest_path)?)?;
+        if let Some(parent) = manifest
+            .pointer("/training/parent/generation")
+            .and_then(|value| value.as_str())
+            && generation_name_ok(parent)
+        {
+            keep.insert(parent.to_owned());
+        }
+        let trainer_path = directory.join("trainer-state.json");
+        if trainer_path.is_file() {
+            let trainer: serde_json::Value = serde_json::from_slice(&fs::read(trainer_path)?)?;
+            if let Some(best) = trainer
+                .get("best_generation")
+                .and_then(|value| value.as_str())
+                && generation_name_ok(best)
+            {
+                keep.insert(best.to_owned());
+            }
+        }
+    }
+    for entry in fs::read_dir(&checkpoints)? {
+        let path = entry?.path();
+        if !path.is_dir() {
+            continue;
+        }
+        let Some(name) = path.file_name().and_then(|name| name.to_str()) else {
+            continue;
+        };
+        if generation_name_ok(name) && !keep.contains(name) {
+            fs::remove_dir_all(path)?;
+        }
+    }
+    Ok(())
 }

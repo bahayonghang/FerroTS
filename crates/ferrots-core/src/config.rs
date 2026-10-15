@@ -395,12 +395,27 @@ impl Default for TrainSpec {
         }
     }
 }
+/// `final` keeps the generations named by the latest best and last references.
+/// `all` keeps every published generation.
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]
+#[serde(rename_all = "snake_case")]
+pub enum CheckpointHistory {
+    #[default]
+    Final,
+    All,
+}
+fn is_final_history(value: &CheckpointHistory) -> bool {
+    *value == CheckpointHistory::Final
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct OutputSpec {
     pub root: PathBuf,
     pub run_id: Option<String>,
     pub mape: bool,
+    /// Off by default. Set to `all` to retain every checkpoint generation.
+    #[serde(default, skip_serializing_if = "is_final_history")]
+    pub checkpoint_history: CheckpointHistory,
 }
 impl Default for OutputSpec {
     fn default() -> Self {
@@ -408,6 +423,7 @@ impl Default for OutputSpec {
             root: "runs".into(),
             run_id: None,
             mape: false,
+            checkpoint_history: CheckpointHistory::Final,
         }
     }
 }

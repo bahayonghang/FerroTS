@@ -4,7 +4,7 @@ use crate::{
     loss::masked_mse,
 };
 use candle_core::{Device, Tensor};
-use ferrots_core::config::Config;
+use ferrots_core::config::{CheckpointHistory, Config};
 use ferrots_data::{
     batch::{Dataset, HostBatch},
     cache::write_synced,
@@ -368,8 +368,13 @@ impl<'a> Trainer<'a> {
             epoch: 0,
             validation_loss: validation,
         };
-        checkpoint::publish(&run, "best", &snap)?;
-        checkpoint::publish(&run, "last", &snap)?;
+        let best = checkpoint::publish(&run, "best", &snap)?;
+        if self.keeps_all_checkpoints() {
+            checkpoint::publish(&run, "last", &snap)?;
+        } else {
+            checkpoint::alias_reference(&run, "last", &best)?;
+            checkpoint::prune_unreferenced_generations(&run)?;
+        }
         write_synced(run.join("epochs.jsonl"), b"")?;
         let summary = TrainSummary {
             format_version: 1,
@@ -391,6 +396,21 @@ impl<'a> Trainer<'a> {
             &serde_json::to_vec_pretty(&summary)?,
         )?;
         Ok(RunOutcome::Complete(summary))
+    }
+    fn keeps_all_checkpoints(&self) -> bool {
+        self.config.output.checkpoint_history == CheckpointHistory::All
+    }
+    fn publish_last(
+        &self,
+        run: &std::path::Path,
+        session: &mut crate::session::TrainingSession<'a>,
+        parent: Option<checkpoint::ParentGeneration>,
+    ) -> Result<()> {
+        checkpoint::publish_training(run, "last", session, self.provenance, parent)?;
+        if !self.keeps_all_checkpoints() {
+            checkpoint::prune_unreferenced_generations(run)?;
+        }
+        Ok(())
     }
     fn run_session(
         &self,
@@ -419,13 +439,7 @@ impl<'a> Trainer<'a> {
         loop {
             if session.state.phase == Phase::Complete {
                 if !run.join("last").exists() {
-                    checkpoint::publish_training(
-                        &run,
-                        "last",
-                        &mut session,
-                        self.provenance,
-                        parent.clone(),
-                    )?;
+                    self.publish_last(&run, &mut session, parent.clone())?;
                 }
                 break;
             }
@@ -437,13 +451,7 @@ impl<'a> Trainer<'a> {
                             session.state.global_optimizer_step - initial_steps >= n
                         })
                     {
-                        checkpoint::publish_training(
-                            &run,
-                            "last",
-                            &mut session,
-                            self.provenance,
-                            parent.clone(),
-                        )?;
+                        self.publish_last(&run, &mut session, parent.clone())?;
                         let s = &session.state;
                         let summary = PauseSummary {
                             format_version: 2,
@@ -473,21 +481,28 @@ impl<'a> Trainer<'a> {
                     self.device.synchronize()?;
                     let checkpoint_start = Instant::now();
                     if improved {
-                        checkpoint::publish_training(
+                        let best = checkpoint::publish_training(
                             &run,
                             "best",
                             &mut session,
                             self.provenance,
                             parent.clone(),
                         )?;
+                        if self.keeps_all_checkpoints() {
+                            checkpoint::publish_training(
+                                &run,
+                                "last",
+                                &mut session,
+                                self.provenance,
+                                parent.clone(),
+                            )?;
+                        } else {
+                            checkpoint::alias_reference(&run, "last", &best)?;
+                            checkpoint::prune_unreferenced_generations(&run)?;
+                        }
+                    } else {
+                        self.publish_last(&run, &mut session, parent.clone())?;
                     }
-                    checkpoint::publish_training(
-                        &run,
-                        "last",
-                        &mut session,
-                        self.provenance,
-                        parent.clone(),
-                    )?;
                     self.device.synchronize()?;
                     serde_json::to_writer(
                         &mut performance,

@@ -21,3 +21,4 @@ max_epochs = 2
 batch_size = 4
 [output]
 root = "runs/synthetic-example"
+checkpoint_history = "final"

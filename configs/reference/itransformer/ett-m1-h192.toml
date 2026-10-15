@@ -45,3 +45,4 @@ weight_decay = 0.0
 lr_schedule = "type1"
 [output]
 root = "runs"
+checkpoint_history = "final"

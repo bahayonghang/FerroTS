@@ -192,6 +192,7 @@ fn default_tail_policy_preserves_p1_serialized_identity() {
         assert!(!c.train.drop_last);
         let encoded = toml::to_string(&c).unwrap();
         assert!(!encoded.contains("drop_last"));
+        assert!(!encoded.contains("checkpoint_history"));
         let explicit = encoded.replace("[train]", "[train]\ndrop_last=false");
         let restored = Config::from_toml(&explicit, Overrides::default()).unwrap();
         assert_eq!(
@@ -199,6 +200,42 @@ fn default_tail_policy_preserves_p1_serialized_identity() {
             encoded.as_bytes()
         );
     }
+}
+
+#[test]
+fn checkpoint_history_defaults_to_final_and_can_keep_all() {
+    let c = Config::from_toml(BASE, Overrides::default()).unwrap();
+    assert_eq!(
+        c.output.checkpoint_history,
+        ferrots_core::config::CheckpointHistory::Final
+    );
+    assert!(!toml::to_string(&c).unwrap().contains("checkpoint_history"));
+    let explicit = format!("{BASE}\n[output]\ncheckpoint_history='final'\n");
+    let restored = Config::from_toml(&explicit, Overrides::default()).unwrap();
+    assert!(
+        !toml::to_string(&restored)
+            .unwrap()
+            .contains("checkpoint_history")
+    );
+    let all = format!("{BASE}\n[output]\ncheckpoint_history='all'\n");
+    let kept = Config::from_toml(&all, Overrides::default()).unwrap();
+    assert_eq!(
+        kept.output.checkpoint_history,
+        ferrots_core::config::CheckpointHistory::All
+    );
+    let encoded = toml::to_string(&kept).unwrap();
+    assert!(encoded.contains("checkpoint_history = \"all\""));
+    assert_eq!(
+        toml::to_string(&Config::from_toml(&encoded, Overrides::default()).unwrap()).unwrap(),
+        encoded
+    );
+    assert!(
+        Config::from_toml(
+            &format!("{BASE}\n[output]\ncheckpoint_history='everything'\n"),
+            Overrides::default()
+        )
+        .is_err()
+    );
 }
 
 #[test]

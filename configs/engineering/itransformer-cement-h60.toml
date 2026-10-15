@@ -61,3 +61,4 @@ learning_rate = 0.0001
 lr_schedule = "type1"
 [output]
 root = "runs"
+checkpoint_history = "final"

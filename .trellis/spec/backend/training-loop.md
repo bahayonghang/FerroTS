@@ -24,7 +24,7 @@ type1 runs at epoch end: epochs 1 and 2 use the initial rate; epoch 3 uses half,
 
 ## Checkpoints and outputs
 
-Bundles are immutable generations. Each contains model.safetensors, scaler.json, data-schema.json, resolved-config.toml and manifest.json. The manifest records file sizes/hashes, parameter names/shapes, model/protocol versions, data/config/source identity, seed, device and build provenance. best/last are append-only numbered references published after the complete generation. A damaged latest reference fails; do not silently choose an older generation.
+Bundles are immutable generations. Each contains model.safetensors, scaler.json, data-schema.json, resolved-config.toml and manifest.json. The manifest records file sizes/hashes, parameter names/shapes, model/protocol versions, data/config/source identity, seed, device and build provenance. best/last are append-only numbered references published after the complete generation. A damaged latest reference fails; do not silently choose an older generation. `output.checkpoint_history` defaults to `final`: after a successful publish, generation directories other than the latest best and last are deleted. Their own recorded best and parent names are kept. `all` retains every generation. The default is omitted from the serialized config. Reference files are not rewritten.
 
 Validate the complete bundle before loading parameters. P1 v1 manifests have inference_only=true and do not contain optimizer/scheduler/RNG training state. P2 adds v2 restoration and a resume command under itransformer-training.md. V1 remains inference-only and is explicitly rejected by resume. P0's optimizer-state roundtrip tests cover the lower-level optimizer API.
 

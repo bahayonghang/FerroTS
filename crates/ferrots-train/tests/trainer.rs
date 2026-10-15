@@ -1,5 +1,5 @@
 use candle_core::Device;
-use ferrots_core::config::{Config, MissingMode, ModelSpec, SplitSpec};
+use ferrots_core::config::{CheckpointHistory, Config, MissingMode, ModelSpec, SplitSpec};
 use ferrots_data::batch::Dataset;
 use ferrots_train::{
     checkpoint::{self, Provenance},
@@ -161,7 +161,74 @@ fn no_parameter_fit_has_no_optimizer_or_fake_training_curve() -> R {
         assert!(r.epochs.is_empty());
         assert_eq!(r.access.windows[0], 0);
         assert_eq!(r.access.windows[2], 0);
+        let generations = checkpoint_generations(&r.run_dir);
+        assert_eq!(generations.len(), 1);
+        assert_eq!(
+            checkpoint::load(r.run_dir.join("best"), &Device::Cpu)?.directory,
+            checkpoint::load(r.run_dir.join("last"), &Device::Cpu)?.directory
+        );
     }
+    Ok(())
+}
+fn checkpoint_generations(run: &std::path::Path) -> Vec<std::path::PathBuf> {
+    let mut names = fs::read_dir(run.join("checkpoints"))
+        .unwrap()
+        .map(|entry| entry.unwrap().path())
+        .filter(|path| {
+            path.file_name()
+                .and_then(|name| name.to_str())
+                .is_some_and(|name| name.starts_with("generation-"))
+        })
+        .collect::<Vec<_>>();
+    names.sort();
+    names
+}
+#[test]
+fn final_history_keeps_live_checkpoints_and_all_keeps_every_generation() -> R {
+    let (mut c, data, p) = example(
+        ModelSpec::Dlinear {
+            individual: false,
+            moving_avg: 25,
+        },
+        None,
+    )?;
+    c.train.device = "cpu".into();
+    let result = Trainer {
+        config: &c,
+        data: &data,
+        device: &Device::Cpu,
+        provenance: &p,
+    }
+    .fit()?;
+    let kept = checkpoint_generations(&result.run_dir);
+    assert!(kept.len() <= 2, "{}", kept.len());
+    let best = checkpoint::load(result.run_dir.join("best"), &Device::Cpu)?;
+    let last = checkpoint::load(result.run_dir.join("last"), &Device::Cpu)?;
+    assert!(kept.contains(&best.directory));
+    assert!(kept.contains(&last.directory));
+    let extra = result.run_dir.join("checkpoints/generation-9-1-1");
+    fs::create_dir(&extra)?;
+    fs::write(extra.join("model.safetensors"), b"stale")?;
+    checkpoint::prune_unreferenced_generations(&result.run_dir)?;
+    assert!(!extra.exists());
+    assert_eq!(checkpoint_generations(&result.run_dir), kept);
+    let (mut full, full_data, full_provenance) = example(
+        ModelSpec::Dlinear {
+            individual: false,
+            moving_avg: 25,
+        },
+        None,
+    )?;
+    full.train.device = "cpu".into();
+    full.output.checkpoint_history = CheckpointHistory::All;
+    let retained = Trainer {
+        config: &full,
+        data: &full_data,
+        device: &Device::Cpu,
+        provenance: &full_provenance,
+    }
+    .fit()?;
+    assert!(checkpoint_generations(&retained.run_dir).len() >= 3);
     Ok(())
 }
 
