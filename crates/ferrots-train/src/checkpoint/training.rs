@@ -48,7 +48,7 @@ impl TrainingIdentity {
         Self {
             mapping_version: 1,
             schema_version: 1,
-            rng_version: 1,
+            rng_version: RngState::version(&config.model),
             dropout_site_version: DROPOUT_SITE_VERSION,
             boundary: "empty_accumulation".into(),
             lookback: config.window.lookback,
@@ -148,17 +148,7 @@ pub(super) fn read_state(checkpoint: &Checkpoint, device: &Device) -> Result<Ses
             && m.validation_loss == trainer.epochs.last().map(|e| e.validation_loss),
         "manifest observation mismatch",
     )?;
-    require(
-        rng.format_version == 1
-            && rng.dropout_site_version == DROPOUT_SITE_VERSION
-            && rng.seed == c.train.seed
-            && rng.next_forward_id == trainer.next_forward_id
-            && rng.sampling_policy == "pytorch-five-draws-per-epoch-v1"
-            && rng.post_init == checkpoint.model.sampling_rng().snapshot(),
-        "RNG identity/state mismatch",
-    )?;
-    ferrots_core::reference_rng::ReferenceRng::from_state(&rng.post_init)
-        .map_err(|e| TrainError::InvalidState(e.to_string()))?;
+    rng.validate(&checkpoint.model, c.train.seed, trainer.next_forward_id)?;
     let lr = if trainer.epoch == 1 {
         c.train.learning_rate
     } else {

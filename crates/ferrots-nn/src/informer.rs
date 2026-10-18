@@ -17,10 +17,11 @@ pub const MAPPING_VERSION: u32 = 1;
 pub const SAMPLING_SITE_VERSION: u32 = 1;
 
 /// Geometry of the CPU `torch.randint` calls in one official Informer forward.
-/// Index values stay on the isolated ProbSparse stream. Only their word count
-/// is applied to the loader RNG, because that is what moves the next epoch's
-/// train permutation. Validation and test counts follow TSLib: both loaders are
-/// iterated after every train epoch, and neither drops the tail batch.
+/// Training draws those values from the post-init MT19937 stream. The loader
+/// permutation consumes the same word count and does not read the values.
+/// Validation and test counts follow TSLib: both loaders are iterated after
+/// every train epoch, and neither drops the tail batch. A forward that does
+/// not receive samples still uses the isolated ProbSparse stream.
 #[derive(Clone, Copy)]
 pub struct InformerSamplingSchedule {
     pub lookback: usize,
@@ -59,22 +60,109 @@ fn loader_batches(windows: usize, batch_size: usize, drop_last: bool) -> usize {
     }
 }
 
+struct SampleSite {
+    name: String,
+    queries: usize,
+    keys: u64,
+    sample_k: usize,
+}
+
 impl InformerSamplingSchedule {
-    pub fn randint_sites(&self) -> Vec<(u64, usize)> {
+    fn sample_sites(&self) -> Vec<SampleSite> {
         let mut sites = Vec::new();
         let mut length = self.lookback;
         for layer in 0..self.e_layers {
-            push_site(&mut sites, length, length, self.factor);
+            sites.push(sample_site(
+                format!("encoder.attn_layers.{layer}.attention"),
+                length,
+                length,
+                self.factor,
+            ));
             if self.distil && layer + 1 < self.e_layers {
                 length = distilled_encoder_length(length);
             }
         }
         let decoder = self.label_len.saturating_add(self.horizon);
-        for _ in 0..self.d_layers {
-            push_site(&mut sites, decoder, decoder, self.factor);
-            push_site(&mut sites, decoder, length, self.factor);
+        for layer in 0..self.d_layers {
+            sites.push(sample_site(
+                format!("decoder.layers.{layer}.self_attention"),
+                decoder,
+                decoder,
+                self.factor,
+            ));
+            sites.push(sample_site(
+                format!("decoder.layers.{layer}.cross_attention"),
+                decoder,
+                length,
+                self.factor,
+            ));
         }
         sites
+    }
+
+    pub fn randint_sites(&self) -> Vec<(u64, usize)> {
+        self.sample_sites()
+            .into_iter()
+            .map(|site| (site.keys, site.queries.saturating_mul(site.sample_k)))
+            .collect()
+    }
+
+    pub fn train_batches(&self) -> usize {
+        loader_batches(self.train_windows, self.batch_size, self.train_drop_last)
+    }
+
+    /// MT19937 state after initialization, finished epochs, and earlier train batches.
+    /// The next draws are this batch's ProbSparse indices.
+    pub fn rng_before_train_batch(
+        &self,
+        after_init: &ReferenceRng,
+        epoch: u64,
+        batch: usize,
+    ) -> ReferenceRng {
+        let mut rng = after_init.clone();
+        let sites = self.randint_sites();
+        let train_batches = self.train_batches();
+        let val_batches = loader_batches(self.val_windows, self.batch_size, false);
+        let test_batches = loader_batches(self.test_windows, self.batch_size, false);
+        for _ in 0..epoch {
+            rng.replay_loader_cycle(train_batches, val_batches, test_batches, &sites);
+        }
+        rng.seed_draw();
+        rng.seed_draw();
+        for _ in 0..batch {
+            for &(high, count) in &sites {
+                rng.consume_torch_randint(high, count);
+            }
+        }
+        rng
+    }
+
+    pub fn draw_train_indices(
+        &self,
+        rng: &mut ReferenceRng,
+        device: &Device,
+    ) -> Result<BTreeMap<String, Tensor>> {
+        let mut indices = BTreeMap::new();
+        for site in self.sample_sites() {
+            let count = site.queries.saturating_mul(site.sample_k);
+            let raw = rng.torch_randint(site.keys, count);
+            if raw.len() != site.queries.saturating_mul(site.sample_k) {
+                candle_core::bail!("ProbSparse index count does not match the site shape");
+            }
+            let mut values = Vec::with_capacity(raw.len());
+            for value in raw {
+                values.push(
+                    u32::try_from(value).map_err(|_| {
+                        candle_core::Error::Msg("ProbSparse index exceeds u32".into())
+                    })?,
+                );
+            }
+            indices.insert(
+                site.name,
+                Tensor::from_vec(values, (site.queries, site.sample_k), device)?,
+            );
+        }
+        Ok(indices)
     }
 
     /// Positions into the training-window list. Epoch is zero-based.
@@ -106,9 +194,13 @@ fn box_muller16(data: &mut [f32], std: f32) {
     data[..16].copy_from_slice(&out);
 }
 
-fn push_site(sites: &mut Vec<(u64, usize)>, queries: usize, keys: usize, factor: usize) {
-    let sample_k = prob_sample_count(factor, keys);
-    sites.push((keys as u64, queries.saturating_mul(sample_k)));
+fn sample_site(name: String, queries: usize, keys: usize, factor: usize) -> SampleSite {
+    SampleSite {
+        name,
+        queries,
+        keys: keys as u64,
+        sample_k: prob_sample_count(factor, keys),
+    }
 }
 
 pub struct Informer {
@@ -122,7 +214,20 @@ pub struct Informer {
     buffers: Mutex<BTreeMap<String, Tensor>>,
     frozen: bool,
     initialization_rng: ReferenceRng,
+    /// Offset of the Informer CUDA Philox dropout stream. A new model starts
+    /// at 0, which is the state after `torch.manual_seed` and before the first
+    /// CUDA random call. Eval and p=0 do not advance it. Checkpoints persist
+    /// this offset independently of the reconstructible MT19937 index cursor.
+    cuda_philox_offset: Mutex<u64>,
 }
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum CudaDropoutOrder {
+    /// PyTorch storage is contiguous `[B, L, C]`, the same order as this tensor.
+    BatchLengthChannel,
+    /// PyTorch storage is contiguous `[B, C, L]`. This tensor is `[B, L, C]`.
+    BatchChannelLength,
+}
+
 fn op(x: train_ops::Result<Tensor>) -> Result<Tensor> {
     x.map_err(candle_core::Error::wrap)
 }
@@ -187,6 +292,7 @@ impl Informer {
             buffers: Mutex::new(BTreeMap::new()),
             frozen: false,
             initialization_rng: ReferenceRng::new(seed),
+            cuda_philox_offset: Mutex::new(0),
         };
         for name in ["enc_embedding", "dec_embedding"] {
             m.add_affine(
@@ -444,7 +550,13 @@ impl Informer {
             1e-5,
         ))
     }
-    fn drop(&self, x: &Tensor, context: ForwardContext, site: u64) -> Result<Tensor> {
+    fn drop(
+        &self,
+        x: &Tensor,
+        context: ForwardContext,
+        site: u64,
+        order: CudaDropoutOrder,
+    ) -> Result<Tensor> {
         let ModelSpec::Informer {
             dropout: probability,
             ..
@@ -452,6 +564,14 @@ impl Informer {
         else {
             unreachable!()
         };
+        // CPU and every non-Informer model keep the shared ChaCha8 contract.
+        // Informer training on CUDA follows the PyTorch fused dropout stream.
+        #[cfg(feature = "cuda")]
+        if x.device().is_cuda() {
+            return self.cuda_dropout(x, probability, context.mode, order);
+        }
+        #[cfg(not(feature = "cuda"))]
+        let _ = order;
         op(dropout(
             x,
             probability,
@@ -462,6 +582,36 @@ impl Informer {
                 layer_id: site,
             },
         ))
+    }
+    #[cfg(feature = "cuda")]
+    fn cuda_dropout(
+        &self,
+        x: &Tensor,
+        probability: f64,
+        mode: Mode,
+        order: CudaDropoutOrder,
+    ) -> Result<Tensor> {
+        if mode == Mode::Eval || probability == 0.0 || x.elem_count() == 0 {
+            return Ok(x.clone());
+        }
+        if x.dtype() != DType::F32 {
+            candle_core::bail!("Informer CUDA dropout expects f32");
+        }
+        let limits = crate::cuda_philox::limits_for(x.device())?;
+        let mut offset = self
+            .cuda_philox_offset
+            .lock()
+            .map_err(|error| candle_core::Error::Msg(error.to_string()))?;
+        let (mut values, next) =
+            crate::cuda_philox::mask(self.seed, *offset, x.elem_count(), probability, limits)?;
+        *offset = next;
+        drop(offset);
+        if order == CudaDropoutOrder::BatchChannelLength {
+            values = crate::cuda_philox::to_batch_length_channel(&values, x.dims())?;
+        }
+        let mask = Tensor::from_vec(values, x.shape(), x.device())?;
+        x.mul(&mask)?
+            .affine(crate::cuda_philox::keep_scale(probability), 0.0)
     }
     // Circular convolution as three differentiable matrix products. No im2col or
     // overlapping-convolution backward dependency; padding=2 increases L by two.
@@ -525,6 +675,7 @@ impl Informer {
             &value.add(&temporal)?.broadcast_add(&position)?,
             context,
             site,
+            CudaDropoutOrder::BatchChannelLength,
         )?;
         record(trace, &format!("{prefix}.dropout"), &y);
         record(trace, prefix, &y);
@@ -673,10 +824,10 @@ impl Informer {
             Activation::Gelu => op(train_ops::gelu(&y))?,
             Activation::Relu => y.relu()?,
         };
-        let y = self.drop(&y, context, site)?;
+        let y = self.drop(&y, context, site, CudaDropoutOrder::BatchChannelLength)?;
         let y = self.linear(&y, &format!("{prefix}.conv2"))?;
         record(trace, &format!("{prefix}.conv2"), &y.transpose(1, 2)?);
-        let y = self.drop(&y, context, site + 1)?;
+        let y = self.drop(&y, context, site + 1, CudaDropoutOrder::BatchChannelLength)?;
         record(trace, &format!("{prefix}.dropout"), &y);
         Ok(y)
     }
@@ -765,6 +916,25 @@ impl Informer {
     pub fn sampling_rng(&self) -> &ReferenceRng {
         &self.initialization_rng
     }
+    pub fn cuda_philox_offset(&self) -> Result<u64> {
+        self.cuda_philox_offset
+            .lock()
+            .map(|offset| *offset)
+            .map_err(|error| candle_core::Error::Msg(error.to_string()))
+    }
+    pub fn restore_cuda_philox_offset(&self, offset: u64) -> Result<()> {
+        if self.frozen {
+            candle_core::bail!("cannot restore RNG on frozen Informer");
+        }
+        if !offset.is_multiple_of(4) {
+            candle_core::bail!("cuda dropout philox offset must be a multiple of 4");
+        }
+        *self
+            .cuda_philox_offset
+            .lock()
+            .map_err(|error| candle_core::Error::Msg(error.to_string()))? = offset;
+        Ok(())
+    }
     pub fn is_frozen(&self) -> bool {
         self.frozen
     }
@@ -803,6 +973,10 @@ impl Informer {
         Ok(())
     }
     pub fn freeze_for_eval(&self) -> Result<Self> {
+        let cuda_philox_offset = *self
+            .cuda_philox_offset
+            .lock()
+            .map_err(|error| candle_core::Error::Msg(error.to_string()))?;
         Ok(Self {
             spec: self.spec.clone(),
             window: self.window.clone(),
@@ -818,6 +992,7 @@ impl Informer {
             buffers: Mutex::new(self.buffers()?),
             frozen: true,
             initialization_rng: self.initialization_rng.clone(),
+            cuda_philox_offset: Mutex::new(cuda_philox_offset),
         })
     }
     pub fn forward(&self, input: &ModelInput, context: ForwardContext) -> Result<Tensor> {
@@ -930,7 +1105,12 @@ impl Informer {
                 &mut trace,
             )?;
             x = self.norm(
-                &x.add(&self.drop(&attended, context, site + 1)?)?,
+                &x.add(&self.drop(
+                    &attended,
+                    context,
+                    site + 1,
+                    CudaDropoutOrder::BatchLengthChannel,
+                )?)?,
                 &format!("{prefix}.norm1"),
             )?;
             record(&mut trace, &format!("{prefix}.norm1"), &x);
@@ -964,7 +1144,12 @@ impl Informer {
                 &mut trace,
             )?;
             y = self.norm(
-                &y.add(&self.drop(&attended, context, site + 1)?)?,
+                &y.add(&self.drop(
+                    &attended,
+                    context,
+                    site + 1,
+                    CudaDropoutOrder::BatchLengthChannel,
+                )?)?,
                 &format!("{prefix}.norm1"),
             )?;
             record(&mut trace, &format!("{prefix}.norm1"), &y);
@@ -979,7 +1164,12 @@ impl Informer {
                 &mut trace,
             )?;
             y = self.norm(
-                &y.add(&self.drop(&attended, context, site + 3)?)?,
+                &y.add(&self.drop(
+                    &attended,
+                    context,
+                    site + 3,
+                    CudaDropoutOrder::BatchLengthChannel,
+                )?)?,
                 &format!("{prefix}.norm2"),
             )?;
             record(&mut trace, &format!("{prefix}.norm2"), &y);

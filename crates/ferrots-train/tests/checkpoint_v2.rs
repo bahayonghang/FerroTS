@@ -133,8 +133,8 @@ fn assert_session(a: &TrainingSession<'_>, b: &TrainingSession<'_>) -> R {
         serde_json::to_value(&b.scheduler)?
     );
     assert_eq!(
-        serde_json::to_value(a.rng_state())?,
-        serde_json::to_value(b.rng_state())?
+        serde_json::to_value(a.rng_state()?)?,
+        serde_json::to_value(b.rng_state()?)?
     );
     assert_eq!(a.next_entries(), b.next_entries());
     for (n, t) in a.model.weights() {

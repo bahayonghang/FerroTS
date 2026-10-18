@@ -381,8 +381,8 @@ fn every_in_memory_group_and_phase_resumes_without_replay() -> R {
             );
             assert_eq!(direct.next_entries(), resumed.next_entries());
             assert_eq!(
-                serde_json::to_value(direct.rng_state())?,
-                serde_json::to_value(resumed.rng_state())?
+                serde_json::to_value(direct.rng_state()?)?,
+                serde_json::to_value(resumed.rng_state()?)?
             );
             for (name, value) in direct.model.weights() {
                 assert_eq!(

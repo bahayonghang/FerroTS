@@ -189,8 +189,8 @@ fn compare(
         serde_json::to_value(&sb.scheduler)?
     );
     assert_eq!(
-        serde_json::to_value(sa.rng_state())?,
-        serde_json::to_value(sb.rng_state())?
+        serde_json::to_value(sa.rng_state()?)?,
+        serde_json::to_value(sb.rng_state()?)?
     );
     assert_eq!(sa.next_entries(), sb.next_entries());
     assert_eq!(

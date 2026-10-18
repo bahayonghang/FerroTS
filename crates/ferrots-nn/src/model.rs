@@ -152,6 +152,24 @@ impl ForecastModel {
             Self::Informer(m) => m.sampling_rng(),
         }
     }
+    /// Stateful CUDA dropout exists only on Informer; other models derive masks
+    /// from the persisted forward identity.
+    pub fn cuda_philox_offset(&self) -> Result<Option<u64>> {
+        match self {
+            Self::Informer(model) => model.cuda_philox_offset().map(Some),
+            _ => Ok(None),
+        }
+    }
+    pub fn restore_cuda_philox_offset(&self, offset: Option<u64>) -> Result<()> {
+        match (self, offset) {
+            (Self::Informer(model), Some(offset)) => model.restore_cuda_philox_offset(offset),
+            (Self::Informer(_), None) => {
+                candle_core::bail!("Informer checkpoint is missing its CUDA Philox offset")
+            }
+            (_, None) => Ok(()),
+            (_, Some(_)) => candle_core::bail!("model does not use CUDA Philox dropout"),
+        }
+    }
     pub fn is_frozen(&self) -> bool {
         match self {
             Self::Baseline(m) => m.is_frozen(),
@@ -200,6 +218,17 @@ impl ForecastModel {
             Self::Baseline(m) => m.forward(input),
             Self::ITransformer(m) => m.forward(input, context),
             Self::Informer(m) => m.forward(input, context),
+        }
+    }
+    pub fn forward_with_samples(
+        &self,
+        input: &ModelInput,
+        context: ForwardContext,
+        samples: &BTreeMap<String, Tensor>,
+    ) -> Result<Tensor> {
+        match self {
+            Self::Informer(model) => model.forward_with_samples(input, context, samples),
+            _ => candle_core::bail!("sample indices require Informer"),
         }
     }
 }

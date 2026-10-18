@@ -1,5 +1,6 @@
 //! Tensor operations and neural networks for FerroTS.
 
+mod cuda_philox;
 mod device;
 pub mod infer_ops;
 pub mod informer;

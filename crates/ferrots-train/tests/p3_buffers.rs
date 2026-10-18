@@ -114,6 +114,13 @@ fn cuda_snapshot_checkpoint_resume_and_inference_keep_buffers() -> R {
     session.advance()?;
     let snapshot = session.snapshot()?;
     assert!(!snapshot.buffers.is_empty());
+    assert_eq!(snapshot.rng.format_version, 2);
+    assert_eq!(
+        snapshot.rng.sampling_policy,
+        "informer-torch-randint-philox-v2"
+    );
+    let offset = snapshot.rng.cuda_philox_offset.unwrap();
+    assert!(offset > 0 && offset.is_multiple_of(4));
     let captured = snapshot
         .buffers
         .iter()
@@ -132,6 +139,11 @@ fn cuda_snapshot_checkpoint_resume_and_inference_keep_buffers() -> R {
     let mut restored = checkpoint::load_session(&bundle, &config, &data, &device, &provenance)?;
     let memory_restored = TrainingSession::resume(&config, &data, &device, snapshot)?;
     assert_tensors(&captured, &memory_restored.model.buffers()?, 0.)?;
+    assert_eq!(
+        memory_restored.rng_state()?.cuda_philox_offset,
+        Some(offset)
+    );
+    assert_eq!(restored.rng_state()?.cuda_philox_offset, Some(offset));
     session.advance()?;
     restored.advance()?;
     assert_tensors(session.model.weights(), restored.model.weights(), 1e-6)?;
@@ -143,8 +155,8 @@ fn cuda_snapshot_checkpoint_resume_and_inference_keep_buffers() -> R {
         restored.state.next_forward_id
     );
     assert_eq!(
-        serde_json::to_value(session.rng_state())?,
-        serde_json::to_value(restored.rng_state())?
+        serde_json::to_value(session.rng_state()?)?,
+        serde_json::to_value(restored.rng_state()?)?
     );
     for name in session.model.weights().keys() {
         let left = session.optimizer.state(name).unwrap();
@@ -173,7 +185,18 @@ fn cuda_snapshot_checkpoint_resume_and_inference_keep_buffers() -> R {
     assert_tensors(&state_before.buffers, &frozen.buffers()?, 0.)?;
     assert_eq!(
         serde_json::to_value(&state_before.rng)?,
-        serde_json::to_value(session.rng_state())?
+        serde_json::to_value(session.rng_state()?)?
+    );
+
+    // Only one branch performed freeze/validation. Its next training update must
+    // still use the same Philox offset and replayable sparse-sampling position.
+    session.advance()?;
+    restored.advance()?;
+    assert_tensors(session.model.weights(), restored.model.weights(), 1e-6)?;
+    assert_tensors(&session.model.buffers()?, &restored.model.buffers()?, 1e-6)?;
+    assert_eq!(
+        serde_json::to_value(session.rng_state()?)?,
+        serde_json::to_value(restored.rng_state()?)?
     );
 
     let options = EvaluationOptions {
@@ -208,15 +231,11 @@ fn cuda_snapshot_checkpoint_resume_and_inference_keep_buffers() -> R {
     Ok(())
 }
 
-fn repair_buffers_hash(bundle: &Path) -> R {
+fn repair_payload_hash(bundle: &Path, filename: &str) -> R {
     let path = bundle.join("manifest.json");
     let mut manifest: serde_json::Value = serde_json::from_slice(&fs::read(&path)?)?;
-    manifest["files"]["buffers.safetensors"]["bytes"] =
-        fs::metadata(bundle.join("buffers.safetensors"))?
-            .len()
-            .into();
-    manifest["files"]["buffers.safetensors"]["sha256"] =
-        fingerprint(bundle.join("buffers.safetensors"))?.into();
+    manifest["files"][filename]["bytes"] = fs::metadata(bundle.join(filename))?.len().into();
+    manifest["files"][filename]["sha256"] = fingerprint(bundle.join(filename))?.into();
     fs::write(path, serde_json::to_vec(&manifest)?)?;
     Ok(())
 }
@@ -266,7 +285,7 @@ fn cuda_corrupt_buffers_fail_before_mutating_the_model_or_reference() -> R {
         }
         let payload: std::collections::HashMap<_, _> = buffers.into_iter().collect();
         candle_core::safetensors::save(&payload, broken.join("buffers.safetensors"))?;
-        repair_buffers_hash(&broken)?;
+        repair_payload_hash(&broken, "buffers.safetensors")?;
         assert!(checkpoint::load(&broken, &device).is_err(), "{kind}");
         assert!(
             checkpoint::load_session(&broken, &config, &data, &device, &provenance).is_err(),
@@ -357,5 +376,53 @@ fn cuda_select_targets_accepts_noncontiguous_decoder_forecasts() -> R {
         selected.flatten_all()?.to_vec1::<f32>()?,
         [5., 8., 17., 20.]
     );
+    Ok(())
+}
+
+#[test]
+fn cuda_informer_rejects_missing_or_invalid_philox_state() -> R {
+    let device = Device::new_cuda(0)?;
+    let (config, data, provenance) = example()?;
+    let mut session = TrainingSession::new(&config, &data, &device)?;
+    session.advance()?;
+    let run = directory();
+    let valid = checkpoint::publish_training(&run, "last", &mut session, &provenance, None)?;
+    for kind in ["missing", "unaligned", "old_version", "old_policy"] {
+        let mut snapshot = session.snapshot()?;
+        match kind {
+            "missing" => snapshot.rng.cuda_philox_offset = None,
+            "unaligned" => snapshot.rng.cuda_philox_offset = Some(3),
+            "old_version" => snapshot.rng.format_version = 1,
+            "old_policy" => snapshot.rng.sampling_policy = "pytorch-five-draws-per-epoch-v1".into(),
+            _ => unreachable!(),
+        }
+        assert!(
+            TrainingSession::resume(&config, &data, &device, snapshot).is_err(),
+            "{kind}"
+        );
+        let broken = directory();
+        for entry in fs::read_dir(&valid)? {
+            let entry = entry?;
+            fs::copy(entry.path(), broken.join(entry.file_name()))?;
+        }
+        let path = broken.join("rng-state.json");
+        let mut rng: serde_json::Value = serde_json::from_slice(&fs::read(&path)?)?;
+        match kind {
+            "missing" => {
+                rng.as_object_mut().unwrap().remove("cuda_philox_offset");
+            }
+            "unaligned" => rng["cuda_philox_offset"] = 3.into(),
+            "old_version" => rng["format_version"] = 1.into(),
+            "old_policy" => rng["sampling_policy"] = "pytorch-five-draws-per-epoch-v1".into(),
+            _ => unreachable!(),
+        }
+        fs::write(path, serde_json::to_vec(&rng)?)?;
+        repair_payload_hash(&broken, "rng-state.json")?;
+        assert!(
+            checkpoint::load_session(&broken, &config, &data, &device, &provenance).is_err(),
+            "{kind}"
+        );
+    }
+    assert_eq!(checkpoint::resolve(&run.join("last"))?, valid);
     Ok(())
 }

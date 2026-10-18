@@ -83,3 +83,23 @@ fn torch_randint_word_count_and_empty_sites_keep_five_draws() {
     let shifted = base.training_permutation_after_randint(32, 1, 1, 0, 0, &[(7, 3)]);
     assert_ne!(plain, shifted);
 }
+
+#[test]
+fn torch_randint_values_match_pytorch_2_14_cpu() {
+    // torch 2.14.0+cu130, immediately after manual_seed, before any other draw.
+    let mut narrow = ReferenceRng::new(2023);
+    assert_eq!(
+        narrow.torch_randint(96, 8),
+        vec![87, 89, 6, 55, 33, 92, 35, 52]
+    );
+    let mut wide = ReferenceRng::new(2023);
+    assert_eq!(
+        wide.torch_randint(1 << 28, 4),
+        vec![179_852_825, 8_047_287, 201_168_604, 188_212_084]
+    );
+    let mut consumed = ReferenceRng::new(2023);
+    consumed.consume_torch_randint(96, 8);
+    let mut drawn = ReferenceRng::new(2023);
+    let _ = drawn.torch_randint(96, 8);
+    assert_eq!(consumed.seed_draw(), drawn.seed_draw());
+}

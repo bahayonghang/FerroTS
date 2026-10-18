@@ -120,14 +120,57 @@ impl ReferenceRng {
         self.training_permutation_after_randint(length, epoch, 0, 0, 0, &[])
     }
 
-    /// One CPU `torch.randint(high, count)` from PyTorch 2.14.0.
-    /// `high < 2^28` consumes one MT19937 word per element; larger `high` consumes two.
-    /// The values are discarded. ProbSparse keeps its own index stream.
-    pub fn consume_torch_randint(&mut self, high: u64, count: usize) {
-        let words = if high < 1 << 28 { 1 } else { 2 };
-        for _ in 0..count.saturating_mul(words) {
-            let _ = self.next_u32();
+    /// Values of one CPU `torch.randint(0, high, count)` from PyTorch 2.14.0.
+    /// `high < 2^28` uses one MT19937 word per element; a larger `high` uses two.
+    /// `high == 0` draws nothing. A result is always `< high`.
+    pub fn torch_randint(&mut self, high: u64, count: usize) -> Vec<u64> {
+        let mut values = Vec::with_capacity(count);
+        if high == 0 {
+            return values;
         }
+        if high < 1 << 28 {
+            for _ in 0..count {
+                values.push(u64::from(self.next_u32()) % high);
+            }
+        } else {
+            for _ in 0..count {
+                values.push(self.next_u64() % high);
+            }
+        }
+        values
+    }
+
+    /// Advance past one CPU `torch.randint(high, count)` without keeping values.
+    /// The word count matches [`Self::torch_randint`].
+    pub fn consume_torch_randint(&mut self, high: u64, count: usize) {
+        if high == 0 {
+            for _ in 0..count {
+                let _ = self.next_u32();
+            }
+            return;
+        }
+        let _ = self.torch_randint(high, count);
+    }
+
+    /// Global-generator cost of one finished official loader cycle.
+    /// Train and validation each draw two int64 seeds; test draws one.
+    /// Each batch then costs one `sites` group. An empty `sites` list is the
+    /// five-draw schedule.
+    pub fn replay_loader_cycle(
+        &mut self,
+        train_batches: usize,
+        val_batches: usize,
+        test_batches: usize,
+        sites: &[(u64, usize)],
+    ) {
+        self.seed_draw();
+        self.seed_draw();
+        consume_sites(self, train_batches, sites);
+        self.seed_draw();
+        self.seed_draw();
+        consume_sites(self, val_batches, sites);
+        self.seed_draw();
+        consume_sites(self, test_batches, sites);
     }
 
     /// Train permutation after `epoch` complete loader cycles.
@@ -146,14 +189,7 @@ impl ReferenceRng {
     ) -> Vec<usize> {
         let mut global = self.clone();
         for _ in 0..epoch {
-            global.seed_draw();
-            global.seed_draw();
-            consume_sites(&mut global, train_batches, sites);
-            global.seed_draw();
-            global.seed_draw();
-            consume_sites(&mut global, val_batches, sites);
-            global.seed_draw();
-            consume_sites(&mut global, test_batches, sites);
+            global.replay_loader_cycle(train_batches, val_batches, test_batches, sites);
         }
         global.seed_draw();
         Self::new(global.seed_draw()).permutation(length)

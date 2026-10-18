@@ -33,6 +33,69 @@ fn h720_schedule() -> InformerSamplingSchedule {
 }
 
 #[test]
+fn etth2_h96_seed2023_batch0_indices_match_torch_randint() -> R {
+    let schedule = InformerSamplingSchedule {
+        lookback: 96,
+        label_len: 48,
+        horizon: 96,
+        factor: 3,
+        e_layers: 2,
+        d_layers: 1,
+        distil: true,
+        batch_size: 32,
+        train_windows: 8449,
+        val_windows: 2785,
+        test_windows: 2785,
+        train_drop_last: false,
+    };
+    let spec = ModelSpec::Informer {
+        d_model: 512,
+        n_heads: 8,
+        d_ff: 2048,
+        e_layers: 2,
+        d_layers: 1,
+        factor: 3,
+        distil: true,
+        label_len: 48,
+        dropout: 0.1,
+        activation: Activation::Gelu,
+    };
+    let window = WindowSpec {
+        lookback: 96,
+        horizon: 96,
+        gap: 0,
+        stride: 1,
+    };
+    let model = Informer::new(&spec, &window, 7, 4, 2023, &Device::Cpu)?;
+    let mut rng = schedule.rng_before_train_batch(model.sampling_rng(), 0, 0);
+    let indices = schedule.draw_train_indices(&mut rng, &Device::Cpu)?;
+    let heads = [
+        (
+            "encoder.attn_layers.0.attention",
+            [25_u32, 81, 79, 1, 2, 58, 75, 77],
+        ),
+        (
+            "encoder.attn_layers.1.attention",
+            [25, 4, 28, 41, 30, 38, 11, 20],
+        ),
+        (
+            "decoder.layers.0.self_attention",
+            [102, 22, 137, 102, 88, 89, 117, 54],
+        ),
+        (
+            "decoder.layers.0.cross_attention",
+            [40, 26, 32, 28, 30, 24, 35, 31],
+        ),
+    ];
+    assert_eq!(indices.len(), heads.len());
+    for (name, expected) in heads {
+        let values = indices[name].flatten_all()?.to_vec1::<u32>()?;
+        assert_eq!(&values[..8], &expected, "{name}");
+    }
+    Ok(())
+}
+
+#[test]
 fn etth1_h720_seed2022_epoch1_order_matches_official_loader() -> R {
     let schedule = h720_schedule();
     assert_eq!(
@@ -77,6 +140,7 @@ fn etth1_h720_seed2022_epoch1_order_matches_official_loader() -> R {
     Ok(())
 }
 
+#[cfg(feature = "cuda")]
 #[test]
 fn session_epoch2_order_uses_the_randint_schedule() -> R {
     let root = std::env::temp_dir().join(format!(
@@ -128,7 +192,7 @@ fn session_epoch2_order_uses_the_randint_schedule() -> R {
         dropout: 0.0,
         activation: Activation::Gelu,
     };
-    config.train.device = "cpu".into();
+    config.train.device = "cuda:0".into();
     config.train.seed = 2022;
     config.train.batch_size = 4;
     config.train.accumulation_steps = 1;
@@ -137,7 +201,7 @@ fn session_epoch2_order_uses_the_randint_schedule() -> R {
     config.output.root = root.join("runs");
     config.output.run_id = Some("order".into());
     let data = Dataset::load(&config.data, &config.window, None)?;
-    let device = Device::Cpu;
+    let device = Device::new_cuda(0)?;
     let mut session = TrainingSession::new(&config, &data, &device)?;
     let mut finished = false;
     for _ in 0..64 {
@@ -193,5 +257,69 @@ fn session_epoch2_order_uses_the_randint_schedule() -> R {
         .collect();
     assert_ne!(order, previous);
     assert_eq!(session.state.order_sha256, sha(&order));
+    Ok(())
+}
+
+#[cfg(feature = "cuda")]
+#[test]
+fn cuda_full_sparse_indices_replay_at_middle_tail_and_next_epoch() -> R {
+    let device = Device::new_cuda(0)?;
+    let schedule = InformerSamplingSchedule {
+        lookback: 8,
+        label_len: 4,
+        horizon: 2,
+        factor: 1,
+        e_layers: 2,
+        d_layers: 1,
+        distil: true,
+        batch_size: 4,
+        train_windows: 13,
+        val_windows: 5,
+        test_windows: 5,
+        train_drop_last: false,
+    };
+    let spec = ModelSpec::Informer {
+        d_model: 8,
+        n_heads: 2,
+        d_ff: 16,
+        e_layers: 2,
+        d_layers: 1,
+        factor: 1,
+        distil: true,
+        label_len: 4,
+        dropout: 0.1,
+        activation: Activation::Gelu,
+    };
+    let window = WindowSpec {
+        lookback: 8,
+        horizon: 2,
+        gap: 0,
+        stride: 1,
+    };
+    let model = Informer::new(&spec, &window, 2, 4, 2023, &device)?;
+    let after_init = model.sampling_rng();
+    assert_eq!(schedule.train_batches(), 4);
+    assert_eq!(schedule.train_windows % schedule.batch_size, 1);
+    for epoch in 0..3 {
+        let mut uninterrupted = schedule.rng_before_train_batch(after_init, epoch, 0);
+        for batch in 0..schedule.train_batches() {
+            let mut replayed = schedule.rng_before_train_batch(after_init, epoch, batch);
+            let expected = schedule.draw_train_indices(&mut uninterrupted, &device)?;
+            let actual = schedule.draw_train_indices(&mut replayed, &device)?;
+            assert_eq!(
+                expected.keys().collect::<Vec<_>>(),
+                actual.keys().collect::<Vec<_>>()
+            );
+            for (site, values) in &expected {
+                assert_eq!(values.dims(), actual[site].dims());
+                assert_eq!(
+                    values.flatten_all()?.to_vec1::<u32>()?,
+                    actual[site].flatten_all()?.to_vec1::<u32>()?,
+                    "epoch={epoch} batch={batch} site={site}"
+                );
+            }
+            assert_eq!(uninterrupted.snapshot(), replayed.snapshot());
+        }
+    }
     Ok(())
 }

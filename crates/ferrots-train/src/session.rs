@@ -91,6 +91,56 @@ pub struct RngState {
     pub post_init: ReferenceRngState,
     pub next_forward_id: u64,
     pub dropout_site_version: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cuda_philox_offset: Option<u64>,
+}
+impl RngState {
+    pub(crate) fn version(spec: &ModelSpec) -> u32 {
+        if matches!(spec, ModelSpec::Informer { .. }) {
+            2
+        } else {
+            1
+        }
+    }
+    fn policy(spec: &ModelSpec) -> &'static str {
+        if matches!(spec, ModelSpec::Informer { .. }) {
+            "informer-torch-randint-philox-v2"
+        } else {
+            "pytorch-five-draws-per-epoch-v1"
+        }
+    }
+    pub(crate) fn validate(
+        &self,
+        model: &ForecastModel,
+        seed: u64,
+        next_forward_id: u64,
+    ) -> Result<()> {
+        if matches!(model.spec(), ModelSpec::Informer { .. }) {
+            require(
+                self.format_version == 2 && self.cuda_philox_offset.is_some(),
+                "Informer checkpoint requires RNG v2 with a persisted CUDA Philox offset",
+            )?;
+        }
+        require(
+            self.format_version == Self::version(model.spec())
+                && self.seed == seed
+                && self.next_forward_id == next_forward_id
+                && self.dropout_site_version == DROPOUT_SITE_VERSION
+                && self.sampling_policy == Self::policy(model.spec())
+                && self.post_init == model.sampling_rng().snapshot()
+                && match self.cuda_philox_offset {
+                    Some(offset) => {
+                        matches!(model.spec(), ModelSpec::Informer { .. })
+                            && offset.is_multiple_of(4)
+                    }
+                    None => !matches!(model.spec(), ModelSpec::Informer { .. }),
+                },
+            "RNG identity/state mismatch",
+        )?;
+        ReferenceRng::from_state(&self.post_init)
+            .map_err(|error| TrainError::InvalidState(error.to_string()))?;
+        Ok(())
+    }
 }
 
 pub struct SessionSnapshot {
@@ -116,6 +166,9 @@ pub struct TrainingSession<'a> {
     data: &'a Dataset,
     device: &'a Device,
     sampler: ReferenceRng,
+    /// Epoch, next train batch, and MT19937 cursor for Informer index values.
+    /// Rebuilt from `sampler` when the position does not match. Not checkpointed.
+    index_cursor: Option<(u64, u64, ReferenceRng)>,
     accumulator: GradientAccumulator,
     order: Vec<usize>,
 }
@@ -166,6 +219,7 @@ impl<'a> TrainingSession<'a> {
             data,
             device,
             sampler,
+            index_cursor: None,
             order: vec![],
             accumulator: GradientAccumulator::new(params),
             state: TrainingState {
@@ -199,10 +253,8 @@ impl<'a> TrainingSession<'a> {
         result.rebuild_order(false)?;
         Ok(result)
     }
-    fn rebuild_order(&mut self, verify: bool) -> Result<()> {
-        let epoch = self.state.epoch as u64 - 1;
-        let entries = self.data.index.order(0);
-        let positions = if let ModelSpec::Informer {
+    fn informer_schedule(&self) -> Option<InformerSamplingSchedule> {
+        let ModelSpec::Informer {
             factor,
             e_layers,
             d_layers,
@@ -210,22 +262,71 @@ impl<'a> TrainingSession<'a> {
             label_len,
             ..
         } = self.model.spec()
-        {
-            InformerSamplingSchedule {
-                lookback: self.model.window().lookback,
-                label_len: *label_len,
-                horizon: self.model.window().horizon,
-                factor: *factor,
-                e_layers: *e_layers,
-                d_layers: *d_layers,
-                distil: *distil,
-                batch_size: self.config.train.batch_size,
-                train_windows: entries.len(),
-                val_windows: self.data.index.counts[1],
-                test_windows: self.data.index.counts[2],
-                train_drop_last: self.config.train.drop_last,
+        else {
+            return None;
+        };
+        Some(InformerSamplingSchedule {
+            lookback: self.model.window().lookback,
+            label_len: *label_len,
+            horizon: self.model.window().horizon,
+            factor: *factor,
+            e_layers: *e_layers,
+            d_layers: *d_layers,
+            distil: *distil,
+            batch_size: self.config.train.batch_size,
+            train_windows: self.data.index.counts[0],
+            val_windows: self.data.index.counts[1],
+            test_windows: self.data.index.counts[2],
+            train_drop_last: self.config.train.drop_last,
+        })
+    }
+    fn informer_train_samples(&mut self) -> Result<Option<BTreeMap<String, Tensor>>> {
+        let Some(schedule) = self.informer_schedule() else {
+            return Ok(None);
+        };
+        let epoch = self.state.epoch as u64 - 1;
+        let train_batches = u64::try_from(schedule.train_batches()).map_err(|_| {
+            TrainError::InvalidState("Informer train batch count does not fit".into())
+        })?;
+        require(train_batches > 0, "Informer training has no batches")?;
+        let batch = self
+            .state
+            .next_forward_id
+            .checked_sub(epoch.checked_mul(train_batches).ok_or_else(|| {
+                TrainError::InvalidState("Informer epoch batch offset overflow".into())
+            })?)
+            .ok_or_else(|| {
+                TrainError::InvalidState("Informer train batch is behind the cursor".into())
+            })?;
+        let mut rng = match self.index_cursor.take() {
+            Some((cursor_epoch, cursor_batch, rng))
+                if cursor_epoch == epoch && cursor_batch == batch =>
+            {
+                rng
             }
-            .permutation(&self.sampler, epoch)
+            _ => schedule.rng_before_train_batch(
+                &self.sampler,
+                epoch,
+                usize::try_from(batch).map_err(|_| {
+                    TrainError::InvalidState("Informer train batch does not fit".into())
+                })?,
+            ),
+        };
+        let samples = schedule
+            .draw_train_indices(&mut rng, self.device)
+            .map_err(|error| TrainError::InvalidState(error.to_string()))?;
+        self.index_cursor = Some((epoch, batch + 1, rng));
+        Ok(Some(samples))
+    }
+    fn rebuild_order(&mut self, verify: bool) -> Result<()> {
+        let epoch = self.state.epoch as u64 - 1;
+        let entries = self.data.index.order(0);
+        let positions = if let Some(schedule) = self.informer_schedule() {
+            require(
+                schedule.train_windows == entries.len(),
+                "Informer train-window count changed",
+            )?;
+            schedule.permutation(&self.sampler, epoch)
         } else {
             self.sampler.training_permutation(entries.len(), epoch)
         };
@@ -277,15 +378,16 @@ impl<'a> TrainingSession<'a> {
         self.order = order;
         Ok(())
     }
-    pub fn rng_state(&self) -> RngState {
-        RngState {
-            format_version: 1,
-            sampling_policy: "pytorch-five-draws-per-epoch-v1".into(),
+    pub fn rng_state(&self) -> Result<RngState> {
+        Ok(RngState {
+            format_version: RngState::version(self.model.spec()),
+            sampling_policy: RngState::policy(self.model.spec()).into(),
             seed: self.config.train.seed,
             post_init: self.sampler.snapshot(),
             next_forward_id: self.state.next_forward_id,
             dropout_site_version: DROPOUT_SITE_VERSION,
-        }
+            cuda_philox_offset: self.model.cuda_philox_offset()?,
+        })
     }
     pub fn at_boundary(&self) -> bool {
         self.accumulator.is_empty()
@@ -483,7 +585,7 @@ impl<'a> TrainingSession<'a> {
             optimizer: self.optimizer.snapshot()?,
             trainer: self.state.clone(),
             scheduler: self.scheduler.clone(),
-            rng: self.rng_state(),
+            rng: self.rng_state()?,
         })
     }
     pub fn resume(
@@ -498,14 +600,10 @@ impl<'a> TrainingSession<'a> {
         )?;
         let mut result = Self::new(config, data, device)?;
         let r = &snapshot.rng;
-        require(
-            r.format_version == 1
-                && r.seed == config.train.seed
-                && r.next_forward_id == snapshot.trainer.next_forward_id
-                && r.dropout_site_version == DROPOUT_SITE_VERSION
-                && r.sampling_policy == "pytorch-five-draws-per-epoch-v1"
-                && r.post_init == result.sampler.snapshot(),
-            "RNG identity/state mismatch",
+        r.validate(
+            &result.model,
+            config.train.seed,
+            snapshot.trainer.next_forward_id,
         )?;
         result.sampler = ReferenceRng::from_state(&r.post_init)
             .map_err(|e| TrainError::InvalidState(e.to_string()))?;
@@ -520,6 +618,9 @@ impl<'a> TrainingSession<'a> {
         result.validate_state()?;
         result.model.load_buffers(&snapshot.buffers)?;
         result.model.load_weights(&snapshot.weights)?;
+        result
+            .model
+            .restore_cuda_philox_offset(r.cuda_philox_offset)?;
         Ok(result)
     }
     pub fn advance(&mut self) -> Result<Progress> {
@@ -550,13 +651,17 @@ impl<'a> TrainingSession<'a> {
                 &mut self.state.access,
             )?;
             let batch = DeviceBatch::from_host(&host, self.device)?;
-            let prediction = self.model.forward_with_context(
-                &batch.input,
-                ForwardContext {
-                    mode: Mode::Train,
-                    forward_id: self.state.next_forward_id,
-                },
-            )?;
+            let samples = self.informer_train_samples()?;
+            let context = ForwardContext {
+                mode: Mode::Train,
+                forward_id: self.state.next_forward_id,
+            };
+            let prediction = if let Some(samples) = &samples {
+                self.model
+                    .forward_with_samples(&batch.input, context, samples)?
+            } else {
+                self.model.forward_with_context(&batch.input, context)?
+            };
             self.state.next_forward_id = self
                 .state
                 .next_forward_id
