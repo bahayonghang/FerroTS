@@ -1,0 +1,106 @@
+# P3 CUDA performance evidence
+
+Suite: /mnt/data/lyh/FerroTS/runs/p3-acceptance/20261014-linux-cuda. Runtime source: ef70dd3488002a847d5354440ce79fc9ba992f6c64be923ec7adb1999bce097e.
+Machine / GPU / toolchain: {"cuda": "13.0", "gpus": ["NVIDIA GeForce RTX 4090", "NVIDIA GeForce RTX 4090"], "os": "Linux-6.17.0-22-generic-x86_64-with-glibc2.39", "python": "3.12.12 (main, Oct 10 2025, 12:47:49) [Clang 20.1.4 ]", "torch": "2.14.0+cu130", "torch_sha": "08187d9e0fba026dc8217405802ab5381dc88d90"}
+Complete training runs recorded: 96/105. Device is shown per run; official and Rust engines remain separate.
+Stage boundaries synchronize CUDA. Steady throughput excludes the first optimizer group of each epoch, and aggregates total steady windows / total steady seconds. Per-epoch training, validation, checkpoint, optional test times and counts are retained in performance.json.
+Memory is whole-device used memory sampled by nvidia-smi every 50 ms; concurrent processes contribute. Baseline, peak, timestamps, sample counts, estimated dropped samples and errors are retained. Process memory is unavailable. Official allocator peaks are measured by torch; Rust allocator peaks are unavailable and are not substituted with device totals.
+
+| Engine | Dataset | H | Seed | Device | Epochs | Train s | Validation s | Checkpoint s | Steady windows/s | Baseline MiB | Device peak MiB | Samples | Estimated dropped | Torch allocated peak bytes | Torch reserved peak bytes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| official | ETTh1 | 192 | 2021 | cuda:1 | 4 | 19.259 | 2.750 | 0.106 | 1770.298 | 106.0 | 1702.0 | 582 | 1 | 996898816 | 1172307968 |
+| official | ETTh1 | 192 | 2022 | cuda:0 | 4 | 16.764 | 2.151 | 0.030 | 2030.224 | 18.0 | 1613.0 | 500 | 0 | 996898816 | 1172307968 |
+| official | ETTh1 | 192 | 2023 | cuda:0 | 4 | 17.049 | 2.159 | 0.035 | 1995.871 | 18.0 | 1613.0 | 505 | 0 | 996898816 | 1172307968 |
+| official | ETTh1 | 336 | 2021 | cuda:1 | 4 | 24.634 | 3.765 | 0.103 | 1355.134 | 106.0 | 2286.0 | 733 | 1 | 1259835392 | 1784676352 |
+| official | ETTh1 | 336 | 2022 | cuda:0 | 4 | 22.209 | 2.911 | 0.029 | 1498.491 | 18.0 | 2197.0 | 646 | 0 | 1259835392 | 1784676352 |
+| official | ETTh1 | 336 | 2023 | cuda:0 | 4 | 22.402 | 3.016 | 0.030 | 1485.179 | 18.0 | 2197.0 | 649 | 0 | 1259835392 | 1784676352 |
+| official | ETTh1 | 720 | 2021 | cuda:1 | 7 | 65.955 | 8.908 | 0.472 | 835.678 | 106.0 | 2706.0 | 1782 | 0 | 1969114112 | 2225078272 |
+| official | ETTh1 | 720 | 2022 | cuda:0 | 5 | 42.885 | 5.489 | 0.086 | 918.733 | 18.0 | 2617.0 | 1170 | 0 | 1969114112 | 2225078272 |
+| official | ETTh1 | 720 | 2023 | cuda:0 | 7 | 59.676 | 7.245 | 0.189 | 922.686 | 18.0 | 2617.0 | 1576 | 0 | 1969114112 | 2225078272 |
+| official | ETTh1 | 96 | 2021 | cuda:0 | 4 | 13.413 | 1.687 | 0.029 | 2576.452 | 18.0 | 1365.0 | 410 | 0 | 733044736 | 912261120 |
+| official | ETTh1 | 96 | 2022 | cuda:0 | 4 | 13.412 | 1.682 | 0.029 | 2576.341 | 18.0 | 1365.0 | 410 | 0 | 733044736 | 912261120 |
+| official | ETTh1 | 96 | 2023 | cuda:0 | 4 | 13.393 | 1.677 | 0.029 | 2580.663 | 18.0 | 1365.0 | 408 | 0 | 733044736 | 912261120 |
+| official | ETTh2 | 192 | 2021 | cuda:1 | 4 | 19.627 | 2.634 | 0.118 | 1737.524 | 106.0 | 1702.0 | 586 | 0 | 996898816 | 1172307968 |
+| official | ETTh2 | 192 | 2022 | cuda:0 | 4 | 17.313 | 2.184 | 0.050 | 1966.626 | 18.0 | 1613.0 | 513 | 0 | 996898816 | 1172307968 |
+| official | ETTh2 | 192 | 2023 | cuda:0 | 4 | 17.090 | 2.135 | 0.029 | 1989.644 | 18.0 | 1613.0 | 507 | 0 | 996898816 | 1172307968 |
+| official | ETTh2 | 336 | 2021 | cuda:1 | 5 | 31.242 | 4.720 | 0.235 | 1330.929 | 106.0 | 2286.0 | 909 | 1 | 1259835392 | 1784676352 |
+| official | ETTh2 | 336 | 2022 | cuda:0 | 4 | 22.167 | 2.962 | 0.037 | 1502.070 | 18.0 | 2197.0 | 646 | 0 | 1259835392 | 1784676352 |
+| official | ETTh2 | 336 | 2023 | cuda:0 | 8 | 44.740 | 6.235 | 0.255 | 1477.660 | 18.0 | 2197.0 | 1230 | 0 | 1259835392 | 1784676352 |
+| official | ETTh2 | 720 | 2021 | cuda:1 | 6 | 56.476 | 7.826 | 0.238 | 837.305 | 106.0 | 2706.0 | 1553 | 0 | 1969114112 | 2225078272 |
+| official | ETTh2 | 720 | 2022 | cuda:0 | 4 | 34.173 | 4.064 | 0.030 | 924.084 | 18.0 | 2617.0 | 939 | 0 | 1969114112 | 2225078272 |
+| official | ETTh2 | 720 | 2023 | cuda:0 | 4 | 33.886 | 4.236 | 0.030 | 931.661 | 18.0 | 2617.0 | 924 | 0 | 1969114112 | 2225078272 |
+| official | ETTh2 | 96 | 2021 | cuda:1 | 4 | 15.060 | 2.002 | 0.102 | 2300.691 | 107.0 | 1454.0 | 463 | 0 | 733044736 | 912261120 |
+| official | ETTh2 | 96 | 2022 | cuda:0 | 4 | 13.501 | 1.676 | 0.036 | 2559.647 | 18.0 | 1365.0 | 412 | 0 | 733044736 | 912261120 |
+| official | ETTh2 | 96 | 2023 | cuda:0 | 6 | 20.012 | 2.532 | 0.082 | 2576.319 | 18.0 | 1365.0 | 571 | 0 | 733044736 | 912261120 |
+| official | ETTm1 | 192 | 2021 | cuda:1 | 4 | 78.389 | 11.036 | 0.104 | 1758.015 | 106.0 | 1702.0 | 2154 | 0 | 996898816 | 1172307968 |
+| official | ETTm1 | 192 | 2022 | cuda:0 | 4 | 68.928 | 9.058 | 0.029 | 1997.931 | 18.0 | 1613.0 | 1876 | 0 | 996898816 | 1172307968 |
+| official | ETTm1 | 192 | 2023 | cuda:0 | 4 | 69.153 | 9.061 | 0.029 | 1991.633 | 18.0 | 1613.0 | 1864 | 0 | 996898816 | 1172307968 |
+| official | ETTm1 | 336 | 2021 | cuda:1 | 4 | 311.680 | 48.832 | 0.115 | 438.873 | 7049.0 | 9232.0 | 8480 | 2 | 1259835392 | 1784676352 |
+| official | ETTm1 | 336 | 2022 | cuda:1 | 4 | 275.032 | 41.945 | 0.111 | 497.402 | 7053.0 | 9238.0 | 7405 | 2 | 1259835392 | 1784676352 |
+| official | ETTm1 | 336 | 2023 | cuda:0 | 4 | 92.505 | 12.939 | 0.030 | 1480.662 | 18.0 | 2197.0 | 2532 | 0 | 1259835392 | 1784676352 |
+| official | ETTm1 | 720 | 2021 | cuda:0 | 4 | 147.575 | 21.389 | 0.035 | 916.631 | 18.0 | 2617.0 | 4022 | 0 | 1969114112 | 2225078272 |
+| official | ETTm1 | 720 | 2022 | cuda:1 | 5 | 200.268 | 32.473 | 0.234 | 844.144 | 106.0 | 2706.0 | 5545 | 0 | 1969114112 | 2225078272 |
+| official | ETTm1 | 720 | 2023 | cuda:0 | 5 | 184.322 | 27.379 | 0.086 | 916.879 | 18.0 | 2617.0 | 4977 | 0 | 1969114112 | 2225078272 |
+| official | ETTm1 | 96 | 2021 | cuda:0 | 4 | 54.310 | 6.952 | 0.038 | 2545.423 | 18.0 | 1365.0 | 1488 | 1 | 733044736 | 912261120 |
+| official | ETTm1 | 96 | 2022 | cuda:0 | 5 | 69.528 | 8.762 | 0.080 | 2490.587 | 18.0 | 1365.0 | 1877 | 0 | 733044736 | 912261120 |
+| official | ETTm1 | 96 | 2023 | cuda:0 | 5 | 66.469 | 8.576 | 0.077 | 2598.007 | 18.0 | 1365.0 | 1787 | 0 | 733044736 | 912261120 |
+| official | ETTm2 | 192 | 2021 | cuda:0 | 4 | 70.141 | 9.139 | 0.030 | 1963.047 | 18.0 | 1613.0 | 1898 | 0 | 996898816 | 1172307968 |
+| official | ETTm2 | 192 | 2022 | cuda:1 | 4 | 80.155 | 11.808 | 0.104 | 1718.973 | 106.0 | 1702.0 | 2211 | 0 | 996898816 | 1172307968 |
+| official | ETTm2 | 192 | 2023 | cuda:0 | 4 | 69.544 | 9.175 | 0.031 | 1979.719 | 18.0 | 1613.0 | 1882 | 0 | 996898816 | 1172307968 |
+| official | ETTm2 | 336 | 2021 | cuda:0 | 4 | 92.570 | 13.429 | 0.030 | 1479.644 | 18.0 | 2197.0 | 2536 | 0 | 1259835392 | 1784676352 |
+| official | ETTm2 | 336 | 2022 | cuda:1 | 4 | 102.959 | 17.056 | 0.109 | 1331.093 | 106.0 | 2286.0 | 2932 | 1 | 1259835392 | 1784676352 |
+| official | ETTm2 | 336 | 2023 | cuda:0 | 4 | 91.002 | 14.851 | 0.029 | 1504.997 | 18.0 | 2197.0 | 2517 | 0 | 1259835392 | 1784676352 |
+| official | ETTm2 | 720 | 2021 | cuda:0 | 4 | 148.109 | 22.037 | 0.034 | 913.179 | 18.0 | 2617.0 | 4073 | 0 | 1969114112 | 2225078272 |
+| official | ETTm2 | 720 | 2022 | cuda:1 | 5 | 202.486 | 32.963 | 0.237 | 834.889 | 106.0 | 2706.0 | 5603 | 0 | 1969114112 | 2225078272 |
+| official | ETTm2 | 720 | 2023 | cuda:0 | 4 | 147.808 | 21.539 | 0.040 | 915.066 | 18.0 | 2617.0 | 4026 | 0 | 1969114112 | 2225078272 |
+| official | ETTm2 | 96 | 2021 | cuda:0 | 4 | 53.946 | 6.866 | 0.029 | 2563.697 | 18.0 | 1365.0 | 1470 | 0 | 733044736 | 912261120 |
+| official | ETTm2 | 96 | 2022 | cuda:1 | 4 | 60.586 | 8.240 | 0.103 | 2284.900 | 106.0 | 1454.0 | 1669 | 0 | 733044736 | 912261120 |
+| official | ETTm2 | 96 | 2023 | cuda:0 | 4 | 53.306 | 6.859 | 0.029 | 2594.005 | 18.0 | 1365.0 | 1456 | 0 | 733044736 | 912261120 |
+| rust | ETTh1 | 192 | 2021 | cuda:1 | 4 | 636.045 | 5.498 | 39.432 | 52.537 | 106.0 | 4666.0 | 13653 | 1 | unavailable | unavailable |
+| rust | ETTh1 | 192 | 2022 | cuda:0 | 4 | 295.833 | 4.338 | 31.937 | 112.981 | 18.0 | 4577.0 | 6680 | 0 | unavailable | unavailable |
+| rust | ETTh1 | 192 | 2023 | cuda:0 | 4 | 296.959 | 4.344 | 31.909 | 112.550 | 18.0 | 4937.0 | 6702 | 2 | unavailable | unavailable |
+| rust | ETTh1 | 336 | 2021 | cuda:1 | 4 | 831.657 | 7.178 | 39.894 | 39.486 | 106.0 | 6394.0 | 17593 | 1 | unavailable | unavailable |
+| rust | ETTh1 | 336 | 2022 | cuda:0 | 4 | 407.542 | 6.019 | 32.205 | 80.591 | 18.0 | 6273.0 | 8949 | 0 | unavailable | unavailable |
+| rust | ETTh1 | 336 | 2023 | cuda:0 | 4 | 411.626 | 6.066 | 32.249 | 79.791 | 18.0 | 6665.0 | 9033 | 1 | unavailable | unavailable |
+| rust | ETTh1 | 720 | 2021 | cuda:1 | 6 | 2042.581 | 16.927 | 76.780 | 22.987 | 106.0 | 11071.0 | 42683 | 1 | unavailable | unavailable |
+| rust | ETTh1 | 720 | 2022 | cuda:0 | 5 | 914.628 | 12.426 | 47.551 | 42.782 | 18.0 | 10977.0 | 19513 | 0 | unavailable | unavailable |
+| rust | ETTh1 | 720 | 2023 | cuda:0 | 6 | 1099.879 | 14.959 | 62.604 | 42.692 | 18.0 | 11337.0 | 23553 | 1 | unavailable | unavailable |
+| rust | ETTh1 | 96 | 2021 | cuda:1 | 4 | 505.330 | 4.279 | 39.459 | 66.889 | 106.0 | 3674.0 | 11016 | 1 | unavailable | unavailable |
+| rust | ETTh1 | 96 | 2022 | cuda:0 | 4 | 223.814 | 3.238 | 31.999 | 151.063 | 18.0 | 3585.0 | 5227 | 0 | unavailable | unavailable |
+| rust | ETTh1 | 96 | 2023 | cuda:0 | 4 | 224.178 | 3.248 | 32.392 | 150.815 | 18.0 | 3945.0 | 5237 | 2 | unavailable | unavailable |
+| rust | ETTh2 | 192 | 2021 | cuda:1 | 4 | 636.427 | 5.512 | 40.227 | 52.509 | 106.0 | 4698.0 | 13654 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 192 | 2022 | cuda:0 | 4 | 295.806 | 4.315 | 32.282 | 112.991 | 18.0 | 4609.0 | 6684 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 192 | 2023 | cuda:0 | 4 | 298.223 | 4.325 | 32.778 | 112.080 | 18.0 | 4937.0 | 6736 | 1 | unavailable | unavailable |
+| rust | ETTh2 | 336 | 2021 | cuda:1 | 5 | 1042.650 | 9.010 | 59.676 | 39.369 | 106.0 | 6394.0 | 22199 | 1 | unavailable | unavailable |
+| rust | ETTh2 | 336 | 2022 | cuda:0 | 4 | 413.588 | 6.028 | 32.440 | 79.411 | 18.0 | 6273.0 | 9065 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 336 | 2023 | cuda:0 | 8 | 818.231 | 12.121 | 90.597 | 80.277 | 18.0 | 6697.0 | 18437 | 2 | unavailable | unavailable |
+| rust | ETTh2 | 720 | 2021 | cuda:1 | 6 | 2045.613 | 16.907 | 67.655 | 22.952 | 106.0 | 11098.0 | 42525 | 1 | unavailable | unavailable |
+| rust | ETTh2 | 720 | 2022 | cuda:0 | 4 | 734.539 | 9.898 | 32.896 | 42.619 | 18.0 | 10977.0 | 15552 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 720 | 2023 | cuda:0 | 4 | 735.196 | 9.962 | 33.047 | 42.579 | 18.0 | 10977.0 | 15573 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 96 | 2021 | cuda:1 | 4 | 505.188 | 4.251 | 39.251 | 66.909 | 107.0 | 3674.0 | 10989 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 96 | 2022 | cuda:0 | 4 | 224.409 | 3.221 | 31.905 | 150.657 | 18.0 | 3585.0 | 5223 | 0 | unavailable | unavailable |
+| rust | ETTh2 | 96 | 2023 | cuda:0 | 4 | 225.149 | 3.247 | 32.157 | 150.168 | 18.0 | 3945.0 | 5243 | 2 | unavailable | unavailable |
+| rust | ETTm1 | 192 | 2021 | cuda:1 | 4 | 2617.817 | 23.074 | 42.122 | 52.371 | 106.0 | 7502.0 | 53551 | 1 | unavailable | unavailable |
+| rust | ETTm1 | 192 | 2022 | cuda:0 | 4 | 1213.903 | 18.137 | 33.824 | 112.946 | 18.0 | 4577.0 | 25312 | 0 | unavailable | unavailable |
+| rust | ETTm1 | 192 | 2023 | cuda:0 | 4 | 1307.537 | 21.622 | 36.568 | 104.848 | 18.0 | 11911.0 | 27273 | 2 | unavailable | unavailable |
+| rust | ETTm1 | 336 | 2021 | cuda:0 | 4 | 1880.101 | 39.095 | 37.143 | 72.622 | 7356.0 | 13621.0 | 39053 | 9 | unavailable | unavailable |
+| rust | ETTm1 | 336 | 2022 | cuda:1 | 4 | 3595.517 | 31.333 | 42.352 | 37.970 | 3572.0 | 9841.0 | 73172 | 4 | unavailable | unavailable |
+| rust | ETTm1 | 336 | 2023 | cuda:0 | 4 | 1697.452 | 26.373 | 35.053 | 80.429 | 18.0 | 6337.0 | 35128 | 0 | unavailable | unavailable |
+| rust | ETTm1 | 720 | 2021 | cuda:0 | 4 | 3180.669 | 49.333 | 37.803 | 42.439 | 18.0 | 11369.0 | 65279 | 1 | unavailable | unavailable |
+| rust | ETTm1 | 720 | 2022 | cuda:1 | 5 | 7349.555 | 70.002 | 66.612 | 22.957 | 106.0 | 11098.0 | 149434 | 0 | unavailable | unavailable |
+| rust | ETTm1 | 720 | 2023 | cuda:0 | 5 | 3959.328 | 61.638 | 56.411 | 42.616 | 18.0 | 11009.0 | 81512 | 0 | unavailable | unavailable |
+| rust | ETTm1 | 96 | 2021 | cuda:1 | 4 | 2057.956 | 17.140 | 40.372 | 66.805 | 111.0 | 3679.0 | 42238 | 1 | unavailable | unavailable |
+| rust | ETTm1 | 96 | 2022 | cuda:0 | 4 | 916.080 | 13.227 | 33.164 | 150.085 | 18.0 | 3617.0 | 19274 | 0 | unavailable | unavailable |
+| rust | ETTm1 | 96 | 2023 | cuda:0 | 5 | 1142.609 | 16.524 | 47.847 | 150.410 | 18.0 | 3977.0 | 24124 | 1 | unavailable | unavailable |
+| rust | ETTm2 | 192 | 2021 | cuda:0 | 4 | 1221.779 | 18.217 | 34.233 | 112.216 | 18.0 | 4937.0 | 25493 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 192 | 2022 | cuda:1 | 4 | 2622.584 | 22.987 | 41.258 | 52.275 | 106.0 | 4698.0 | 53658 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 192 | 2023 | cuda:0 | 4 | 1214.748 | 18.188 | 33.919 | 112.866 | 18.0 | 4577.0 | 25348 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 336 | 2021 | cuda:0 | 4 | 1709.019 | 26.479 | 35.112 | 79.884 | 18.0 | 6665.0 | 35393 | 1 | unavailable | unavailable |
+| rust | ETTm2 | 336 | 2022 | cuda:1 | 4 | 3462.425 | 31.372 | 42.582 | 39.429 | 106.0 | 6394.0 | 70624 | 2 | unavailable | unavailable |
+| rust | ETTm2 | 336 | 2023 | cuda:0 | 4 | 1696.278 | 26.407 | 35.046 | 80.486 | 18.0 | 6337.0 | 35141 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 720 | 2021 | cuda:0 | 4 | 3181.348 | 49.447 | 37.845 | 42.430 | 18.0 | 11401.0 | 65328 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 720 | 2022 | cuda:1 | 5 | 7345.304 | 69.964 | 66.497 | 22.971 | 106.0 | 11098.0 | 149349 | 1 | unavailable | unavailable |
+| rust | ETTm2 | 720 | 2023 | cuda:0 | 4 | 3162.150 | 49.297 | 37.880 | 42.688 | 18.0 | 10977.0 | 64928 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 96 | 2021 | cuda:0 | 4 | 910.528 | 13.235 | 33.057 | 151.001 | 18.0 | 3945.0 | 19138 | 1 | unavailable | unavailable |
+| rust | ETTm2 | 96 | 2022 | cuda:1 | 4 | 2053.951 | 17.137 | 40.658 | 66.935 | 106.0 | 3674.0 | 42158 | 0 | unavailable | unavailable |
+| rust | ETTm2 | 96 | 2023 | cuda:0 | 4 | 911.526 | 13.229 | 33.198 | 150.836 | 18.0 | 3585.0 | 19163 | 0 | unavailable | unavailable |
