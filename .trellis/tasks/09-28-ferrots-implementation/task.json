@@ -3,7 +3,7 @@
   "name": "ferrots-implementation",
   "title": "FerroTS Rust 时序预测平台实施",
   "description": "按 FerroTS_Rust_Implementation_Plan.md 分阶段实施 Rust 原生时序平台；实验覆盖 ETT 公共数据集与阳泉回转窑私有数据集",
-  "status": "planning",
+  "status": "in_progress",
   "dev_type": null,
   "scope": null,
   "package": null,
@@ -30,6 +30,6 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "P0, datasets protocol and P1 archived. P2 Linux CUDA matrix complete; remaining CPU/device clauses open. P3 Informer, WaveForM and P4 plans prepared; all remain planning. P5 deferred until first release. Main contains merge 5b937b0; dev owns subsequent planning.",
+  "notes": "P0, datasets protocol and P1 archived. P2 Linux CUDA matrix complete; remaining CPU/device clauses open. P3 Informer is in_progress: old 20261014 suite official48 + Rust48, D4 30/32, ETTh2/H96 MSE and MAE failed, cement 0/9; current Philox/randint/checkpoint source is a separate identity and has no formal acceptance; its ETTh2/H96 seed2023 paired diagnostic still has a substantial official/Rust metric gap. Same-evaluator retained-checkpoint replay finds official epoch2 consistently better on validation MSE than epoch1 but much worse on test MSE; there is no demonstrated early-stop bug. The ETTh1/H720 full guard and new suite remain deferred. WaveForM and P4 remain planning and unstarted. P5 deferred until first release. Main contains merge 5b937b0; dev owns subsequent work.",
   "meta": {}
 }

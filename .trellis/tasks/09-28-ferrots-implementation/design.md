@@ -4,7 +4,7 @@
 
 `main` 已通过本地合并提交 `5b937b06c3143a58cbf7144e48df26acbf57db7d` 接收 P2 Linux CUDA 交付，开发规划在 `dev`。本地及远端 `feat/p2-itransformer` 已删除。分支合并不改变任务验收状态。
 
-当前运行时 SHA256 为 `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`。2026-10-12 Linux 套件完成官方 ETT 48、Rust ETT 48、水泥 9，共 105 次 CUDA 运行；D4 32/32、18,574,560 行独立复算、Rust 102/Python 55 项质量检查通过。证据入口为 P2 `research/acceptance.md`，原始套件在忽略目录 `runs/p2-acceptance/20261012-linux-cuda/`。
+P2 于 2026-10-12 冻结的运行时 SHA256 为 `fd6347469c8389de3149e662e68eb5ac3dfe6e958815c8891daa38be9a1eb055`。该 Linux 套件完成官方 ETT 48、Rust ETT 48、水泥 9，共 105 次 CUDA 运行；D4 32/32、18,574,560 行独立复算、Rust 102/Python 55 项质量检查通过。证据入口为 P2 `research/acceptance.md`，原始套件在忽略目录 `runs/p2-acceptance/20261012-linux-cuda/`。此 SHA 是 P2 历史身份，不代表当前 P3 源码。
 
 P2 保持 `in_progress`：完整 CPU 对照未执行、当前源码 CPU 逐位恢复条款未复验、原 RTX 5090 Laptop 条款未满足，且三个水泥运行在 `cuda:1`。这些是待明确处置的验收差异；不重写已通过的 CUDA 事实，不自动豁免，也不安排违背 CUDA 优先指令的例行 CPU 训练。
 
@@ -49,4 +49,4 @@ P4 若纳入已通过验收的 WaveForM，总矩阵为 240 个 Rust 实验格；
 
 ## 审批与完成边界
 
-本次授权为合并、分支整理及规划。各新模型任务保持 `planning`，不执行 `task.py start`、不实现模型、不运行长训练。P2 旧条款的补验/延期需要单独明确，不能用分支整理代替。WaveForM 源码复用资格未确定前不复制其实现或将其声明为已有许可代码。
+本设计建立时的授权为合并、分支整理及规划。此后 P3 Informer 已获实施与旧正式套件预算授权，状态为 `in_progress`；新的正式 suite 仍须先审查当前源码身份、局部证据及预算。WaveForM 与 P4 保持 `planning`，不得由 P3 进度自动启动。P2 旧条款的补验/延期需要单独明确，不能用分支整理代替。WaveForM 源码复用资格未确定前不复制其实现或将其声明为已有许可代码。
